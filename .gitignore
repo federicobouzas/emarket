@@ -7,9 +7,16 @@
 *.o
 *.so
 
-# Logs #
+# Logs and Temps #
 ######################
 *.log
+/app/tmp/cache/*
+/app/tmp/files/*
+/app/tmp/logs/*
+/app/tmp/session/*
+/app/tmp/test/*
+/app/webroot/files/*
+/lib/Cake/Console/Templates/skel/tmp/*
 
 # OS generated files #
 ######################
