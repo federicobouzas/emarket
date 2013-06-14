@@ -1,0 +1,32 @@
+<Encuestas>
+    
+    <search_list file="EncuestasSL.php">
+        <action op="V" action="view" />
+        <action op="E" action="edit" />
+        <action op="D" action="delete" />
+    
+        <searchfield name="Encuesta.nombre" label="Nombre" />  
+    
+        <listfield name="Encuesta.nombre" label="Nombre" />
+        <listfield name="Encuesta.id" label="Probar Encuesta" presentation="ENCUESTAS::RESPONDER_ENCUESTA" />  
+    </search_list>
+    
+    <tablemaint file="EncuestasMaint.php">
+        <jsinclude file="encuestas/maint_encuestas" />
+        <fieldset title="Datos de la Encuesta">
+            <field name="fecha_carga" label="Fecha Carga" presentation="DATETIME" classparams="{'force':true}" isvisible="false" actions="A" />
+            <field name="user_id" label="Usuario Carga" presentation="USER" classparams="{'force':true}" isvisible="false" actions="A" />
+            <field name="nombre" label="Nombre" />
+            <field name="descripcion" label="Descripción" presentation="TEXTAREA" />
+        </fieldset>
+        <table title="Preguntas" paginate="true" model="Pregunta" order="Pregunta.orden ASC, Pregunta.id ASC">
+            <field name="fecha_carga" label="Fecha Carga" presentation="DATETIME" classparams="{'force':true}" isvisible="false" actions="A" />
+            <field name="user_id" label="Usuario Carga" presentation="USER" classparams="{'force':true}" isvisible="false" actions="A" />
+            <field name="pregunta" label="Pregunta" size="80" />
+            <field name="tipo" label="Tipo" presentation="ENCUESTAS::TIPO_PREGUNTA" />
+            <field name="opciones" label="Opciones" size="100" />
+            <field name="orden" label="Orden" size="5" />
+        </table>
+    </tablemaint>
+    
+</Encuestas>
