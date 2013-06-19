@@ -37,10 +37,10 @@ class pst_cantidad_personas extends Presentation {
             $where.= " AND sexo='" . $params->sexo . "' ";
         }
         if (!empty($params->comuna) && is_numeric($params->comuna)) {
-            $where.= " AND comuna=" . $params->comuna . " ";
+            $where.= " AND comuna IN (" . $params->comuna . ") ";
         }
         if (!empty($params->barrio)) {
-            $where.= " AND barrio='" . $params->barrio . "' ";
+            $where.= " AND barrio IN ('" . implode("','", explode(",", $params->barrio)) . "') ";
         }
         if (!empty($params->edad_hasta) && is_numeric($params->edad_hasta)) {
             $where.= " AND fecha_nacimiento >= '" . (date("Y") - $params->edad_hasta) . "-" . date("m") . "-" . date("d") . "' ";

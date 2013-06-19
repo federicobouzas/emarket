@@ -19,7 +19,7 @@ class ParseBouncesShell extends AppShell {
         }
 
         // Cambio el flag de estado a 1
-        //$this->Mensaje->Query("UPDATE sys_estados SET valor='1' WHERE nombre='parsing_bounces'");
+        $this->Mensaje->Query("UPDATE sys_estados SET valor='1' WHERE nombre='parsing_bounces'");
 
         $total = 0;
         $now = date('Y-m-d H:i:s');
@@ -62,14 +62,16 @@ class ParseBouncesShell extends AppShell {
                                                SET error='" . $parse['error']['code'] . "', error_tipo='" . $parse['error']['type'] . "'
                                                WHERE campania_id=" . $parse['campania'] . " AND persona_id=" . $parse['persona']);
 
-                        // Si el error es de hard sumo un error a la persona
+                        // Si el error es de hard lo desactivo, sino sumo un error a la persona
                         if ($parse['error']['type'] == 'Hard') {
+                            $this->Mensaje->Query("UPDATE per_personas SET activa='No' WHERE id=" . $parse['persona']);
+                        } else {
                             $this->Mensaje->Query("UPDATE per_personas SET errores=errores+1 WHERE id=" . $parse['persona']);
                         }
 
-                        // Si tiene 3 errores o mas lo dejo inactivo
+                        // Si tiene 5 errores o mas lo dejo inactivo
                         $cant_errores = $this->Mensaje->Query("SELECT errores FROM per_personas WHERE id=" . $parse['persona']);
-                        if ($cant_errores[0]['per_personas']['errores'] >= 3) {
+                        if ($cant_errores[0]['per_personas']['errores'] >= 5) {
                             $this->Mensaje->Query("UPDATE per_personas SET activa='No' WHERE id=" . $parse['persona']);
                         }
                     }

@@ -9,7 +9,7 @@ function cantidad_personas_init(field, params) {
             'edad_hasta': $("#CampaniaPersonasEdadHasta").val()
         };
         async_request('CAMPANIAS::CANTIDAD_PERSONAS', 'ajaxCalcularCantidad', JSON.stringify(req_params), function(data) {
-            $("#" + field.attr('id') + "Number").html('<strong>' + data + '</strong>');
+            $("#" + field.attr('id') + "Number").html('La campaña será enviada a <strong>' + data + '</strong> personas.');
         });
     });
 }

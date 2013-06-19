@@ -27,7 +27,7 @@ class CampaniasSL extends AbstractData {
             array('name' => 'Campania.estado', 'label' => 'Estado', 'presentation' => 'CAMPANIAS::ESTADO_CAMPANIA'),
             array('name' => 'Campania.fecha_envio', 'label' => 'Fecha de Envío', 'presentation' => 'DATETIME', 'classparams' => '{"no_seconds": true}'),
             array('name' => 'Campania.id', 'label' => 'Probar Envío', 'presentation' => 'CAMPANIAS::ENVIAR_CAMPANIA'),
-        )
+        ),
     );
 
 }

@@ -31,8 +31,9 @@ class CampaniasMaint extends AbstractData {
                 'fields' => array(
                     array('name' => 'personas_sexo', 'label' => 'Sexo', 'presentation' => 'SEXO'),
                     array('name' => 'personas_edad', 'label' => 'Edad', 'presentation' => 'EDAD_ENTRE'),
-                    array('name' => 'personas_comuna', 'label' => 'Comuna', 'presentation' => 'GEOLOCALIZACION::COMUNAS'),
-                    array('name' => 'personas_barrio', 'label' => 'Barrio', 'presentation' => 'GEOLOCALIZACION::BARRIOS', 'classparams' => '{"listen":"CampaniaPersonasComuna"}'),
+                    array('name' => 'personas_localizacion_envio', 'label' => 'Localización Envío', 'presentation' => 'CAMPANIAS::LOCALIZACION_ENVIO'),
+                    array('name' => 'personas_comuna', 'label' => 'Comuna', 'presentation' => 'CAMPANIAS::COMUNAS_CHECKBOX'),
+                    array('name' => 'personas_barrio', 'label' => 'Barrio', 'presentation' => 'CAMPANIAS::BARRIOS_CHECKBOX'),
                     array('name' => 'tmp_cantidad_personas', 'label' => 'Cantidad de Personas', 'presentation' => 'CAMPANIAS::CANTIDAD_PERSONAS'),
                 ),
             ),

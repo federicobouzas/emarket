@@ -52,10 +52,10 @@ class EnviarCampaniaShell extends AppShell {
                 $where.= " AND sexo='" . $campania['persona_sexo'] . "' ";
             }
             if (!empty($campania['persona_comuna']) && is_numeric($campania['persona_comuna'])) {
-                $where.= " AND comuna=" . $campania['persona_comuna'] . " ";
+                $where.= " AND comuna IN (" . $campania['persona_comuna'] . ") ";
             }
             if (!empty($campania['persona_barrio'])) {
-                $where.= " AND barrio='" . $campania['persona_barrio'] . "' ";
+                $where.= " AND barrio IN ('" . implode("','", explode(",", $campania['persona_barrio'])) . "') ";
             }
             if (!empty($campania['persona_edad'])) {
                 $array_edad = explode(",", $campania['persona_edad']);
@@ -73,13 +73,13 @@ class EnviarCampaniaShell extends AppShell {
 
             $personas = $this->Campania->Query("SELECT DISTINCT * FROM per_personas WHERE activa='Si' " . $where);
 
+            $links = $this->Campania->trackLinks($campania['id'], $campania['cuerpo_email']);
+            
             foreach ($personas as $persona) {
                 $hash = md5("GCBA|" . $campania['id'] . "|" . $persona['per_personas']['id']);
 
                 $this->Campania->Query("INSERT INTO cam_campanias_personas (campania_id, persona_id, estado)
                                     VALUES (" . $campania['id'] . ", " . $persona['per_personas']['id'] . ", 'Enviada')");
-
-                $campania['cuerpo_email'] = $this->Campania->trackLinks($campania['id'], $persona['per_personas']['id'], $campania['cuerpo_email']);
 
                 $replace = array(
                     $persona['per_personas']['nombre'],
@@ -87,8 +87,10 @@ class EnviarCampaniaShell extends AppShell {
                     $this->Campania->generateUnsubscribeLink($campania['id'], $persona['per_personas']['id'], $hash)
                 );
 
+                $cuerpo_links = $this->Campania->replaceLinks($campania['id'], $persona['per_personas']['id'], $campania['cuerpo_email'], $links);
+                
                 $asunto = $this->Campania->replaceVars($campania['asunto_email'], $replace);
-                $cuerpo = $this->Campania->replaceVars($campania['cuerpo_email'], $replace);
+                $cuerpo = $this->Campania->replaceVars($cuerpo_links, $replace);
 
                 if ($campania['tipo'] == "Encuesta") {
                     $email_data = array(

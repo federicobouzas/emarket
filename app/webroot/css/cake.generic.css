@@ -427,6 +427,12 @@ label {
     font-weight: bold;
     color: #8B8474;
 }
+label.checkbox {
+    font-size: 100%;
+    font-weight: normal;
+    float: left;
+    margin-top: -4px;
+}
 label.permiso {
     font-weight: normal;
     padding: 0;
@@ -472,13 +478,17 @@ option {
     padding: 0 3px;
 }
 input[type=checkbox] {
-    clear: left;
+    /*clear: left;*/
     float: left;
     margin: 0px 6px 7px 2px;
     width: auto;
 }
 div.checkbox label {
     display: inline;
+}
+div.checkbox-box {
+    float: left;
+    padding: 0;
 }
 input[type=radio] {
     width: auto;
