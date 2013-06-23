@@ -36,18 +36,18 @@ $(function() {
 
         // grafico de lecturas lo muestra en todos los casos
         var data1 = [{
-                'name': 'Abiertos',
-                'color': '#19A358',
-                'y': info.personas.leidos
-            }, {
-                'name': 'No Abiertos',
-                'color': '#666666',
-                'y': info.personas.no_leidos
-            }, {
-                'name': 'Error',
-                'color': '#F41F1E',
-                'y': info.personas.error.total
-            }];
+            'name': 'Abiertos',
+            'color': '#19A358',
+            'y': info.personas.leidos
+        }, {
+            'name': 'No Abiertos',
+            'color': '#666666',
+            'y': info.personas.no_leidos
+        }, {
+            'name': 'Error',
+            'color': '#F41F1E',
+            'y': info.personas.error.total
+        }];
         pie('grafico1', 'Tasa de Entrega', data1, false);
 
         // resumen
@@ -57,7 +57,8 @@ $(function() {
         $("#ultima_apertura").text(info.personas.ultima_lectura);
         $("#clicks").text(info.personas.clicks);
         $("#ultimo_click").text(info.personas.ultimo_click);
-
+        $("#reporte_rebotes").html('<a href="' + WWW + 'campanias/reporteRebotes/' + this.value + '"><img src="' + WWW + 'img/fmw/excel2.gif" width="20px" /></a>');
+        
         // grafico de hipervinculos
         if (empty(info.links.categories)) {
             $("#grafico4").text("La campaña seleccionada no posee hipervínculos para trackear.").css("height", "auto");

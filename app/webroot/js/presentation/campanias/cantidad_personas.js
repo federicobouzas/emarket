@@ -3,8 +3,12 @@ function cantidad_personas_init(field, params) {
         $("#" + field.attr('id') + "Number").html('Cargando...');
         var req_params = {
             'sexo': $("#CampaniaPersonasSexo").val(),
-            'barrio': $("#CampaniaPersonasBarrio").val(),
-            'comuna': $("#CampaniaPersonasComuna").val(),
+            'barrio': $("#boxCampaniaPersonasBarrio input:checkbox:checked").map(function(){
+                return this.value;
+            }).get().join(","),
+            'comuna': $("#boxCampaniaPersonasComuna input:checkbox:checked").map(function(){
+                return this.value;
+            }).get().join(","),
             'edad_desde': $("#CampaniaPersonasEdadDesde").val(),
             'edad_hasta': $("#CampaniaPersonasEdadHasta").val()
         };

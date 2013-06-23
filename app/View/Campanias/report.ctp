@@ -64,6 +64,7 @@ $this->Html->script("campanias/maint_reportes", array('inline' => false));
                 <li>Última Apertura <span id="ultima_apertura"></span></li>
                 <li>Clicks <span id="clicks"></span></li>
                 <li>Último Click <span id="ultimo_click"></span></li>
+                <li>Reporte Rebotes <span id="reporte_rebotes"></span></li>
             </ul>
         </div>
     </div>

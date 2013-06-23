@@ -1369,7 +1369,7 @@ img.mimetype.file { width: 45px; }
 #CampaniaTmpCantidadPersonasNumber { margin-left: 10px; }
 
 #labels { float: left; width: 279px; margin-top: 70px; }
-#resumen { float: left; width: 300px; border: solid 1px #BBB; padding: 10px; border-radius: 5px; background-color: #EEE; margin-top: 70px; }
+#resumen { float: left; width: 300px; border: solid 1px #BBB; padding: 10px; border-radius: 5px; background-color: #EEE; margin-top: 55px; }
 .resumen-titulo { color: #333; font-size: 15px; font-weight: bold; }
 ul.resumen-lista li { color: #666; display: inline-block; font-size: 13px; margin: 9px 0 0 0; width: 100%; }
 ul.resumen-lista li span { color: #333333; float: right; font-weight: bold; margin-left: 3px; }
