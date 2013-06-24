@@ -81,10 +81,12 @@ class EnviarCampaniaShell extends AppShell {
                 $this->Campania->Query("INSERT INTO cam_campanias_personas (campania_id, persona_id, estado)
                                     VALUES (" . $campania['id'] . ", " . $persona['per_personas']['id'] . ", 'Enviada')");
 
+                $unsubscribe_link = $this->Campania->generateUnsubscribeLink($campania['id'], $persona['per_personas']['id'], $hash);
+                
                 $replace = array(
                     $persona['per_personas']['nombre'],
                     $persona['per_personas']['apellido'],
-                    $this->Campania->generateUnsubscribeLink($campania['id'], $persona['per_personas']['id'], $hash)
+                    $unsubscribe_link,
                 );
 
                 $cuerpo_links = $this->Campania->replaceLinks($campania['id'], $persona['per_personas']['id'], $campania['cuerpo_email'], $links);
@@ -128,6 +130,7 @@ class EnviarCampaniaShell extends AppShell {
                     "X-Hash" => md5("GCBA|" . $campania['id'] . "|" . $persona['per_personas']['id']),
                     "X-Campania" => $campania['id'],
                     "X-Persona" => $persona['per_personas']['id'],
+                    "List-Unsubscribe" => "<" . $unsubscribe_link . ">",
                 );
 
                 $email_data["cuerpo"].= $tracker;

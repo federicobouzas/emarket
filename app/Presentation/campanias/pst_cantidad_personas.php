@@ -50,7 +50,17 @@ class pst_cantidad_personas extends Presentation {
         }
 
         $db = ConnectionManager::getDataSource('default');
-        $count = $db->Query("SELECT COUNT(*) as cant FROM per_personas WHERE activa='Si'" . $where);
+        $count = $db->Query("SELECT COUNT(*) AS cant FROM per_personas WHERE activa='Si'" . $where);
+        return $count[0][0]['cant'];
+    }
+    
+    public function ajaxCantidadEnviada($params) {
+        if (empty($params->campania_id)) {
+            return 0;
+        }
+
+        $db = ConnectionManager::getDataSource('default');
+        $count = $db->Query("SELECT COUNT(*) AS cant FROM cam_campanias_personas WHERE campania_id=" . $params->campania_id);
         return $count[0][0]['cant'];
     }
 
