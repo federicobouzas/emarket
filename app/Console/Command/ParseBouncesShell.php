@@ -25,25 +25,35 @@ class ParseBouncesShell extends AppShell {
         $now = date('Y-m-d H:i:s');
         $bounce = new Bounces;
 
-        $servers = $this->Server->Query("SELECT * FROM msg_servers WHERE tipo='POP' OR tipo='IMAP'");
+        $servers = $this->Server->Query("SELECT * FROM msg_servers WHERE tipo='POP3' OR tipo='IMAP'");
         foreach ($servers as $server) {
             $server = $server['msg_servers'];
 
             $mailbox = $server['host'] . ":" . $server['puerto'] . "/" . strtoupper($server['tipo']);
             $mailbox.= ($server['ssl'] == 'Si' ? '/ssl' : '');
             $mailbox.= (empty($server['adicionales']) ? '' : $server['adicionales']);
-            $mbox = imap_open("{" . $mailbox . "}INBOX", $server['usuario'], $server['clave']);
+            $mbox = @imap_open("{" . $mailbox . "}INBOX", $server['usuario'], $server['clave']);
+            
+            // Si no puede conectar sigue con el proximo servidor
+            if ($mbox === false) {
+                break;
+            }
+            
+            $MC = @imap_check($mbox);
+                        
+            // Si no hay mensajes sigue con el proximo servidor
+            if ($MC->Nmsgs == 0) {
+                break;
+            }
 
-            $MC = imap_check($mbox);
-
-            $result = imap_fetch_overview($mbox, "1:" . $MC->Nmsgs, 0);
+            $result = @imap_fetch_overview($mbox, "1:" . $MC->Nmsgs, 0);
             foreach ($result as $overview) {
                 // Si esta borrado ya le realice el parse
                 if ($overview->deleted) {
                     continue;
                 }
 
-                $body = imap_body($mbox, $overview->msgno);
+                $body = @imap_body($mbox, $overview->msgno);
                 // Si el contenido esta vacio no me sirve
                 if (!$body) {
                     continue;
@@ -52,7 +62,7 @@ class ParseBouncesShell extends AppShell {
                 // Es un rebote?
                 if ($overview->from == "The Post Office <postmaster@buenosaires.gob.ar>") {
                     $parse = $bounce->parseMail($body);
-
+                    
                     if (!empty($parse['campania']) && !empty($parse['persona']) && is_numeric($parse['campania']) && is_numeric($parse['persona'])) {
                         $error = '0.0.0';
                         if (!empty($parse['error']['code'])) {
@@ -85,6 +95,7 @@ class ParseBouncesShell extends AppShell {
                     try {
                         $this->Mensaje->Query($sql);
                         imap_delete($mbox, $overview->msgno);
+                        imap_expunge($mbox);
                         $total++;
                     } catch (Exception $ex) {
                         continue;
