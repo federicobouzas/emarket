@@ -1,2 +1,2 @@
-1372297683
-a:2:{s:4:"name";a:5:{s:32:"ae1bde34794270bb273f407db5974619";s:7:"`email`";s:32:"47eb7bb09414c64f779510914712b6ee";s:7:"`count`";s:32:"cb3cdbcfd08b0981b10e0904436cb784";s:15:"`cam_campanias`";s:32:"c021da7b93993e5377cf2b7ebc9187ce";s:15:"`Campania`.`id`";s:32:"845d79875f88811bac03b59674dc8f7b";s:10:"`Campania`";}s:6:"fields";a:1:{s:32:"5fdb191535bf06c151d2b1e540576dfd";a:1:{i:0;s:19:"COUNT(*) AS `count`";}}}
+1372298201
+a:1:{s:4:"name";a:1:{s:32:"ae1bde34794270bb273f407db5974619";s:7:"`email`";}}
