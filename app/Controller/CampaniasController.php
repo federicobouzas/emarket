@@ -167,7 +167,7 @@ class CampaniasController extends AppController {
         );
 
         $asunto = $this->Campania->replaceVars($campania['asunto_email'], $replace);
-        $cuerpo = $this->Campania->replaceVars($campania['cuerpo_email'], $replace);
+        $cuerpo = $this->Campania->replaceVars(htmlspecialchars_decode($campania['cuerpo_email']), $replace);
 
         if ($campania['tipo'] == "Encuesta") {
             $email_data["asunto"] = $this->Campania->Encuesta->replaceVars($campania['id'], 0, '', $asunto);

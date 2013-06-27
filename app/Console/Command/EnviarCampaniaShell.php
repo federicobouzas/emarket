@@ -73,7 +73,8 @@ class EnviarCampaniaShell extends AppShell {
 
             $personas = $this->Campania->Query("SELECT DISTINCT * FROM per_personas WHERE activa='Si' " . $where);
 
-            $links = $this->Campania->trackLinks($campania['id'], $campania['cuerpo_email']);
+            $cuerpo = htmlspecialchars_decode($campania['cuerpo_email']);
+            $links = $this->Campania->trackLinks($campania['id'], $cuerpo);
             
             foreach ($personas as $persona) {
                 $hash = md5("GCBA|" . $campania['id'] . "|" . $persona['per_personas']['id']);
@@ -89,28 +90,28 @@ class EnviarCampaniaShell extends AppShell {
                     $unsubscribe_link,
                 );
 
-                $cuerpo_links = $this->Campania->replaceLinks($campania['id'], $persona['per_personas']['id'], $campania['cuerpo_email'], $links);
+                $cuerpo_links = $this->Campania->replaceLinks($campania['id'], $persona['per_personas']['id'], $cuerpo, $links);
                 
-                $asunto = $this->Campania->replaceVars($campania['asunto_email'], $replace);
-                $cuerpo = $this->Campania->replaceVars($cuerpo_links, $replace);
+                $asunto_persona = $this->Campania->replaceVars($campania['asunto_email'], $replace);
+                $cuerpo_persona = $this->Campania->replaceVars($cuerpo_links, $replace);
 
                 if ($campania['tipo'] == "Encuesta") {
                     $email_data = array(
                         "destino" => $persona['per_personas']['email'],
-                        "asunto" => $this->Campania->Encuesta->replaceVars($campania['id'], $persona['per_personas']['id'], $hash, $asunto),
-                        "cuerpo" => $this->Campania->Encuesta->replaceVars($campania['id'], $persona['per_personas']['id'], $hash, $cuerpo)
+                        "asunto" => $this->Campania->Encuesta->replaceVars($campania['id'], $persona['per_personas']['id'], $hash, $asunto_persona),
+                        "cuerpo" => $this->Campania->Encuesta->replaceVars($campania['id'], $persona['per_personas']['id'], $hash, $cuerpo_persona)
                     );
                 } elseif ($campania['tipo'] == "Evento") {
                     $email_data = array(
                         "destino" => $persona['per_personas']['email'],
-                        "asunto" => $this->Campania->Evento->replaceVars($campania['id'], $persona['per_personas']['id'], $hash, $asunto),
-                        "cuerpo" => $this->Campania->Evento->replaceVars($campania['id'], $persona['per_personas']['id'], $hash, $cuerpo)
+                        "asunto" => $this->Campania->Evento->replaceVars($campania['id'], $persona['per_personas']['id'], $hash, $asunto_persona),
+                        "cuerpo" => $this->Campania->Evento->replaceVars($campania['id'], $persona['per_personas']['id'], $hash, $cuerpo_persona)
                     );
                 } else {
                     $email_data = array(
                         "destino" => $persona['per_personas']['email'],
-                        "asunto" => $asunto,
-                        "cuerpo" => $cuerpo
+                        "asunto" => $asunto_persona,
+                        "cuerpo" => $cuerpo_persona
                     );
                 }
 

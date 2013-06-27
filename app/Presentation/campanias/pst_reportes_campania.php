@@ -47,7 +47,7 @@ class pst_reportes_campania extends Presentation {
         if (empty($ultima_lectura)) {
             $ret['personas']['ultima_lectura'] = "Nunca";
         } else {
-            $ret['personas']['ultima_lectura'] = date("d/m/Y H:i:s", strtotime($ultima_lectura[0]['cam_campanias_personas']['lectura']));
+            $ret['personas']['ultima_lectura'] = date("d/m/Y H:i", strtotime($ultima_lectura[0]['cam_campanias_personas']['lectura']));
         }
 
         // Clicks
@@ -59,7 +59,7 @@ class pst_reportes_campania extends Presentation {
         if (empty($ultimo_click)) {
             $ret['personas']['ultimo_click'] = "Nunca";
         } else {
-            $ret['personas']['ultimo_click'] = date("d/m/Y H:i:s", strtotime($ultimo_click[0]['p']['fecha_acceso']));
+            $ret['personas']['ultimo_click'] = date("d/m/Y H:i", strtotime($ultimo_click[0]['p']['fecha_acceso']));
         }
 
         $links = $db->Query("SELECT l.link, COUNT(p.id) AS totales, COUNT(distinct p.persona_id) AS unicos
