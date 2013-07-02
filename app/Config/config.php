@@ -11,3 +11,9 @@ if (!defined('CAKE_FRAMEWORK')) {
 if (!defined('WWW')) {
     define('WWW', '/'); // no usar la constante DS
 }
+
+class Config {
+    public static $array = array(
+        'ban' => false
+    );
+}
