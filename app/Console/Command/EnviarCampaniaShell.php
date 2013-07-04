@@ -65,13 +65,15 @@ class EnviarCampaniaShell extends AppShell {
             if (!empty($campania['personas_edad'])) {
                 $array_edad = explode(",", $campania['personas_edad']);
                 if (count($array_edad) == 2) {
-                    if (is_numeric($array_edad[0])) {
-                        $fecha_desde = date("Y-m-d", 60 * 60 * 24 * 365 * $array_edad[0]);
-                        $where.= " AND per_personas.fecha_nacimiento >= '" . $fecha_desde . "' ";
-                    }
                     if (is_numeric($array_edad[1])) {
-                        $fecha_hasta = date("Y-m-d", 60 * 60 * 24 * 365 * $array_edad[0]);
-                        $where.= " AND per_personas.fecha_nacimiento <= '" . $fecha_hasta . "' ";
+                        //$fecha_hasta = date("Y-m-d", 60 * 60 * 24 * 365 * $array_edad[1]);
+                        //$where.= " AND per_personas.fecha_nacimiento <= '" . $fecha_hasta . "' ";
+                        $where.= " AND per_personas.fecha_nacimiento > '" . (date("Y") - $array_edad[1]) . "-" . date("m") . "-" . date("d") . "' ";
+                    }
+                    if (is_numeric($array_edad[0])) {
+                        //$fecha_desde = date("Y-m-d", 60 * 60 * 24 * 365 * $array_edad[0]);
+                        //$where.= " AND per_personas.fecha_nacimiento >= '" . $fecha_desde . "' ";
+                        $where.= " AND per_personas.fecha_nacimiento <= '" . (date("Y") - $array_edad[0] - 1) . "-" . date("m") . "-" . date("d") . "' ";
                     }
                 }
             }

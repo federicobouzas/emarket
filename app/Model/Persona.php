@@ -74,6 +74,18 @@ class Persona extends AppModel {
                 'allowEmpty' => true
             )
         ),
+        'comuna' => array(
+            'numeric' => array(
+                'rule' => array('numeric'),
+                'message' => 'La comuna debe ser numérica',
+                'allowEmpty' => true
+            ),
+            'between' => array(
+                'rule' => array('between', 1, 15),
+                'message' => 'La comuna debe ser un número del 1 al 15',
+                'allowEmpty' => true
+            )
+        ),
         'tmp_omitir_primer_fila' => array(
             'required' => array(
                 'rule' => array('notEmpty'),

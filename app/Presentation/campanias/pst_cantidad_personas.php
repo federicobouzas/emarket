@@ -48,7 +48,7 @@ class pst_cantidad_personas extends Presentation {
             $where.= " AND per_personas_poblaciones.poblacion_id IN (" . $params->poblacion . ") ";
         }
         if (!empty($params->edad_hasta) && is_numeric($params->edad_hasta)) {
-            $where.= " AND per_personas.fecha_nacimiento >= '" . (date("Y") - $params->edad_hasta) . "-" . date("m") . "-" . date("d") . "' ";
+            $where.= " AND per_personas.fecha_nacimiento > '" . (date("Y") - $params->edad_hasta - 1) . "-" . date("m") . "-" . date("d") . "' ";
         }
         if (!empty($params->edad_desde) && is_numeric($params->edad_desde)) {
             $where.= " AND per_personas.fecha_nacimiento <= '" . (date("Y") - $params->edad_desde) . "-" . date("m") . "-" . date("d") . "' ";

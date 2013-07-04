@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-/app/tmp
+app/tmp
 /lib/Cake/Console/Templates/skel/tmp/
 /plugins
 /vendors
@@ -10,3 +10,4 @@
 =======
 /app/tmp
 >>>>>>> 0c8df0dacb176c0b39487ed8fe1e339e7edb0b13
+app/webroot/files/

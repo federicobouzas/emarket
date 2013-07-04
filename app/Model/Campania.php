@@ -98,9 +98,14 @@ class Campania extends AppModel {
         $html = str_get_html(html_entity_decode($html_str));
         foreach ($html->find('a') as $element) {
             if (!in_array($element->href, $vars) && !in_array($element->href, $used_links)) {
-                $this->Query("INSERT INTO cam_links (campania_id, link) VALUES (" . $campania_id . ", '" . $element->href . "')");
-
-                $link_id = $this->getDataSource()->lastInsertId();
+                $check = $this->Query("SELECT id FROM cam_links WHERE campania_id=" . $campania_id . " AND link='" . $element->href . "' LIMIT 1");
+                if ($check) {
+                    $link_id = $check[0]['cam_links']['id'];
+                } else {
+                    $this->Query("INSERT INTO cam_links (campania_id, link) VALUES (" . $campania_id . ", '" . $element->href . "')");
+                    $link_id = $this->getDataSource()->lastInsertId();
+                }
+                
                 $used_links[$link_id] = $element->href;
             }
         }
