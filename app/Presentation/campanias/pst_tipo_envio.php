@@ -2,19 +2,20 @@
 
 App::uses('pst_selectarray', 'Presentation');
 
-class pst_localizacion_envio extends pst_selectarray {
+class pst_tipo_envio extends pst_selectarray {
 
     public function __construct($settings) {
         $this->options = array(
             'comunas' => 'Comunas',
             'barrios' => 'Barrios',
+            'poblaciones' => 'Poblaciones',
         );
         parent::__construct($settings);
-        $this->js_initial = "localizacion_envio_init";
+        $this->js_initial = "tipo_envio_init";
     }
 
     public function jsIncludes() {
-        return array("presentation/campanias/localizacion_envio.js");
+        return array("presentation/campanias/tipo_envio.js");
     }
     
 }

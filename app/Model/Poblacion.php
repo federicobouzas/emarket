@@ -22,13 +22,15 @@ class Poblacion extends AppModel {
             'associationForeignKey' => 'campania_id',
             'unique' => true
         ),
-        'Approl' => array(
-            'className' => 'Approl',
-            'joinTable' => 'per_poblaciones_rols',
-            'foreignKey' => 'poblacion_id',
-            'associationForeignKey' => 'rol_id',
-            'unique' => true
-        )
+            /*
+              'Approl' => array(
+              'className' => 'Approl',
+              'joinTable' => 'per_poblaciones_rols',
+              'foreignKey' => 'poblacion_id',
+              'associationForeignKey' => 'rol_id',
+              'unique' => true
+              )
+             */
     );
     public $validate = array(
         'nombre' => array(

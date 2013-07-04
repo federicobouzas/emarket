@@ -11,12 +11,10 @@ $MENU = array(
         'Cargar Persona' => 'personas|add',
         'Importar Personas' => 'personas|import',
         'Consultar Personas' => 'personas|index',
-        /*
         'Poblaciones' => array(
             'Cargar Población' => 'poblacions|add',
             'Consultar Poblaciones' => 'poblacions|index'
         ),
-        */
     ),
     'Campañas' => array(
         'Cargar Campaña' => 'campanias|add',

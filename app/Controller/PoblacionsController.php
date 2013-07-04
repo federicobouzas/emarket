@@ -20,23 +20,25 @@ class PoblacionsController extends AppController {
                 'title' => 'Descripción de la Población',
                 'fields' => array(
                     array('name' => 'fecha_carga', 'label' => 'Fecha Carga', 'presentation' => 'DATETIME', 'classparams' => '{"force":true}', 'isvisible' => false, 'actions' => 'A'),
-                array('name' => 'user_id', 'label' => 'Usuario Carga', 'presentation' => 'USER', 'classparams' => '{"force":true}', 'isvisible' => false, 'actions' => 'A'),
-                array('name' => 'nombre', 'label' => 'Nombre'),
-                array('name' => 'activa', 'label' => 'Activa', 'presentation' => 'SINO', 'initialvalue' => 'Si'),
+                    array('name' => 'user_id', 'label' => 'Usuario Carga', 'presentation' => 'USER', 'classparams' => '{"force":true}', 'isvisible' => false, 'actions' => 'A'),
+                    array('name' => 'nombre', 'label' => 'Nombre'),
+                    array('name' => 'activa', 'label' => 'Activa', 'presentation' => 'SINO', 'initialvalue' => 'Si'),
                 ),
             ),
-            array(
-                'type' => 'table',
-                'assoc' => 'true',
-                'paginate' => 'true',
-                'title' => 'Roles que la Pueden Utilizar',
-                'label' => 'Rol',
-                'model' => 'Approl',
-                'fields' => array(
-                    array('name' => 'nombre', 'label' => 'Rol'),
-                ),
-                'order' => array('Approl.nombre ASC'),
-            ),
+        /*
+          array(
+          'type' => 'table',
+          'assoc' => 'true',
+          'paginate' => 'true',
+          'title' => 'Roles que la Pueden Utilizar',
+          'label' => 'Rol',
+          'model' => 'Approl',
+          'fields' => array(
+          array('name' => 'nombre', 'label' => 'Rol'),
+          ),
+          'order' => array('Approl.nombre ASC'),
+          ),
+         */
         ),
     );
 

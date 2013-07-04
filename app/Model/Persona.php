@@ -8,15 +8,13 @@ class Persona extends AppModel {
     public $displayField = 'CONCAT(nombre, \' \', apellido)';
     public $recursive = -1;
     public $hasAndBelongsToMany = array(
-        /*
-          'Poblacion' => array(
-          'className' => 'Poblacion',
-          'joinTable' => 'per_personas_poblaciones',
-          'foreignKey' => 'persona_id',
-          'associationForeignKey' => 'poblacion_id',
-          'unique' => true
-          ),
-         */
+        'Poblacion' => array(
+            'className' => 'Poblacion',
+            'joinTable' => 'per_personas_poblaciones',
+            'foreignKey' => 'persona_id',
+            'associationForeignKey' => 'poblacion_id',
+            'unique' => true
+        ),
         'Campania' => array(
             'className' => 'Campania',
             'joinTable' => 'cam_campanias_personas',
@@ -27,19 +25,19 @@ class Persona extends AppModel {
     );
     public $validate = array(
         /*
-        'nombre' => array(
-            'required' => array(
-                'rule' => array('notEmpty'),
-                'message' => 'El nombre de la persona es requerido'
-            )
-        ),
-        'apellido' => array(
-            'required' => array(
-                'rule' => array('notEmpty'),
-                'message' => 'El apellido de la persona es requerido'
-            )
-        ),
-        */
+          'nombre' => array(
+          'required' => array(
+          'rule' => array('notEmpty'),
+          'message' => 'El nombre de la persona es requerido'
+          )
+          ),
+          'apellido' => array(
+          'required' => array(
+          'rule' => array('notEmpty'),
+          'message' => 'El apellido de la persona es requerido'
+          )
+          ),
+         */
         'email' => array(
             'required' => array(
                 'rule' => array('notEmpty'),

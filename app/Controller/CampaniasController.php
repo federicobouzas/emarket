@@ -24,6 +24,10 @@ class CampaniasController extends AppController {
             } else {
                 unset($this->request->data['Campania']['personas_edad']);
             }
+            
+            if (empty($this->request->data['Campania']['personas_sexo'])) {
+                unset($this->request->data['Campania']['personas_sexo']);
+            }
         }
 
         $this->maint = getData('Campanias/CampaniasMaint');
@@ -43,7 +47,15 @@ class CampaniasController extends AppController {
         }
 
         if ($this->request->is('post')) {
-            $this->request->data['Campania']['personas_edad'] = $this->request->data['Campania']['personas_edad']['desde'] . "," . $this->request->data['Campania']['personas_edad']['hasta'];
+            if (!empty($this->request->data['Campania']['personas_edad']['desde']) && !empty($this->request->data['Campania']['personas_edad']['hasta'])) {
+                $this->request->data['Campania']['personas_edad'] = $this->request->data['Campania']['personas_edad']['desde'] . "," . $this->request->data['Campania']['personas_edad']['hasta'];
+            } else {
+                unset($this->request->data['Campania']['personas_edad']);
+            }
+            
+            if (empty($this->request->data['Campania']['personas_sexo'])) {
+                unset($this->request->data['Campania']['personas_sexo']);
+            }
         }
 
         $this->maint = getData('Campanias/CampaniasMaint');

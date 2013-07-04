@@ -36,7 +36,7 @@ class EnviarCampaniaShell extends AppShell {
 
         $campania = $query[0]['Campania'];
         //$poblaciones = $query[0][0]['Poblaciones'];
-
+        
         try {
             $this->Campania->Query("UPDATE cam_campanias SET estado='Enviada', fecha_envio=NOW() WHERE id=" . $campania['id']);
 
@@ -48,34 +48,41 @@ class EnviarCampaniaShell extends AppShell {
              */
 
             $where = "";
-            if (!empty($campania['persona_sexo'])) {
-                $where.= " AND sexo='" . $campania['persona_sexo'] . "' ";
+            $join = "";
+            if (!empty($campania['personas_sexo'])) {
+                $where.= " AND per_personas.sexo='" . $campania['personas_sexo'] . "' ";
             }
-            if (!empty($campania['persona_comuna']) && is_numeric($campania['persona_comuna'])) {
-                $where.= " AND comuna IN (" . $campania['persona_comuna'] . ") ";
+            if (!empty($campania['personas_comuna'])) {
+                $where.= " AND per_personas.comuna IN (" . $campania['personas_comuna'] . ") ";
             }
-            if (!empty($campania['persona_barrio'])) {
-                $where.= " AND barrio IN ('" . implode("','", explode(",", $campania['persona_barrio'])) . "') ";
+            if (!empty($campania['personas_barrio'])) {
+                $where.= " AND per_personas.barrio IN ('" . implode("','", explode(",", $campania['personas_barrio'])) . "') ";
             }
-            if (!empty($campania['persona_edad'])) {
-                $array_edad = explode(",", $campania['persona_edad']);
+            if (!empty($campania['personas_poblaciones'])) {
+                $join.= " JOIN per_personas_poblaciones ON per_personas_poblaciones.persona_id=per_personas.id ";
+                $where.= " AND per_personas_poblaciones.poblacion_id IN (" . $campania['personas_poblaciones'] . ") ";
+            }
+            if (!empty($campania['personas_edad'])) {
+                $array_edad = explode(",", $campania['personas_edad']);
                 if (count($array_edad) == 2) {
                     if (is_numeric($array_edad[0])) {
                         $fecha_desde = date("Y-m-d", 60 * 60 * 24 * 365 * $array_edad[0]);
-                        $where.= " AND fecha_nacimiento >= '" . $fecha_desde . "' ";
+                        $where.= " AND per_personas.fecha_nacimiento >= '" . $fecha_desde . "' ";
                     }
                     if (is_numeric($array_edad[1])) {
                         $fecha_hasta = date("Y-m-d", 60 * 60 * 24 * 365 * $array_edad[0]);
-                        $where.= " AND fecha_nacimiento <= '" . $fecha_hasta . "' ";
+                        $where.= " AND per_personas.fecha_nacimiento <= '" . $fecha_hasta . "' ";
                     }
                 }
             }
 
-            $personas = $this->Campania->Query("SELECT DISTINCT * FROM per_personas WHERE activa='Si' " . $where);
-
+            $personas = $this->Campania->Query("SELECT DISTINCT per_personas.* 
+                                                FROM per_personas " . $join . " 
+                                                WHERE per_personas.activa='Si' " . $where);
+            
             $cuerpo = htmlspecialchars_decode($campania['cuerpo_email']);
             $links = $this->Campania->trackLinks($campania['id'], $cuerpo);
-            
+
             foreach ($personas as $persona) {
                 $hash = md5("GCBA|" . $campania['id'] . "|" . $persona['per_personas']['id']);
 
@@ -83,7 +90,7 @@ class EnviarCampaniaShell extends AppShell {
                                     VALUES (" . $campania['id'] . ", " . $persona['per_personas']['id'] . ", 'Enviada')");
 
                 $unsubscribe_link = $this->Campania->generateUnsubscribeLink($campania['id'], $persona['per_personas']['id'], $hash);
-                
+
                 $replace = array(
                     $persona['per_personas']['nombre'],
                     $persona['per_personas']['apellido'],
@@ -91,7 +98,7 @@ class EnviarCampaniaShell extends AppShell {
                 );
 
                 $cuerpo_links = $this->Campania->replaceLinks($campania['id'], $persona['per_personas']['id'], $cuerpo, $links);
-                
+
                 $asunto_persona = $this->Campania->replaceVars($campania['asunto_email'], $replace);
                 $cuerpo_persona = $this->Campania->replaceVars($cuerpo_links, $replace);
 

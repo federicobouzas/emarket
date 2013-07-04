@@ -12,8 +12,14 @@ if (!defined('WWW')) {
     define('WWW', '/'); // no usar la constante DS
 }
 
-class Config {
-    public static $array = array(
-        'ban' => false
-    );
+if (!class_exists('AppConfig')) {
+
+    class AppConfig {
+
+        public static $array = array(
+            'ban' => false
+        );
+
+    }
+
 }
