@@ -17,7 +17,12 @@ if (!class_exists('AppConfig')) {
     class AppConfig {
 
         public static $array = array(
-            'ban' => true
+            'users' => array(
+                'login' => array(
+                    'ban' => true,
+                    'forget' => true,
+                ),
+            ),
         );
 
     }

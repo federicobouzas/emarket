@@ -192,9 +192,10 @@ App::uses('BloqueoException', 'Lib');
 App::build(array('Presentation' => array('%s' . 'Presentation' . DS)), App::REGISTER);
 
 /*
- * Path to the model's data directory.
+ * Path to the model's data and XML directory.
  */
 App::build(array('Data' => array('%s' . 'Model' . DS . 'Data' . DS)), App::REGISTER);
+App::build(array('XML' => array('%s' . 'Model' . DS . 'XML' . DS)), App::REGISTER);
 
 /*
  * Paths to framework
@@ -209,6 +210,7 @@ App::build(array(
     'Vendor' => array(CAKE_FRAMEWORK . DS . 'app' . DS . 'Vendor' . DS),
     'Presentation' => array(CAKE_FRAMEWORK . DS . 'app' . DS . 'Presentation' . DS),
     'Data' => array(CAKE_FRAMEWORK . DS . 'app' . DS . 'Model' . DS . 'Data' . DS),
+    'XML' => array(CAKE_FRAMEWORK . DS . 'app' . DS . 'Model' . DS . 'XML' . DS),
     'Model/Behavior' => array(CAKE_FRAMEWORK . DS . 'app' . DS . 'Model' . DS . 'Behavior' . DS),
     'Controller/Component' => array(CAKE_FRAMEWORK . DS . 'app' . DS . 'Controller' . DS . 'Component' . DS),
     'Model/Datasource' => array(CAKE_FRAMEWORK . DS . 'app' . DS . 'Model' . DS . 'Datasource' . DS),
