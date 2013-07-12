@@ -19,7 +19,6 @@
         echo $this->Html->script('fmw/jquery.alerts');
         echo $this->Html->script('fmw/jquery.tipsy');
         echo $this->Html->script('fmw/jquery.superfish');
-        echo $this->Html->script('fmw/jquery.elastic');
         echo $this->Html->script('fmw/jquery.scrollTo.min');
         echo $this->Html->script(WWW . '../includes/fmw/kendo/js/kendo.web.min');
         echo $this->Html->script(WWW . '../includes/fmw/kendo/js/cultures/kendo.culture.es-AR.min');

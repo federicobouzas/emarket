@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-06-2013 a las 22:30:04
+-- Tiempo de generación: 04-07-2013 a las 17:32:50
 -- Versión del servidor: 5.5.27
 -- Versión de PHP: 5.4.7
 
@@ -246,9 +246,10 @@ CREATE TABLE IF NOT EXISTS `cam_campanias` (
   `cuerpo_email` text NOT NULL,
   `personas_sexo` varchar(10) DEFAULT NULL,
   `personas_edad` varchar(5) DEFAULT NULL,
-  `personas_localizacion_envio` varchar(10) NOT NULL,
-  `personas_barrio` varchar(50) DEFAULT NULL,
-  `personas_comuna` int(2) DEFAULT NULL,
+  `personas_tipo_envio` varchar(500) NOT NULL,
+  `personas_barrio` varchar(500) DEFAULT NULL,
+  `personas_comuna` varchar(500) DEFAULT NULL,
+  `personas_poblaciones` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `encuesta_id` (`encuesta_id`),
   KEY `user_id` (`user_id`),
@@ -491,8 +492,8 @@ CREATE TABLE IF NOT EXISTS `msg_servers` (
 --
 
 INSERT INTO `msg_servers` (`id`, `fecha_carga`, `fecha_modificacion`, `estado`, `tipo`, `tls`, `ssl`, `adicionales`, `host`, `puerto`, `usuario`, `clave`, `cuenta`, `remitente`, `responder`, `return_path`) VALUES
-(1, '2013-05-20 17:14:41', NULL, 'Activo', 'SMTP', 'No', '', NULL, 'mail.buenosaires.gob.ar', 25, 'atciudadana@buenosaires.gob.ar', 've4a2u2e', 'atciudadana@buenosaires.gob.ar', 'Atención Ciudadana', NULL, 'federicobouzas@gmail.com'),
-(2, '2013-05-21 16:40:34', NULL, 'Activo', 'POP', 'No', '', NULL, 'mail.buenosaires.gob.ar', 993, 'atciudadana@buenosaires.gob.ar', 've4a2u2e', 'atciudadana@buenosaires.gob.ar', '', NULL, NULL);
+(1, '2013-05-20 17:14:41', NULL, 'Activo', 'SMTP', 'No', 'No', NULL, 'smtp.buenosaires.gob.ar', 25, 'atciudadana@buenosaires.gob.ar', 've4a2u2e', 'atciudadana@buenosaires.gob.ar', 'Atención Ciudadana', NULL, NULL),
+(2, '2013-05-21 16:40:34', NULL, 'Activo', 'POP3', 'No', 'Si', NULL, 'pop.buenosaires.gob.ar', 995, 'atciudadana@buenosaires.gob.ar', 've4a2u2e', 'atciudadana@buenosaires.gob.ar', '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -642,7 +643,7 @@ CREATE TABLE IF NOT EXISTS `sys_configurations` (
 --
 
 INSERT INTO `sys_configurations` (`id`, `fecha_modificacion`, `empresa`, `telefono`, `fax`, `email`, `web`, `footer`, `server_emails`, `server_sms`, `max_emails`, `max_emails_dominio`) VALUES
-(1, '2013-06-05 19:16:36', 'GCBA', '', '', 'noreply@buenosaires.gob.ar', 'email', 'Sistema de Email Marketing', 1, 0, 10, 1);
+(1, '2013-06-27 14:10:43', 'GCBA', '', '', 'atciudadana@buenosaires.gob.ar', 'mailingsecgcyac.hml.gcba.gob.ar', 'Sistema de Email Marketing', 1, 0, 10, 5);
 
 -- --------------------------------------------------------
 

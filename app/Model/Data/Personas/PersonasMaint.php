@@ -37,19 +37,17 @@ class PersonasMaint extends AbstractData {
                     array('name' => 'coordenadas', 'label' => 'Ubicación', 'presentation' => 'GOOGLEMAP', 'classparams' => '{"calle":"calle","altura":"altura","barrio":"barrio","comuna":"comuna","provincia":"tmp_provincia","pais":"tmp_pais"}')
                 ),
             ),
-            /*
-              array(
-              'type' => 'table',
-              'assoc' => 'true',
-              'paginate' => 'true',
-              'title' => 'Poblaciones a las que Pertenece',
-              'model' => 'Poblacion',
-              'fields' => array(
-              array('name' => 'Poblacion.nombre', 'label' => 'Población'),
-              ),
-              'order' => array('Poblacion.nombre ASC'),
-              ),
-             */
+            array(
+                'type' => 'table',
+                'assoc' => 'true',
+                'paginate' => 'true',
+                'title' => 'Poblaciones a las que Pertenece',
+                'model' => 'Poblacion',
+                'fields' => array(
+                    array('name' => 'Poblacion.nombre', 'label' => 'Población'),
+                ),
+                'order' => array('Poblacion.nombre ASC'),
+            ),
             array(
                 'type' => 'table',
                 'assoc' => 'true',

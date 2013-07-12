@@ -33,27 +33,33 @@ class pst_cantidad_personas extends Presentation {
 
     public function ajaxCalcularCantidad($params) {
         $where = "";
+        $join = "";
         if (!empty($params->sexo)) {
-            $where.= " AND sexo='" . $params->sexo . "' ";
+            $where.= " AND per_personas.sexo='" . $params->sexo . "' ";
         }
-        if (!empty($params->comuna) && is_numeric($params->comuna)) {
-            $where.= " AND comuna IN (" . $params->comuna . ") ";
+        if (!empty($params->comuna)) {
+            $where.= " AND per_personas.comuna IN (" . $params->comuna . ") ";
         }
         if (!empty($params->barrio)) {
-            $where.= " AND barrio IN ('" . implode("','", explode(",", $params->barrio)) . "') ";
+            $where.= " AND per_personas.barrio IN ('" . implode("','", explode(",", $params->barrio)) . "') ";
+        }
+        if (!empty($params->poblacion)) {
+            $join.= " JOIN per_personas_poblaciones ON per_personas_poblaciones.persona_id=per_personas.id ";
+            $where.= " AND per_personas_poblaciones.poblacion_id IN (" . $params->poblacion . ") ";
         }
         if (!empty($params->edad_hasta) && is_numeric($params->edad_hasta)) {
-            $where.= " AND fecha_nacimiento >= '" . (date("Y") - $params->edad_hasta) . "-" . date("m") . "-" . date("d") . "' ";
+            $where.= " AND per_personas.fecha_nacimiento > '" . (date("Y") - $params->edad_hasta - 1) . "-" . date("m") . "-" . date("d") . "' ";
         }
         if (!empty($params->edad_desde) && is_numeric($params->edad_desde)) {
-            $where.= " AND fecha_nacimiento <= '" . (date("Y") - $params->edad_desde) . "-" . date("m") . "-" . date("d") . "' ";
+            $where.= " AND per_personas.fecha_nacimiento <= '" . (date("Y") - $params->edad_desde) . "-" . date("m") . "-" . date("d") . "' ";
         }
 
         $db = ConnectionManager::getDataSource('default');
-        $count = $db->Query("SELECT COUNT(*) AS cant FROM per_personas WHERE activa='Si'" . $where);
+        $count = $db->Query("SELECT COUNT(DISTINCT per_personas.id) AS cant FROM per_personas " . $join . " 
+                             WHERE per_personas.activa='Si'" . $where);
         return $count[0][0]['cant'];
     }
-    
+
     public function ajaxCantidadEnviada($params) {
         if (empty($params->campania_id)) {
             return 0;

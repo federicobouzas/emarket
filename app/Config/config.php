@@ -11,3 +11,20 @@ if (!defined('CAKE_FRAMEWORK')) {
 if (!defined('WWW')) {
     define('WWW', '/'); // no usar la constante DS
 }
+
+if (!class_exists('AppConfig')) {
+
+    class AppConfig {
+
+        public static $array = array(
+            'users' => array(
+                'login' => array(
+                    'ban' => true,
+                    'forget' => true,
+                ),
+            ),
+        );
+
+    }
+
+}

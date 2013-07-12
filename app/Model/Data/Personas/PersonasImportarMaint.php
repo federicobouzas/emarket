@@ -18,34 +18,32 @@ class PersonasImportarMaint extends AbstractData {
                     array('name' => 'tmp_excel', 'label' => 'Archivo Excel', 'presentation' => 'FILE'),
                 ),
             ),
-        /*
-          array(
-          'type' => 'table',
-          'assoc' => 'true',
-          'paginate' => 'true',
-          'title' => 'Poblaciones a las que Pertenece',
-          'model' => 'Poblacion',
-          'fields' => array(
-          array('name' => 'Poblacion.nombre', 'label' => 'Población'),
-          ),
-          'order' => array('Poblacion.nombre ASC'),
-          ),
-         */
+            array(
+                'type' => 'table',
+                'assoc' => 'true',
+                'paginate' => 'true',
+                'title' => 'Poblaciones a las que Pertenece',
+                'model' => 'Poblacion',
+                'fields' => array(
+                    array('name' => 'Poblacion.nombre', 'label' => 'Población'),
+                ),
+                'order' => array('Poblacion.nombre ASC'),
+            ),
         ),
     );
     protected $import = array(
-        'A' => array('name' => 'nombre', 'label' => 'Nombre'), 
-        'B' => array('name' => 'apellido', 'label' => 'Apellido'), 
-        'C' => array('name' => 'sexo', 'label' => 'Sexo'), 
-        'D' => array('name' => 'fecha_nacimiento', 'label' => 'Fecha de Nacimiento'), 
-        'E' => array('name' => 'email','label' => 'Email'), 
-        'F' => array('name' => 'telefono_particular', 'label' => 'Teléfono Particular'), 
-        'G' => array('name' => 'telefono_celular', 'label' => 'Teléfono Celular'), 
-        'H' => array('name' => 'calle', 'label' => 'Calle'), 
-        'I' => array('name' => 'altura', 'label' => 'Altura'), 
-        'J' => array('name' => 'piso','label' => 'Piso'), 
-        'K' => array('name' => 'barrio', 'label' => 'Barrio'), 
-        'L' => array('name' => 'comuna', 'label' => 'Comuna'), 
+        'A' => array('name' => 'nombre', 'label' => 'Nombre'),
+        'B' => array('name' => 'apellido', 'label' => 'Apellido'),
+        'C' => array('name' => 'sexo', 'label' => 'Sexo'),
+        'D' => array('name' => 'fecha_nacimiento', 'label' => 'Fecha de Nacimiento'),
+        'E' => array('name' => 'email', 'label' => 'Email'),
+        'F' => array('name' => 'telefono_particular', 'label' => 'Teléfono Particular'),
+        'G' => array('name' => 'telefono_celular', 'label' => 'Teléfono Celular'),
+        'H' => array('name' => 'calle', 'label' => 'Calle'),
+        'I' => array('name' => 'altura', 'label' => 'Altura'),
+        'J' => array('name' => 'piso', 'label' => 'Piso'),
+        'K' => array('name' => 'barrio', 'label' => 'Barrio'),
+        'L' => array('name' => 'comuna', 'label' => 'Comuna'),
     );
 
 }
