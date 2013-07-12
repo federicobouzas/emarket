@@ -6,7 +6,7 @@ class Campania extends AppModel {
     public $tablePrefix = 'cam_';
     public $useTable = 'campanias';
     public $displayField = 'nombre';
-    public $recursive = -1;
+    //public $recursive = -1;
     public $belongsTo = array('Encuesta', 'Evento');
     public $hasAndBelongsToMany = array(
         /*

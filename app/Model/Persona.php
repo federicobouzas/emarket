@@ -6,7 +6,7 @@ class Persona extends AppModel {
     public $tablePrefix = 'per_';
     public $useTable = 'personas';
     public $displayField = 'CONCAT(nombre, \' \', apellido)';
-    public $recursive = -1;
+    //public $recursive = -1;
     public $hasAndBelongsToMany = array(
         'Poblacion' => array(
             'className' => 'Poblacion',

@@ -6,7 +6,7 @@ class Evento extends AppModel {
     //public $tablePrefix = 'per_';
     public $useTable = 'cam_eventos';
     public $displayField = 'nombre';
-    public $recursive = -1;
+    //public $recursive = -1;
     public $belongsTo = array('Campania');
     public $validate = array(
         'nombre' => array(

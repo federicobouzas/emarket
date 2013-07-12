@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-07-2013 a las 17:32:50
+-- Tiempo de generación: 12-07-2013 a las 22:01:44
 -- Versión del servidor: 5.5.27
 -- Versión de PHP: 5.4.7
 
@@ -188,7 +188,8 @@ CREATE TABLE IF NOT EXISTS `adm_users` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `fecha_carga` datetime NOT NULL,
   `fecha_modificacion` timestamp NULL DEFAULT NULL,
-  `name` varchar(200) NOT NULL,
+  `firstname` varchar(200) NOT NULL,
+  `lastname` varchar(200) NOT NULL,
   `username` varchar(50) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL,
   `rol_id` int(10) NOT NULL,
@@ -201,8 +202,8 @@ CREATE TABLE IF NOT EXISTS `adm_users` (
 -- Volcado de datos para la tabla `adm_users`
 --
 
-INSERT INTO `adm_users` (`id`, `fecha_carga`, `fecha_modificacion`, `name`, `username`, `password`, `rol_id`, `email`) VALUES
-(4, '2012-09-04 15:59:07', NULL, 'Administrador', 'administrador', '793b0dd277d6f1c41d452a05db8f3fae298aa975', 1, 'admin@eideos.com.ar');
+INSERT INTO `adm_users` (`id`, `fecha_carga`, `fecha_modificacion`, `firstname`, `lastname`, `username`, `password`, `rol_id`, `email`) VALUES
+(4, '2012-09-04 15:59:07', NULL, 'Administrador', '', 'administrador', '793b0dd277d6f1c41d452a05db8f3fae298aa975', 1, 'admin@eideos.com.ar');
 
 -- --------------------------------------------------------
 

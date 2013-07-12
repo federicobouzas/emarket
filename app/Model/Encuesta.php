@@ -6,7 +6,7 @@ class Encuesta extends AppModel {
     public $tablePrefix = 'cam_';
     public $useTable = 'encuestas';
     public $displayField = 'nombre';
-    public $recursive = -1;
+    //public $recursive = -1;
     public $hasMany = array(
         'Pregunta' => array(
             'className' => 'Pregunta',
