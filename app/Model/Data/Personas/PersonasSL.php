@@ -10,19 +10,20 @@ class PersonasSL extends AbstractData {
             array('name' => 'Persona.nombre', 'label' => 'Nombre'),
             array('name' => 'Persona.apellido', 'label' => 'Apellido'),
             array('name' => 'Persona.email', 'label' => 'Email'),
-            array('name' => 'Persona.activa', 'label' => 'Activa', 'presentation' => 'SINO'),
             array('name' => 'Persona.sexo', 'label' => 'Sexo', 'presentation' => 'SEXO'),
             array('name' => 'Persona.comuna', 'label' => 'Comuna', 'presentation' => 'GEOLOCALIZACION::COMUNAS'),
             array('name' => 'Persona.barrio', 'label' => 'Barrio', 'presentation' => 'GEOLOCALIZACION::BARRIOS', 'classparams' => '{"listen":"PersonaComuna"}'),
             //array('name' => 'Persona.id', 'label' => 'Población', 'presentation' => 'PERSONAS::POBLACION', 'classparams' => '{"model":"Poblacion"}'),
+            array('name' => 'Persona.activa', 'label' => 'Activa', 'presentation' => 'SINO'),
         ),
         'columns' => array(
             array('name' => 'Persona.nombre', 'label' => 'Nombre'),
             array('name' => 'Persona.apellido', 'label' => 'Apellido'),
             array('name' => 'Persona.email', 'label' => 'Email'),
-            array('name' => 'Persona.activa', 'label' => 'Activa'),
+            array('name' => 'Persona.sexo', 'label' => 'Sexo', 'presentation' => 'SEXO'),
             array('name' => 'Persona.comuna', 'label' => 'Comuna', 'presentation' => 'GEOLOCALIZACION::COMUNAS'),
             array('name' => 'Persona.barrio', 'label' => 'Barrio'),
+            array('name' => 'Persona.activa', 'label' => 'Activa'),
         )
     );
 

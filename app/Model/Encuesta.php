@@ -15,7 +15,7 @@ class Encuesta extends AppModel {
             'dependent' => true
         )
     );
-    public $belongsTo = array('Campania');
+    //public $belongsTo = array('Campania');
     public $validate = array(
         'nombre' => array(
             'required' => array(

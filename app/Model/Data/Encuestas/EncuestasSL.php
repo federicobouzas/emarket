@@ -8,13 +8,6 @@ class EncuestasSL extends AbstractData {
 
 protected $data =
 array (
-    'timestamp' => 1371221729,
-    'actions' => 
-    array (
-        'V' => 'view',
-        'E' => 'edit',
-        'D' => 'delete',
-    ),
     'filters' => 
     array (
         0 => 
