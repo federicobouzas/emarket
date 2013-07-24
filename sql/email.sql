@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-07-2013 a las 22:02:01
+-- Tiempo de generación: 24-07-2013 a las 16:22:00
 -- Versión del servidor: 5.5.27
 -- Versión de PHP: 5.4.7
 
@@ -39,19 +39,15 @@ CREATE TABLE IF NOT EXISTS `adm_buttons` (
   `description` varchar(200) NOT NULL,
   `status` varchar(8) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Volcado de datos para la tabla `adm_buttons`
 --
 
 INSERT INTO `adm_buttons` (`id`, `fecha_carga`, `fecha_modificacion`, `query`, `display_order`, `refresh`, `counter_box`, `icon`, `url`, `description`, `status`) VALUES
-(1, '2012-07-19 15:48:07', '2012-07-19 19:21:15', '', 'persona1', 'No', '', 'home-boton-agregar-usuarios.png', 'personas/add', 'Cargar Personas', 'Activo'),
-(2, '2012-07-19 15:49:36', '2012-07-19 19:21:32', 'SELECT COUNT(*) as cant FROM per_personas', 'persona2', 'No', 'consultar_personas', 'home-boton-ver-usuarios.png', 'personas/index', 'Consultar Personas', 'Activo'),
-(3, '2013-03-06 19:52:17', NULL, NULL, 'persona3', 'No', NULL, 'home-boton-importar-excel.png', 'personas/import', 'Importar Personas', 'Activo'),
-(4, '2013-03-06 19:54:02', NULL, NULL, 'campania1', 'No', NULL, 'home-boton-agregar-campanias.png', 'campanias/add', 'Cargar Campaña', 'Activo'),
-(5, '2013-03-06 19:54:39', NULL, 'SELECT COUNT(*) AS cant FROM cam_campanias WHERE activa=''Si'' AND estado = ''Sin enviar''', 'campania2', 'Si', 'consultar_campanias', 'home-boton-ver-campanias.png', 'campanias/index', 'Consultar Campañas', 'Activo'),
-(6, '2013-06-03 10:05:07', NULL, NULL, 'campania3', 'No', NULL, 'home-boton-reporte.png', 'campanias/report', 'Reportes de Campañas', 'Activo');
+(1, '2012-07-19 15:48:07', '2012-07-19 19:21:15', '', 'users1', 'No', '', 'home-boton-agregar-usuarios.png', 'admin/users/add', 'Cargar Usuario', 'Activo'),
+(2, '2012-07-19 15:49:36', '2012-07-19 19:21:32', '', 'users2', 'No', '', 'home-boton-ver-usuarios.png', 'admin/users/index', 'Consultar Usuarios', 'Activo');
 
 -- --------------------------------------------------------
 
@@ -71,11 +67,7 @@ CREATE TABLE IF NOT EXISTS `adm_buttons_rols` (
 
 INSERT INTO `adm_buttons_rols` (`button_id`, `rol_id`) VALUES
 (1, 1),
-(2, 1),
-(3, 1),
-(4, 1),
-(5, 1),
-(6, 1);
+(2, 1);
 
 -- --------------------------------------------------------
 
@@ -203,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `adm_users` (
 --
 
 INSERT INTO `adm_users` (`id`, `fecha_carga`, `fecha_modificacion`, `firstname`, `lastname`, `username`, `password`, `rol_id`, `email`) VALUES
-(4, '2012-09-04 15:59:07', NULL, 'Administrador', '0', 'administrador', '793b0dd277d6f1c41d452a05db8f3fae298aa975', 1, 'admin@eideos.com.ar');
+(4, '2012-09-04 15:59:07', NULL, 'Administrador', 'Sistema', 'administrador', '793b0dd277d6f1c41d452a05db8f3fae298aa975', 1, 'admin@eideos.com.ar');
 
 -- --------------------------------------------------------
 
@@ -215,10 +207,17 @@ CREATE TABLE IF NOT EXISTS `adm_users_recovers` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `fecha_carga` datetime NOT NULL,
   `user_id` int(10) NOT NULL,
-  `hash` varchar(32) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- Volcado de datos para la tabla `adm_users_recovers`
+--
+
+INSERT INTO `adm_users_recovers` (`id`, `fecha_carga`, `user_id`) VALUES
+(6, '2013-07-16 10:44:25', 4),
+(7, '2013-07-16 10:51:26', 4);
 
 -- --------------------------------------------------------
 
@@ -321,7 +320,14 @@ CREATE TABLE IF NOT EXISTS `cam_encuestas` (
   `descripcion` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `cam_encuestas`
+--
+
+INSERT INTO `cam_encuestas` (`id`, `fecha_carga`, `fecha_modificacion`, `user_id`, `nombre`, `descripcion`) VALUES
+(2, '2013-07-24 11:15:32', '0000-00-00 00:00:00', 4, 'dfdf', '');
 
 -- --------------------------------------------------------
 
@@ -335,14 +341,21 @@ CREATE TABLE IF NOT EXISTS `cam_encuestas_preguntas` (
   `fecha_modificacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` int(10) NOT NULL,
   `encuesta_id` int(10) NOT NULL,
-  `orden` int(2) NOT NULL,
+  `orden` int(2) DEFAULT NULL,
   `pregunta` varchar(200) NOT NULL,
   `tipo` enum('lista','simple','multiple','texto') NOT NULL,
-  `opciones` text NOT NULL,
+  `opciones` text,
   PRIMARY KEY (`id`),
   KEY `encuesta_id` (`encuesta_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `cam_encuestas_preguntas`
+--
+
+INSERT INTO `cam_encuestas_preguntas` (`id`, `fecha_carga`, `fecha_modificacion`, `user_id`, `encuesta_id`, `orden`, `pregunta`, `tipo`, `opciones`) VALUES
+(1, '2013-07-24 11:16:34', '2013-07-24 14:16:34', 4, 2, NULL, 'ghj', 'texto', '');
 
 -- --------------------------------------------------------
 
@@ -385,7 +398,14 @@ CREATE TABLE IF NOT EXISTS `cam_eventos` (
   `coordenadas` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `cam_eventos`
+--
+
+INSERT INTO `cam_eventos` (`id`, `fecha_carga`, `fecha_modificacion`, `user_id`, `nombre`, `email`, `sms`, `descripcion`, `fecha_hora_evento`, `direccion`, `barrio`, `ciudad`, `provincia`, `coordenadas`) VALUES
+(1, '2013-07-24 11:19:17', '0000-00-00 00:00:00', 4, 'dsfdsf', 'No', 'No', '', '2013-07-24 00:00:00', 'av de mayo 519', '', 'Buenos Aires', 'Pergamino', '-33.8931973, -60.5714696');
 
 -- --------------------------------------------------------
 
@@ -444,7 +464,14 @@ CREATE TABLE IF NOT EXISTS `cam_links_personas` (
   PRIMARY KEY (`id`),
   KEY `link_id` (`link_id`),
   KEY `persona_id` (`persona_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `cam_links_personas`
+--
+
+INSERT INTO `cam_links_personas` (`id`, `link_id`, `persona_id`, `fecha_acceso`) VALUES
+(1, 4, 9, '2013-07-22 16:51:16');
 
 -- --------------------------------------------------------
 
@@ -488,7 +515,7 @@ CREATE TABLE IF NOT EXISTS `msg_mensajes` (
   `error` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `server_id` (`server_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 --
 -- Volcado de datos para la tabla `msg_mensajes`
@@ -496,7 +523,13 @@ CREATE TABLE IF NOT EXISTS `msg_mensajes` (
 
 INSERT INTO `msg_mensajes` (`id`, `fecha_carga`, `fecha_envio`, `prioridad`, `server_id`, `html`, `destino`, `asunto`, `cuerpo`, `headers`, `adjuntos`, `estado`, `intentos`, `error`) VALUES
 (1, '2013-07-04 15:10:23', '2013-07-04 15:10:23', 3, 1, 'Si', 'federicobouzas@gmail.com', 'Campaña de Prueba', '<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" /><title>comuna4</title>\r\n<style type="text/css">&lt;!--\r\n.style1 {font-size: 18px}\r\n--&gt;\r\n</style>\r\n\r\n\r\n<table align="center" border="0" cellpadding="0" cellspacing="0" width="620"><tbody><tr><td><img height="15" src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/sombra_top.jpg" width="621" /></td></tr><tr><td><table align="center" border="0" cellpadding="0" cellspacing="0" width="620"><tbody><tr><td background="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/sombra_iz01b.jpg" width="10"></td><td><table border="0" cellpadding="0" cellspacing="0" width="600"><tbody><tr><td><a href="http://www.buenosaires.gob.ar/" target="_blank"><img alt="" border="0" height="75" src="http://email/files/wysiwyg/header1.jpg" width="602" /></a></td></tr><tr><td bgcolor="#cccccc" height="50" style="padding:0px 21px;"><p align="left" style="font-size:14px;font-family:Arial, Helvetica, sans-serif;"><br /><strong><a class="style1" href="http://www.buenosaires.gov.ar/areas/descentralizacion/" style="color:#000000;text-decoration:none;">Comuna 4</a><br /></strong><a href="http://www.buenosaires.gov.ar/areas/jef_gabinete/atencion_ciudadana/?menu_id=24230" style="color:#000000;text-decoration:none;">La Boca, Barracas, Parque Patricios, y Nueva Pompeya</a></p></td></tr><tr><td bgcolor="#ffffff" height="21" style="padding:0px 0px 0px 21px;font-size:11px;"><div align="left"><span style="font-family:Arial, Helvetica, sans-serif;">Gacetilla - 6 de marzo de 2013</span> </div></td></tr><tr><td background="Historial Boletines y Gacetillas/ceci/Desktop/Dropbox/gov.ar/gov.ar/disenio/jpg de nuevos boletines/boletines/imagenes/globa.jpg" bgcolor="#FFFFFF" height="226" width="600"><div align="center"><img alt="" height="166" src="http://email/files/wysiwyg/644378_575335909143633_2098529071_n.jpg" width="552" /></div></td></tr><tr><td height="106"><table border="0" cellpadding="0" cellspacing="0" width="600"><tbody><tr><td height="13" style="padding:0px 21px;"><div align="left"><span style="font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:bold;font-size:14px;">Puesta en valor del Espacio Verde Magaldi</span></div></td></tr><tr><td height="15" style="padding:0px 21px;"><div align="left"><span style="font-family:Arial, Helvetica, sans-serif;"><a href="#" style="font-family:Arial, Helvetica, sans-serif;text-decoration:none;font-size:13px;color:#666;font-weight:bold;text-decoration:none;">Comenzarán los trabajos de obra</a></span></div></td></tr><tr><td style="padding:2px 21px;"><div align="justify"><p style="font-family:Arial, Helvetica, sans-serif;font-size:12px;">Les contamos a los vecinos que comenzarán los trabajos de puesta en valor del Espacio Verde Agustín Magaldi, en el barrio de Barracas.</p><p style="font-family:Arial, Helvetica, sans-serif;font-size:12px;">Las obras consisten en reformular los espacios de esparcimiento y recreación, con la incorporación de nuevo mobiliario urbano y espacios de juego. </p><p style="font-family:Arial, Helvetica, sans-serif;font-size:12px;">Las pérgolas de hierro galvanizado brindarán sombra y evitarán la apropiación del espacio por autos y motos, también habrá un espacio semicubierto donde se podrán organizar desde bailes hasta reuniones vecinales. En el playón central se ubicarán mesas y sillas, espacios para jugar al ajedrez y sector de ping-pong con una pequeña tribuna. Se incorporarán también cestos de residuos, bebederos y canillas para riego.Se adaptarán para niños los juegos existentes, con su perímetro de reja y su acceso actual, y se construirá un nuevo espacio para triciclos. Además, se propone el aumento de iluminación reemplazando la existente, y se agregarán a los sectores de juegos, reflectores con luz especial.</p></div></td></tr><tr><td height="15" style="padding:0px 21px;"><div align="left"><span style="font-family:Arial, Helvetica, sans-serif;"><a href="http://comunas.buenosaires.gob.ar/novedades/comuna-4-invitacion-del-museo-benito-quinquela-martin/" style="font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold;color:#000;text-decoration:none;">[+]</a></span></div></td></tr></tbody></table></td></tr></tbody></table><img height="8" src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/linea_puntos.jpg" width="600" /><table border="0" cellpadding="0" cellspacing="0" width="600"><tbody><tr><td><img height="9" src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/barra_pie.jpg" width="602" /></td></tr><tr><td bgcolor="#FFD300"><table border="0" cellpadding="0" cellspacing="0" width="600"><tbody><tr><td><a href="mailto:comuna4@buenosaires.gob.ar"><img align="right" alt="#" border="0" height="88" src="http://email/files/wysiwyg/c4_JApreda_mapa.jpg" width="157" /></a></td><td><a href="http://www.buenosaires.gob.ar/areas/jef_gabinete/atencion_ciudadana/?menu_id=24230"><img align="right" border="0" height="89" src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/pie_atencion.jpg" width="298" /></a></td><td><img align="right" height="89" src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/piense_antes.jpg" width="147" /></td></tr></tbody></table></td></tr><tr><td background="Historial Boletines y Gacetillas/ceci/Desktop/Dropbox/gov.ar/gov.ar/disenio/jpg de nuevos boletines/boletines/imagenes/pie.jpg" height="25"><table background="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/pie.jpg" border="0" cellpadding="0" cellspacing="0" width="602"><tbody><tr><td style="padding:5px 21px;" width="448"><div align="left"><span style="font-family:Arial, Helvetica, sans-serif;font-size:10px;color:#808080;"><a href="javascript:void(0);" style="font-family:Arial, Helvetica, sans-serif;font-size:10px;color:#808080;" target="_blank">Suscribir / Borrar suscripción</a></span></div></td><td style="padding:2px 0px 0px 0px;" width="78"><a href="http://www.facebook.com/http://www.facebook.com/home.php?#!/bacomuna4"><img align="right" border="0" height="21" src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/fb.jpg" width="78" /></a></td><td style="padding:2px 0px 0px 0px;" width="74"><a href="https://twitter.com/bacomuna4"><img align="right" border="0" height="21" src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/twitter.jpg" width="74" /></a></td></tr></tbody></table></td></tr></tbody></table></td><td background="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/sombra_de01a.jpg" width="10"></td></tr></tbody></table></td></tr><tr><td><img src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/sombra_bottom.jpg" width="620" /></td></tr></tbody></table>', '[]', '[]', 'Enviado', 0, NULL),
-(2, '2013-07-04 15:33:56', '2013-07-04 15:33:56', 3, 1, 'Si', 'federicobouzas@gmail.com', 'Campaña de Prueba', '<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" /><title>comuna4</title>\r\n<style type="text/css">&lt;!--\r\n.style1 {font-size: 18px}\r\n--&gt;\r\n</style>\r\n\r\n\r\n<table align="center" border="0" cellpadding="0" cellspacing="0" width="620"><tbody><tr><td><img height="15" src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/sombra_top.jpg" width="621" /></td></tr><tr><td><table align="center" border="0" cellpadding="0" cellspacing="0" width="620"><tbody><tr><td background="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/sombra_iz01b.jpg" width="10"></td><td><table border="0" cellpadding="0" cellspacing="0" width="600"><tbody><tr><td><a href="http://email/campanias/followLink/1/9/b7777a3b9c7ae08295ef4090fbff7864" target="_blank"><img alt="" border="0" height="75" src="http://email/files/wysiwyg/header1.jpg" width="602" /></a></td></tr><tr><td bgcolor="#cccccc" height="50" style="padding:0px 21px;"><p align="left" style="font-size:14px;font-family:Arial, Helvetica, sans-serif;"><br /><strong><a class="style1" href="http://email/campanias/followLink/2/9/b7777a3b9c7ae08295ef4090fbff7864" style="color:#000000;text-decoration:none;">Comuna 4</a><br /></strong><a href="http://email/campanias/followLink/3/9/b7777a3b9c7ae08295ef4090fbff7864" style="color:#000000;text-decoration:none;">La Boca, Barracas, Parque Patricios, y Nueva Pompeya</a></p></td></tr><tr><td bgcolor="#ffffff" height="21" style="padding:0px 0px 0px 21px;font-size:11px;"><div align="left"><span style="font-family:Arial, Helvetica, sans-serif;">Gacetilla - 6 de marzo de 2013</span> </div></td></tr><tr><td background="Historial Boletines y Gacetillas/ceci/Desktop/Dropbox/gov.ar/gov.ar/disenio/jpg de nuevos boletines/boletines/imagenes/globa.jpg" bgcolor="#FFFFFF" height="226" width="600"><div align="center"><img alt="" height="166" src="http://email/files/wysiwyg/644378_575335909143633_2098529071_n.jpg" width="552" /></div></td></tr><tr><td height="106"><table border="0" cellpadding="0" cellspacing="0" width="600"><tbody><tr><td height="13" style="padding:0px 21px;"><div align="left"><span style="font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:bold;font-size:14px;">Puesta en valor del Espacio Verde Magaldi</span></div></td></tr><tr><td height="15" style="padding:0px 21px;"><div align="left"><span style="font-family:Arial, Helvetica, sans-serif;"><a href="#" style="font-family:Arial, Helvetica, sans-serif;text-decoration:none;font-size:13px;color:#666;font-weight:bold;text-decoration:none;">Comenzarán los trabajos de obra</a></span></div></td></tr><tr><td style="padding:2px 21px;"><div align="justify"><p style="font-family:Arial, Helvetica, sans-serif;font-size:12px;">Les contamos a los vecinos que comenzarán los trabajos de puesta en valor del Espacio Verde Agustín Magaldi, en el barrio de Barracas.</p><p style="font-family:Arial, Helvetica, sans-serif;font-size:12px;">Las obras consisten en reformular los espacios de esparcimiento y recreación, con la incorporación de nuevo mobiliario urbano y espacios de juego. </p><p style="font-family:Arial, Helvetica, sans-serif;font-size:12px;">Las pérgolas de hierro galvanizado brindarán sombra y evitarán la apropiación del espacio por autos y motos, también habrá un espacio semicubierto donde se podrán organizar desde bailes hasta reuniones vecinales. En el playón central se ubicarán mesas y sillas, espacios para jugar al ajedrez y sector de ping-pong con una pequeña tribuna. Se incorporarán también cestos de residuos, bebederos y canillas para riego.Se adaptarán para niños los juegos existentes, con su perímetro de reja y su acceso actual, y se construirá un nuevo espacio para triciclos. Además, se propone el aumento de iluminación reemplazando la existente, y se agregarán a los sectores de juegos, reflectores con luz especial.</p></div></td></tr><tr><td height="15" style="padding:0px 21px;"><div align="left"><span style="font-family:Arial, Helvetica, sans-serif;"><a href="http://email/campanias/followLink/4/9/b7777a3b9c7ae08295ef4090fbff7864" style="font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold;color:#000;text-decoration:none;">[+]</a></span></div></td></tr></tbody></table></td></tr></tbody></table><img height="8" src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/linea_puntos.jpg" width="600" /><table border="0" cellpadding="0" cellspacing="0" width="600"><tbody><tr><td><img height="9" src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/barra_pie.jpg" width="602" /></td></tr><tr><td bgcolor="#FFD300"><table border="0" cellpadding="0" cellspacing="0" width="600"><tbody><tr><td><a href="http://email/campanias/followLink/17/9/b7777a3b9c7ae08295ef4090fbff7864"><img align="right" alt="#" border="0" height="88" src="http://email/files/wysiwyg/c4_JApreda_mapa.jpg" width="157" /></a></td><td><a href="http://email/campanias/followLink/6/9/b7777a3b9c7ae08295ef4090fbff7864"><img align="right" border="0" height="89" src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/pie_atencion.jpg" width="298" /></a></td><td><img align="right" height="89" src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/piense_antes.jpg" width="147" /></td></tr></tbody></table></td></tr><tr><td background="Historial Boletines y Gacetillas/ceci/Desktop/Dropbox/gov.ar/gov.ar/disenio/jpg de nuevos boletines/boletines/imagenes/pie.jpg" height="25"><table background="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/pie.jpg" border="0" cellpadding="0" cellspacing="0" width="602"><tbody><tr><td style="padding:5px 21px;" width="448"><div align="left"><span style="font-family:Arial, Helvetica, sans-serif;font-size:10px;color:#808080;"><a href="http://email/campanias/unsubscribe/1/9/b7777a3b9c7ae08295ef4090fbff7864" style="font-family:Arial, Helvetica, sans-serif;font-size:10px;color:#808080;" target="_blank">Suscribir / Borrar suscripción</a></span></div></td><td style="padding:2px 0px 0px 0px;" width="78"><a href="http://email/campanias/followLink/7/9/b7777a3b9c7ae08295ef4090fbff7864"><img align="right" border="0" height="21" src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/fb.jpg" width="78" /></a></td><td style="padding:2px 0px 0px 0px;" width="74"><a href="http://email/campanias/followLink/8/9/b7777a3b9c7ae08295ef4090fbff7864"><img align="right" border="0" height="21" src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/twitter.jpg" width="74" /></a></td></tr></tbody></table></td></tr></tbody></table></td><td background="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/sombra_de01a.jpg" width="10"></td></tr></tbody></table></td></tr><tr><td><img src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/sombra_bottom.jpg" width="620" /></td></tr></tbody></table><img src="http://email/campanias/lectura/1/9/b7777a3b9c7ae08295ef4090fbff7864" style="border:0;width:1px;height:1px;" />', '{"X-Hash":"b7777a3b9c7ae08295ef4090fbff7864","X-Campania":"1","X-Persona":"9","List-Unsubscribe":"<http:\\/\\/email\\/campanias\\/unsubscribe\\/1\\/9\\/b7777a3b9c7ae08295ef4090fbff7864>"}', '[]', 'Enviado', 0, NULL);
+(2, '2013-07-04 15:33:56', '2013-07-04 15:33:56', 3, 1, 'Si', 'federicobouzas@gmail.com', 'Campaña de Prueba', '<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" /><title>comuna4</title>\r\n<style type="text/css">&lt;!--\r\n.style1 {font-size: 18px}\r\n--&gt;\r\n</style>\r\n\r\n\r\n<table align="center" border="0" cellpadding="0" cellspacing="0" width="620"><tbody><tr><td><img height="15" src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/sombra_top.jpg" width="621" /></td></tr><tr><td><table align="center" border="0" cellpadding="0" cellspacing="0" width="620"><tbody><tr><td background="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/sombra_iz01b.jpg" width="10"></td><td><table border="0" cellpadding="0" cellspacing="0" width="600"><tbody><tr><td><a href="http://email/campanias/followLink/1/9/b7777a3b9c7ae08295ef4090fbff7864" target="_blank"><img alt="" border="0" height="75" src="http://email/files/wysiwyg/header1.jpg" width="602" /></a></td></tr><tr><td bgcolor="#cccccc" height="50" style="padding:0px 21px;"><p align="left" style="font-size:14px;font-family:Arial, Helvetica, sans-serif;"><br /><strong><a class="style1" href="http://email/campanias/followLink/2/9/b7777a3b9c7ae08295ef4090fbff7864" style="color:#000000;text-decoration:none;">Comuna 4</a><br /></strong><a href="http://email/campanias/followLink/3/9/b7777a3b9c7ae08295ef4090fbff7864" style="color:#000000;text-decoration:none;">La Boca, Barracas, Parque Patricios, y Nueva Pompeya</a></p></td></tr><tr><td bgcolor="#ffffff" height="21" style="padding:0px 0px 0px 21px;font-size:11px;"><div align="left"><span style="font-family:Arial, Helvetica, sans-serif;">Gacetilla - 6 de marzo de 2013</span> </div></td></tr><tr><td background="Historial Boletines y Gacetillas/ceci/Desktop/Dropbox/gov.ar/gov.ar/disenio/jpg de nuevos boletines/boletines/imagenes/globa.jpg" bgcolor="#FFFFFF" height="226" width="600"><div align="center"><img alt="" height="166" src="http://email/files/wysiwyg/644378_575335909143633_2098529071_n.jpg" width="552" /></div></td></tr><tr><td height="106"><table border="0" cellpadding="0" cellspacing="0" width="600"><tbody><tr><td height="13" style="padding:0px 21px;"><div align="left"><span style="font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:bold;font-size:14px;">Puesta en valor del Espacio Verde Magaldi</span></div></td></tr><tr><td height="15" style="padding:0px 21px;"><div align="left"><span style="font-family:Arial, Helvetica, sans-serif;"><a href="#" style="font-family:Arial, Helvetica, sans-serif;text-decoration:none;font-size:13px;color:#666;font-weight:bold;text-decoration:none;">Comenzarán los trabajos de obra</a></span></div></td></tr><tr><td style="padding:2px 21px;"><div align="justify"><p style="font-family:Arial, Helvetica, sans-serif;font-size:12px;">Les contamos a los vecinos que comenzarán los trabajos de puesta en valor del Espacio Verde Agustín Magaldi, en el barrio de Barracas.</p><p style="font-family:Arial, Helvetica, sans-serif;font-size:12px;">Las obras consisten en reformular los espacios de esparcimiento y recreación, con la incorporación de nuevo mobiliario urbano y espacios de juego. </p><p style="font-family:Arial, Helvetica, sans-serif;font-size:12px;">Las pérgolas de hierro galvanizado brindarán sombra y evitarán la apropiación del espacio por autos y motos, también habrá un espacio semicubierto donde se podrán organizar desde bailes hasta reuniones vecinales. En el playón central se ubicarán mesas y sillas, espacios para jugar al ajedrez y sector de ping-pong con una pequeña tribuna. Se incorporarán también cestos de residuos, bebederos y canillas para riego.Se adaptarán para niños los juegos existentes, con su perímetro de reja y su acceso actual, y se construirá un nuevo espacio para triciclos. Además, se propone el aumento de iluminación reemplazando la existente, y se agregarán a los sectores de juegos, reflectores con luz especial.</p></div></td></tr><tr><td height="15" style="padding:0px 21px;"><div align="left"><span style="font-family:Arial, Helvetica, sans-serif;"><a href="http://email/campanias/followLink/4/9/b7777a3b9c7ae08295ef4090fbff7864" style="font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold;color:#000;text-decoration:none;">[+]</a></span></div></td></tr></tbody></table></td></tr></tbody></table><img height="8" src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/linea_puntos.jpg" width="600" /><table border="0" cellpadding="0" cellspacing="0" width="600"><tbody><tr><td><img height="9" src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/barra_pie.jpg" width="602" /></td></tr><tr><td bgcolor="#FFD300"><table border="0" cellpadding="0" cellspacing="0" width="600"><tbody><tr><td><a href="http://email/campanias/followLink/17/9/b7777a3b9c7ae08295ef4090fbff7864"><img align="right" alt="#" border="0" height="88" src="http://email/files/wysiwyg/c4_JApreda_mapa.jpg" width="157" /></a></td><td><a href="http://email/campanias/followLink/6/9/b7777a3b9c7ae08295ef4090fbff7864"><img align="right" border="0" height="89" src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/pie_atencion.jpg" width="298" /></a></td><td><img align="right" height="89" src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/piense_antes.jpg" width="147" /></td></tr></tbody></table></td></tr><tr><td background="Historial Boletines y Gacetillas/ceci/Desktop/Dropbox/gov.ar/gov.ar/disenio/jpg de nuevos boletines/boletines/imagenes/pie.jpg" height="25"><table background="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/pie.jpg" border="0" cellpadding="0" cellspacing="0" width="602"><tbody><tr><td style="padding:5px 21px;" width="448"><div align="left"><span style="font-family:Arial, Helvetica, sans-serif;font-size:10px;color:#808080;"><a href="http://email/campanias/unsubscribe/1/9/b7777a3b9c7ae08295ef4090fbff7864" style="font-family:Arial, Helvetica, sans-serif;font-size:10px;color:#808080;" target="_blank">Suscribir / Borrar suscripción</a></span></div></td><td style="padding:2px 0px 0px 0px;" width="78"><a href="http://email/campanias/followLink/7/9/b7777a3b9c7ae08295ef4090fbff7864"><img align="right" border="0" height="21" src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/fb.jpg" width="78" /></a></td><td style="padding:2px 0px 0px 0px;" width="74"><a href="http://email/campanias/followLink/8/9/b7777a3b9c7ae08295ef4090fbff7864"><img align="right" border="0" height="21" src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/twitter.jpg" width="74" /></a></td></tr></tbody></table></td></tr></tbody></table></td><td background="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/sombra_de01a.jpg" width="10"></td></tr></tbody></table></td></tr><tr><td><img src="http://www.buenosaires.gob.ar/areas/com_social/email/nuevo_boletin_2010/sombra_bottom.jpg" width="620" /></td></tr></tbody></table><img src="http://email/campanias/lectura/1/9/b7777a3b9c7ae08295ef4090fbff7864" style="border:0;width:1px;height:1px;" />', '{"X-Hash":"b7777a3b9c7ae08295ef4090fbff7864","X-Campania":"1","X-Persona":"9","List-Unsubscribe":"<http:\\/\\/email\\/campanias\\/unsubscribe\\/1\\/9\\/b7777a3b9c7ae08295ef4090fbff7864>"}', '[]', 'Enviado', 0, NULL),
+(3, '2013-07-15 12:20:49', '2013-07-15 12:20:49', 3, 1, 'Si', 'federicobouzas@gmail.com', 'Prueba del Servidor de Email', 'Esto es una prueba para testear el funcionamiento del servidor configurado en el Framework.', '[]', '[]', 'Enviado', 0, NULL),
+(4, '2013-07-15 12:23:49', '2013-07-15 12:23:49', 3, 1, 'Si', 'federicobouzas@gmail.com', 'Prueba del Servidor de Email', 'Esto es una prueba para testear el funcionamiento del servidor configurado en el Framework.', '[]', '[]', 'Enviado', 0, NULL),
+(11, '2013-07-16 10:44:25', '2013-07-16 10:44:25', 3, 1, 'Si', 'federicobouzas@gmail.com', 'Recuperar contraseña', 'Alguien (seguramente usted) ha solicitado una nueva contraseña.<br>\r\n                                     Para cambiar su contraseña, por favor, diríjase a la siguiente dirección:<br>\r\n                                     <a href="/admin/users/doRecover/6/faf6c1fb6b08a3672f32ee8b2202a477">Click acá<a/>', '[]', '[]', 'Enviado', 0, NULL),
+(12, '2013-07-16 10:47:53', '2013-07-16 10:47:53', 3, 1, 'Si', 'federicobouzas@gmail.com', 'Recuperar contraseña', 'Su nueva clave de acceso al sistema es: korgGsdB.<br>\r\n                         Ingrese al sistema y proceda a cambiarla por una propia.', '[]', '[]', 'Enviado', 0, NULL),
+(14, '2013-07-16 10:51:26', '2013-07-16 10:51:26', 3, 1, 'Si', 'federicobouzas@gmail.com', 'Recuperar contraseña', 'Alguien (seguramente usted) ha solicitado una nueva contraseña.<br>\r\n                                     Para cambiar su contraseña, por favor, diríjase a la siguiente dirección: \r\n                                     <a href="/admin/users/doRecover/7/faf6c1fb6b08a3672f32ee8b2202a477">Click acá<a/>.', '[]', '[]', 'Enviado', 0, NULL),
+(15, '2013-07-16 10:52:54', '2013-07-16 10:52:54', 3, 1, 'Si', 'federicobouzas@gmail.com', 'Recuperar contraseña', 'Su nueva clave de acceso al sistema es: Ov61S0QF.<br>\r\n                         Ingrese al sistema y proceda a cambiarla por una propia.', '[]', '[]', 'Enviado', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -529,7 +562,7 @@ CREATE TABLE IF NOT EXISTS `msg_servers` (
 --
 
 INSERT INTO `msg_servers` (`id`, `fecha_carga`, `fecha_modificacion`, `estado`, `tipo`, `tls`, `ssl`, `adicionales`, `host`, `puerto`, `usuario`, `clave`, `cuenta`, `remitente`, `responder`, `return_path`) VALUES
-(1, '2013-05-20 17:14:41', NULL, 'Activo', 'SMTP', 'No', 'No', NULL, 'smtp.buenosaires.gob.ar', 25, 'atciudadana@buenosaires.gob.ar', 've4a2u2e', 'atciudadana@buenosaires.gob.ar', 'Atención Ciudadana', NULL, NULL),
+(1, '2013-05-20 17:14:41', NULL, 'Activo', 'SMTP', 'No', '', '', 'smtp.buenosaires.gob.ar', 25, 'atciudadana@buenosaires.gob.ar', 've4a2u2e', 'atciudadana@buenosaires.gob.ar', 'Atención Ciudadana', '', ''),
 (2, '2013-05-21 16:40:34', NULL, 'Activo', 'POP3', 'No', 'Si', NULL, 'pop.buenosaires.gob.ar', 995, 'atciudadana@buenosaires.gob.ar', 've4a2u2e', 'atciudadana@buenosaires.gob.ar', '', NULL, NULL);
 
 -- --------------------------------------------------------
@@ -578,7 +611,7 @@ CREATE TABLE IF NOT EXISTS `per_personas` (
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `telefono_celular` (`telefono_celular`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=32 ;
 
 --
 -- Volcado de datos para la tabla `per_personas`
@@ -586,11 +619,28 @@ CREATE TABLE IF NOT EXISTS `per_personas` (
 
 INSERT INTO `per_personas` (`id`, `fecha_carga`, `fecha_modificacion`, `activa`, `errores`, `user_id`, `nombre`, `apellido`, `sexo`, `fecha_nacimiento`, `email`, `telefono_particular`, `telefono_celular`, `calle`, `altura`, `piso`, `barrio`, `comuna`, `coordenadas`) VALUES
 (9, '2013-07-04 14:59:53', '2013-07-04 18:40:51', 'Si', 0, 4, 'Federico', 'Bouzas', 'masculino', '1989-01-13', 'federicobouzas@gmail.com', NULL, NULL, 'Riglos', 1135, '', 'Parque Chacabuco', 7, '-34.6322479, -58.43478140000002'),
-(10, '2013-07-04 15:35:17', '2013-07-05 12:55:23', 'Si', 0, 4, 'Martin', '', '', NULL, 'martin@asasl.com', NULL, NULL, '', NULL, '', '', 16, ''),
+(10, '2013-07-04 15:35:17', '2013-07-16 14:50:10', 'Si', 0, 4, 'Martin', '', '', NULL, 'martin@asasl.com', NULL, NULL, '', NULL, '', '', 6, ''),
 (11, '2013-07-12 16:53:26', '2013-07-12 19:54:16', 'Si', 0, 4, NULL, NULL, NULL, NULL, 'mtesta@buenosaires.gob.ar', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (12, '2013-07-12 16:53:26', '2013-07-12 19:54:16', 'Si', 0, 4, NULL, NULL, NULL, NULL, 'marianatdl@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (13, '2013-07-12 16:53:26', '2013-07-12 19:54:16', 'Si', 0, 4, NULL, NULL, NULL, NULL, 'noexisteestacuenta@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(14, '2013-07-12 16:53:26', '2013-07-12 19:54:16', 'Si', 0, 4, NULL, NULL, NULL, NULL, 'noexisteestacuenta@noexisteestedominio.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(14, '2013-07-12 16:53:26', '2013-07-12 19:54:16', 'Si', 0, 4, NULL, NULL, NULL, NULL, 'noexisteestacuenta@noexisteestedominio.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(15, '2013-07-15 14:59:16', '2013-07-15 17:59:21', 'Si', 0, 4, NULL, NULL, NULL, NULL, 'dafneberman@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(16, '2013-07-15 14:59:16', '2013-07-15 17:59:21', 'Si', 0, 4, NULL, NULL, NULL, NULL, 'daniela.alvarez@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(17, '2013-07-15 14:59:16', '2013-07-15 17:59:21', 'Si', 0, 4, NULL, NULL, NULL, NULL, 'dlauria@buenosaires.gob.ar', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(18, '2013-07-15 14:59:16', '2013-07-15 17:59:21', 'Si', 0, 4, NULL, NULL, NULL, NULL, 'florenciasole@hotmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(19, '2013-07-15 14:59:16', '2013-07-15 17:59:21', 'Si', 0, 4, NULL, NULL, NULL, NULL, 'flormasci@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(20, '2013-07-15 14:59:16', '2013-07-15 17:59:21', 'Si', 0, 4, NULL, NULL, NULL, NULL, 'fmoralesgorleri@buenosaires.gob.ar', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(21, '2013-07-15 14:59:16', '2013-07-15 17:59:21', 'Si', 0, 4, NULL, NULL, NULL, NULL, 'gsallent@buenosaires.gob.ar', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(22, '2013-07-15 14:59:16', '2013-07-15 17:59:21', 'Si', 0, 4, NULL, NULL, NULL, NULL, 'juanplache@hotmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(23, '2013-07-15 14:59:16', '2013-07-15 17:59:21', 'Si', 0, 4, NULL, NULL, NULL, NULL, 'llucero@buenosaires.gob.ar', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(24, '2013-07-15 14:59:16', '2013-07-15 17:59:21', 'Si', 0, 4, NULL, NULL, NULL, NULL, 'manuriver8@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(25, '2013-07-15 14:59:16', '2013-07-15 17:59:21', 'Si', 0, 4, NULL, NULL, NULL, NULL, 'mercedesfasciolo@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(26, '2013-07-15 14:59:16', '2013-07-15 17:59:21', 'Si', 0, 4, NULL, NULL, NULL, NULL, 'mericasro@hotmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(27, '2013-07-15 14:59:16', '2013-07-15 17:59:21', 'Si', 0, 4, NULL, NULL, NULL, NULL, 'pcalvano@buenosaires.gob.ar', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(28, '2013-07-15 14:59:16', '2013-07-15 17:59:21', 'Si', 0, 4, NULL, NULL, NULL, NULL, 'yasminolid@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(29, '2013-07-15 14:59:16', '2013-07-15 17:59:21', 'Si', 0, 4, NULL, NULL, NULL, NULL, 'acqua1980@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(30, '2013-07-22 11:09:00', '2013-07-22 14:09:21', 'Si', 0, 4, '', '', '', NULL, 'federicobouzas2@gmail.com', NULL, NULL, '', NULL, '', '', NULL, '-34.6037232, -58.38159310000003'),
+(31, '2013-07-24 11:16:59', '0000-00-00 00:00:00', 'Si', 0, 4, '', '', '', NULL, 'federicobouzas3@gmail.com', NULL, NULL, '', NULL, '', '', NULL, '');
 
 -- --------------------------------------------------------
 
@@ -611,6 +661,22 @@ CREATE TABLE IF NOT EXISTS `per_personas_poblaciones` (
 
 INSERT INTO `per_personas_poblaciones` (`persona_id`, `poblacion_id`) VALUES
 (9, 1),
+(15, 1),
+(16, 1),
+(17, 1),
+(18, 1),
+(19, 1),
+(20, 1),
+(21, 1),
+(22, 1),
+(23, 1),
+(24, 1),
+(25, 1),
+(26, 1),
+(27, 1),
+(28, 1),
+(29, 1),
+(31, 1),
 (9, 2),
 (10, 2),
 (11, 2),
@@ -684,7 +750,7 @@ CREATE TABLE IF NOT EXISTS `sys_bloqueos` (
   `model` varchar(50) NOT NULL,
   `model_id` int(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -769,14 +835,14 @@ CREATE TABLE IF NOT EXISTS `sys_logins` (
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Volcado de datos para la tabla `sys_logins`
 --
 
 INSERT INTO `sys_logins` (`id`, `fecha_carga`, `ip`, `username`, `password`) VALUES
-(1, '2013-07-12 16:58:43', '127.0.0.1', 'admin', '1234');
+(8, '2013-07-16 10:51:11', '127.0.0.1', 'administrador', '1234');
 
 -- --------------------------------------------------------
 
@@ -793,7 +859,7 @@ CREATE TABLE IF NOT EXISTS `sys_logs` (
   `model_id` int(10) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
 
 --
 -- Volcado de datos para la tabla `sys_logs`
@@ -809,7 +875,23 @@ INSERT INTO `sys_logs` (`id`, `fecha_carga`, `user_id`, `model`, `action`, `mode
 (7, '2013-07-04 15:09:39', 4, 'Configuration', 'edit', 1),
 (8, '2013-07-04 15:10:08', 4, 'Campania', 'add', 1),
 (9, '2013-07-04 15:40:51', 4, 'Persona', 'edit', 9),
-(10, '2013-07-05 09:55:23', 4, 'Persona', 'edit', 10);
+(10, '2013-07-05 09:55:23', 4, 'Persona', 'edit', 10),
+(11, '2013-07-15 12:22:28', 4, 'Server', 'edit', 1),
+(12, '2013-07-16 10:49:25', 4, 'User', 'edit', 4),
+(13, '2013-07-16 10:50:37', 4, 'User', 'edit', 4),
+(14, '2013-07-16 10:55:42', 4, 'User', 'edit', 4),
+(15, '2013-07-16 11:50:10', 4, 'Persona', 'edit', 10),
+(16, '2013-07-16 17:33:42', 4, 'Button', 'delete', 6),
+(17, '2013-07-16 17:33:44', 4, 'Button', 'delete', 5),
+(18, '2013-07-16 17:33:47', 4, 'Button', 'delete', 4),
+(19, '2013-07-16 17:33:48', 4, 'Button', 'delete', 3),
+(20, '2013-07-16 17:34:03', 4, 'Button', 'edit', 1),
+(21, '2013-07-16 17:34:22', 4, 'Button', 'edit', 2),
+(22, '2013-07-22 11:09:06', 4, 'Persona', 'add', 30),
+(23, '2013-07-22 11:09:21', 4, 'Persona', 'edit', 30),
+(24, '2013-07-24 11:16:34', 4, 'Encuesta', 'add', 2),
+(25, '2013-07-24 11:17:31', 4, 'Persona', 'add', 31),
+(26, '2013-07-24 11:19:29', 4, 'Evento', 'add', 1);
 
 -- --------------------------------------------------------
 
@@ -823,7 +905,16 @@ CREATE TABLE IF NOT EXISTS `sys_timestamps` (
   `timestamp` int(10) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `filename` (`filename`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Volcado de datos para la tabla `sys_timestamps`
+--
+
+INSERT INTO `sys_timestamps` (`id`, `filename`, `timestamp`) VALUES
+(1, 'Users.xml', 1373980669),
+(2, 'Estados.xml', 1373550824),
+(3, 'Encuestas.xml', 1371221729);
 
 --
 -- Restricciones para tablas volcadas

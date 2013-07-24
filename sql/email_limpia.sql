@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-07-2013 a las 22:01:44
+-- Tiempo de generación: 24-07-2013 a las 16:21:43
 -- Versión del servidor: 5.5.27
 -- Versión de PHP: 5.4.7
 
@@ -321,10 +321,10 @@ CREATE TABLE IF NOT EXISTS `cam_encuestas_preguntas` (
   `fecha_modificacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` int(10) NOT NULL,
   `encuesta_id` int(10) NOT NULL,
-  `orden` int(2) NOT NULL,
+  `orden` int(2) DEFAULT NULL,
   `pregunta` varchar(200) NOT NULL,
   `tipo` enum('lista','simple','multiple','texto') NOT NULL,
-  `opciones` text NOT NULL,
+  `opciones` text,
   PRIMARY KEY (`id`),
   KEY `encuesta_id` (`encuesta_id`),
   KEY `user_id` (`user_id`)
@@ -727,7 +727,7 @@ CREATE TABLE IF NOT EXISTS `sys_logs` (
 
 CREATE TABLE IF NOT EXISTS `sys_timestamps` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `filename` varchar(100) NOT NULL,
+  `filename` varchar(100) CHARACTER SET utf8 NOT NULL,
   `timestamp` int(10) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `filename` (`filename`)
