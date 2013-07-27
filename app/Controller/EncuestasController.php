@@ -30,9 +30,9 @@ class EncuestasController extends AppController {
     }
 
     public function delete($id = null) {
-        $cant = $this->Encuesta->Campania->find('count', array('conditions' => array('encuesta_id' => $id)));
-        if ($cant > 0) {
-            throw new MethodNotAllowedException(__('No se puede eliminar la encuesta, esta siendo utilizada por ' . $cant . ' campañas.'));
+        $cant = $this->Encuesta->Query("SELECT id FROM cam_campanias WHERE encuesta_id = " . $id);
+        if (count($cant) > 0) {
+            throw new MethodNotAllowedException(__('No se puede eliminar la encuesta, esta siendo utilizada por ' . count($cant) . ' campaña' . (count($cant) != 1 ? 's' : '') . '.'));
         }
         parent::delete($id);
     }
