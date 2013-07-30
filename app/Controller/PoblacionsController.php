@@ -1,7 +1,7 @@
 <?php
 
 class PoblacionsController extends AppController {
-
+    
     public $sl_poblaciones = array(
         'actions' => array('V' => 'view', 'E' => 'edit'),
         'filters' => array(

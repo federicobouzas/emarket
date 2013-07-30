@@ -45,6 +45,7 @@ class PersonasMaint extends AbstractData {
                 'model' => 'Poblacion',
                 'fields' => array(
                     array('name' => 'Poblacion.nombre', 'label' => 'Población'),
+                    array('name' => 'Poblacion.activa', 'label' => 'Activa'),
                 ),
                 'order' => array('Poblacion.nombre ASC'),
             ),

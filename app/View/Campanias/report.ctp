@@ -16,7 +16,7 @@ $this->Html->script("campanias/maint_reportes", array('inline' => false));
         <label for="CampaniaId">Nombre</label>
         <select name="data[Campania][id]" id="CampaniaId">
             <option value=""></option>
-            <?php foreach ($campanias as $campania): debug($campania); ?>
+            <?php foreach ($campanias as $campania): ?>
                 <option value="<?= $campania['Campania']['id'] ?>" <?= ($id == $campania['Campania']['id'] ? 'selected="selected"' : '') ?>><?= $campania['Campania']['nombre'] ?></option>
             <?php endforeach; ?>
         </select>
