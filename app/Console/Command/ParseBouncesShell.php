@@ -33,14 +33,14 @@ class ParseBouncesShell extends AppShell {
             $mailbox.= ($server['ssl'] == 'Si' ? '/ssl' : '');
             $mailbox.= (empty($server['adicionales']) ? '' : $server['adicionales']);
             $mbox = @imap_open("{" . $mailbox . "}INBOX", $server['usuario'], $server['clave']);
-            
+
             // Si no puede conectar sigue con el proximo servidor
             if ($mbox === false) {
                 break;
             }
-            
+
             $MC = @imap_check($mbox);
-                        
+
             // Si no hay mensajes sigue con el proximo servidor
             if ($MC->Nmsgs == 0) {
                 break;
@@ -52,17 +52,17 @@ class ParseBouncesShell extends AppShell {
                 if ($overview->deleted) {
                     continue;
                 }
-
-                $body = @imap_body($mbox, $overview->msgno);
-                // Si el contenido esta vacio no me sirve
-                if (!$body) {
-                    continue;
-                }
-
+                
                 // Es un rebote?
                 if ($overview->from == "The Post Office <postmaster@buenosaires.gob.ar>") {
+                    $body = @imap_body($mbox, $overview->msgno);
+                    // Si el contenido esta vacio no me sirve
+                    if (!$body) {
+                        continue;
+                    }
+
                     $parse = $bounce->parseMail($body);
-                    
+
                     if (!empty($parse['campania']) && !empty($parse['persona']) && is_numeric($parse['campania']) && is_numeric($parse['persona'])) {
                         $error = '0.0.0';
                         if (!empty($parse['error']['code'])) {
