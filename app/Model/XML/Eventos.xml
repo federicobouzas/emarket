@@ -1,0 +1,32 @@
+<Eventos>
+    
+    <search_list file="EventosSL.php">
+        <action op="V" action="view" />
+        <action op="E" action="edit" />
+        <action op="D" action="delete" />
+    
+        <searchfield name="Encuesta.nombre" label="Nombre" />  
+    
+        <listfield name="Encuesta.nombre" label="Nombre" />
+        <listfield name="Encuesta.id" label="Probar Encuesta" presentation="ENCUESTAS::RESPONDER_ENCUESTA" />  
+    </search_list>
+    
+    <tablemaint file="EventosMaint.php">
+        <fieldset title="Datos del Evento">
+            <field name="fecha_carga" label="Fecha Carga" presentation="DATETIME" classparams="{'force':true}" isvisible="false" actions="A" />
+            <field name="user_id" label="Usuario Carga" presentation="USER" classparams="{'force':true}" isvisible="false" actions="A" />
+            <field name="nombre" label="Nombre" />
+            <field name="fecha_hora_evento" label="Fecha y Hora" presentation="DATETIME" classparams="{'no_seconds':true}"  />
+            <field name="descripcion" label="Descripción" presentation="TEXTAREA" />
+        </fieldset>
+        
+        <fieldset title="Ubicación">
+            <field name="direccion" label="Dirección" />
+            <field name="barrio" label="Barrio" presentation="BARRIOS" />
+            <field name="ciudad" label="Ciudad" />
+            <field name="provincia" label="Provincia" presentation="PROVINCIAS" />
+            <field name="coordenadas" label="Ubicación" presentation="GOOGLEMAP" classparams="{'calle_altura':'direccion','barrio':'barrio','ciudad':'ciudad','provincia':'provincia'}" />
+        </fieldset>
+    </tablemaint>
+    
+</Eventos>

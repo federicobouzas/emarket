@@ -1,22 +1,36 @@
 <?php
 
+/* GENERADO AUTOMATICAMENTE */
+/* 16/08/2013 14:48:23 */
+
 App::uses('AbstractData', 'Lib');
 
 class EventosSL extends AbstractData {
 
-    protected $data = array(
-        'actions' => array('V' => 'view', 'E' => 'edit', 'D' => 'delete'),
-        'filters' => array(
-            array('name' => 'Evento.nombre', 'label' => 'Nombre'),
-            array('name' => 'Evento.fecha_hora_evento', 'label' => 'Fecha', 'presentation' => 'DATE'),
+protected $data =
+array (
+    'filters' => 
+    array (
+        0 => 
+        array (
+            'name' => 'Encuesta.nombre',
+            'label' => 'Nombre',
         ),
-        'columns' => array(
-            array('name' => 'Evento.nombre', 'label' => 'Nombre'),
-            array('name' => 'Evento.fecha_hora_evento', 'label' => 'Fecha y Hora', 'presentation' => 'DATETIME', 'classparams' => '{"no_seconds": true}'),
-            array('name' => 'Evento.barrio', 'label' => 'Barrio'),
-            array('name' => 'Evento.ciudad', 'label' => 'Ciudad'),
-            array('name' => 'Evento.provincia', 'label' => 'Provincia'),
-        )
-    );
+    ),
+    'columns' => 
+    array (
+        0 => 
+        array (
+            'name' => 'Encuesta.nombre',
+            'label' => 'Nombre',
+        ),
+        1 => 
+        array (
+            'name' => 'Encuesta.id',
+            'label' => 'Probar Encuesta',
+            'presentation' => 'ENCUESTAS::RESPONDER_ENCUESTA',
+        ),
+    ),
+);
 
 }
