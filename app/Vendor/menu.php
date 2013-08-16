@@ -46,10 +46,7 @@ $MENU = array(
         ),
         'Sistema' => array(
             'Consultar Logs' => 'logs|index|system',
-            'Estados' => array(
-                'Cargar Estado' => 'estados|add|system',
-                'Consultar Estados' => 'estados|index|system',
-            ),
+            'Consultar Estados' => 'estados|index|system',
         ),
         'Usuarios' => array(
             'Cargar Usuario' => 'users|add|admin',

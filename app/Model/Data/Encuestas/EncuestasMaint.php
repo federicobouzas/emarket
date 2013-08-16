@@ -1,6 +1,7 @@
 <?php
 
 /* GENERADO AUTOMATICAMENTE */
+/* 16/08/2013 14:52:18 */
 
 App::uses('AbstractData', 'Lib');
 

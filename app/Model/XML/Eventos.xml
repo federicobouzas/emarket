@@ -1,10 +1,6 @@
 <Eventos>
     
-    <search_list file="EventosSL.php">
-        <action op="V" action="view" />
-        <action op="E" action="edit" />
-        <action op="D" action="delete" />
-    
+    <search_list file="EventosSL.php">    
         <searchfield name="Encuesta.nombre" label="Nombre" />  
     
         <listfield name="Encuesta.nombre" label="Nombre" />

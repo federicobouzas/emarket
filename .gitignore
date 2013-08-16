@@ -1,13 +1,23 @@
-<<<<<<< HEAD
-app/tmp
+# User specific & automatically generated files #
+#################################################
+/app/tmp
+/app/webroot/files
+/app/Config/database.php
+/app/Config/config.php
 /lib/Cake/Console/Templates/skel/tmp/
 /plugins
 /vendors
 /build
 /dist
-.DS_Store
 /tags
-=======
-/app/tmp
->>>>>>> 0c8df0dacb176c0b39487ed8fe1e339e7edb0b13
-app/webroot/files/
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
