@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-07-2013 a las 16:21:43
+-- Tiempo de generación: 16-08-2013 a las 16:38:43
 -- Versión del servidor: 5.5.27
 -- Versión de PHP: 5.4.7
 
@@ -620,6 +620,20 @@ CREATE TABLE IF NOT EXISTS `sys_bloqueos` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `sys_compilations`
+--
+
+CREATE TABLE IF NOT EXISTS `sys_compilations` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `filename` varchar(100) NOT NULL,
+  `md5` varchar(32) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `filename` (`filename`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `sys_configurations`
 --
 
@@ -718,20 +732,6 @@ CREATE TABLE IF NOT EXISTS `sys_logs` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `sys_timestamps`
---
-
-CREATE TABLE IF NOT EXISTS `sys_timestamps` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `filename` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `timestamp` int(10) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `filename` (`filename`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Restricciones para tablas volcadas
