@@ -1,6 +1,6 @@
 <Campanias>
    
-    <search_list file="CampaniasSL.php">
+    <search_list file="CampaniasSL.php" order="Campania.fecha_carga DESC">
         <searchfield name="Campania.activa" label="Activa" presentation="SINO" initialvalue="Si" />
         <searchfield name="Campania.server_id" label="Cuenta" presentation="SELECT" classparams="{'model':'Messaging.Server'}" />
         <searchfield name="Campania.prioridad" label="Prioridad" presentation="MENSAJES::PRIORIDAD_MENSAJE" />
