@@ -144,23 +144,34 @@ class Persona extends AppModel {
      */
 
     function beforeImport(&$registros) {
-        foreach ($registros as $key => $registro) {
-            if (!empty($registro['Persona']['email'])) {
-                $persona = $this->find('first', array('recursive' => -1, 'fields' => array('Persona.id'), 'conditions' => array('email' => $registro['Persona']['email'])));
-                if (count($persona)) {
-                    foreach ($registro['Poblacion'] as $poblacion) {
-                        $cant = $this->Query("SELECT COUNT(*) as cant FROM per_personas_poblaciones 
-                                              WHERE persona_id=".$persona['Persona']['id']." AND poblacion_id=" . $poblacion);
-                        if (empty($cant[0][0]['cant'])) {
-                            $this->Query("INSERT INTO per_personas_poblaciones (persona_id, poblacion_id) 
+        $errores = array();
+        $repetidos = array();
+        foreach (array_count_values(array_map("getPersonaEmail", $registros)) as $email => $veces) {
+            if ($veces > 1) {
+                $errores[] = "El email " . $email . " se encuentra repetido " . $veces . " veces en el archivo Excel.";
+            }
+        }
+
+        if (count($errores) == 0) {
+            foreach ($registros as $key => $registro) {
+                if (!empty($registro['Persona']['email'])) {
+                    $persona = $this->find('first', array('recursive' => -1, 'fields' => array('Persona.id'), 'conditions' => array('email' => $registro['Persona']['email'])));
+                    if (count($persona)) {
+                        foreach ($registro['Poblacion'] as $poblacion) {
+                            $cant = $this->Query("SELECT COUNT(*) as cant FROM per_personas_poblaciones 
+                                              WHERE persona_id=" . $persona['Persona']['id'] . " AND poblacion_id=" . $poblacion);
+                            if (empty($cant[0][0]['cant'])) {
+                                $this->Query("INSERT INTO per_personas_poblaciones (persona_id, poblacion_id) 
                                           VALUES (" . $persona['Persona']['id'] . ", " . $poblacion . ")");
+                            }
                         }
-                        
+                        unset($registros[$key]);
                     }
-                    unset($registros[$key]);
                 }
             }
         }
+
+        return $errores;
     }
 
 }
