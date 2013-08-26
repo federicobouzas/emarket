@@ -230,6 +230,9 @@ table.asociada td.number {
     height: 25px;
     width: 20px;
 }
+table.asociada tr.deleted {
+    display: none !important;
+}
 
 div.asociada_add {
     display: none;
