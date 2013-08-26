@@ -15,7 +15,7 @@
             <field name="nombre" label="Nombre" />
             <field name="descripcion" label="Descripción" presentation="TEXTAREA" />
         </fieldset>
-        <table title="Preguntas" paginate="true" model="Pregunta" order="Pregunta.orden ASC, Pregunta.id ASC">
+        <table title="Preguntas" paginate="true" model="Pregunta" orderby="Pregunta.orden ASC, Pregunta.id ASC">
             <field name="fecha_carga" label="Fecha Carga" presentation="DATETIME" classparams="{'force':true}" isvisible="false" actions="A" />
             <field name="user_id" label="Usuario Carga" presentation="USER" classparams="{'force':true}" isvisible="false" actions="A" />
             <field name="pregunta" label="Pregunta" size="80" />

@@ -1,7 +1,7 @@
 <?php
 
 /* GENERADO AUTOMATICAMENTE */
-/* 25/08/2013 18:11:06 */
+/* 26/08/2013 12:14:18 */
 
 App::uses('AbstractData', 'Lib');
 
@@ -103,7 +103,7 @@ array (
             'paginate' => true,
             'title' => 'Preguntas',
             'model' => 'Pregunta',
-            'order' => 'Pregunta.orden ASC, Pregunta.id ASC',
+            'orderby' => 'Pregunta.orden ASC, Pregunta.id ASC',
         ),
     ),
 );
