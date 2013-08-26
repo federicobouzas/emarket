@@ -41,7 +41,7 @@ class Persona extends AppModel {
         'email' => array(
             'required' => array(
                 'rule' => array('notEmpty'),
-                'message' => 'El e-mail de la persona es requerido'
+                'message' => 'El e-mail de la persona es requerido',
             ),
             'email' => array(
                 'rule' => array('email'),
@@ -145,10 +145,14 @@ class Persona extends AppModel {
 
     function beforeImport(&$registros) {
         $errores = array();
-        $repetidos = array();
         foreach (array_count_values(array_map("getPersonaEmail", $registros)) as $email => $veces) {
-            if ($veces > 1) {
-                $errores[] = "El email " . $email . " se encuentra repetido " . $veces . " veces en el archivo Excel.";
+            if ($veces > 1 ) {
+                if (empty($email)) {
+                    $errores[] = "El archivo Excel contiene filas donde el email se encuentra vacío.";
+                } else {
+                    $errores[] = "El email " . $email . " se encuentra repetido " . $veces . " veces en el archivo Excel.";
+                }
+                
             }
         }
 
