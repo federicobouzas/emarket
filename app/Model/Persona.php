@@ -143,32 +143,47 @@ class Persona extends AppModel {
       }
      */
 
-    function beforeImport(&$registros) {
+    function beforeImport(&$registros, $omitir_primer_fila = true) {
         $errores = array();
-        foreach (array_count_values(array_map("getPersonaEmail", $registros)) as $email => $veces) {
-            if ($veces > 1 ) {
-                if (empty($email)) {
-                    $errores[] = "El archivo Excel contiene filas donde el email se encuentra vacío.";
-                } else {
-                    $errores[] = "El email " . $email . " se encuentra repetido " . $veces . " veces en el archivo Excel.";
-                }
-                
+
+        // Busco emails vacios y los cargo a errores
+        foreach ($registros as $fila => $registro) {
+            $fila_excel = $fila + 1;
+            if ($omitir_primer_fila) {
+                $fila_excel++;
+            }
+
+            if (empty($registro['Persona']['email'])) {
+                $errores[] = array(
+                    'A' => $fila_excel,
+                    'B' => 'email',
+                    'C' => '',
+                    'D' => 'El e-mail de la persona es requerido',
+                );
             }
         }
 
+        // Busco emails repetidos
+        foreach (array_count_values(array_map("getPersonaEmail", $registros)) as $email => $veces) {
+            if ($veces > 1 && !empty($email)) {
+                // Si no estaba ingresado lo cargo a errores
+                if (!$this->asociarNuevasPoblaciones($email, $registro['Poblacion'])) {
+                    $errores[] = array(
+                        'A' => '',
+                        'B' => 'email',
+                        'C' => $email,
+                        'D' => 'El email se encuentra repetido ' . $veces . ' veces',
+                    );
+                }
+            }
+        }
+        
+
+        // Si no hay errores asocio los ya ingresados a las nuevas poblaciones y los saco
         if (count($errores) == 0) {
             foreach ($registros as $key => $registro) {
                 if (!empty($registro['Persona']['email'])) {
-                    $persona = $this->find('first', array('recursive' => -1, 'fields' => array('Persona.id'), 'conditions' => array('email' => $registro['Persona']['email'])));
-                    if (count($persona)) {
-                        foreach ($registro['Poblacion'] as $poblacion) {
-                            $cant = $this->Query("SELECT COUNT(*) as cant FROM per_personas_poblaciones 
-                                              WHERE persona_id=" . $persona['Persona']['id'] . " AND poblacion_id=" . $poblacion);
-                            if (empty($cant[0][0]['cant'])) {
-                                $this->Query("INSERT INTO per_personas_poblaciones (persona_id, poblacion_id) 
-                                          VALUES (" . $persona['Persona']['id'] . ", " . $poblacion . ")");
-                            }
-                        }
+                    if ($this->asociarNuevasPoblaciones($registro['Persona']['email'], $registro['Poblacion'])) {
                         unset($registros[$key]);
                     }
                 }
@@ -176,6 +191,22 @@ class Persona extends AppModel {
         }
 
         return $errores;
+    }
+
+    private function asociarNuevasPoblaciones($email, $poblaciones) {
+        $persona = $this->find('first', array('recursive' => -1, 'fields' => array('Persona.id'), 'conditions' => array('email' => $email)));
+        if (count($persona)) {
+            foreach ($poblaciones as $poblacion) {
+                $cant = $this->Query("SELECT COUNT(*) as cant FROM per_personas_poblaciones 
+                                      WHERE persona_id=" . $persona['Persona']['id'] . " AND poblacion_id=" . $poblacion);
+                if (empty($cant[0][0]['cant'])) {
+                    $this->Query("INSERT INTO per_personas_poblaciones (persona_id, poblacion_id) 
+                                  VALUES (" . $persona['Persona']['id'] . ", " . $poblacion . ")");
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
 }
