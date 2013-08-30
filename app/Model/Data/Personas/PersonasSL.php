@@ -13,7 +13,7 @@ class PersonasSL extends AbstractData {
             array('name' => 'Persona.sexo', 'label' => 'Sexo', 'presentation' => 'SEXO'),
             array('name' => 'Persona.comuna', 'label' => 'Comuna', 'presentation' => 'GEOLOCALIZACION::COMUNAS'),
             array('name' => 'Persona.barrio', 'label' => 'Barrio', 'presentation' => 'GEOLOCALIZACION::BARRIOS', 'classparams' => '{"listen":"PersonaComuna"}'),
-            //array('name' => 'Persona.id', 'label' => 'Población', 'presentation' => 'PERSONAS::POBLACION', 'classparams' => '{"model":"Poblacion"}'),
+            array('name' => 'Persona.id', 'label' => 'Población', 'presentation' => 'PERSONAS::POBLACION', 'classparams' => '{"model":"Poblacion"}'),
             array('name' => 'Persona.activa', 'label' => 'Activa', 'presentation' => 'SINO'),
         ),
         'columns' => array(
