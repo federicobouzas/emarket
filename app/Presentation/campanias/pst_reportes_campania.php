@@ -28,7 +28,7 @@ class pst_reportes_campania extends Presentation {
         $ret['personas']['error']['soft'] = 0;
         $cant_error = $db->Query("SELECT error_tipo, COUNT(*) AS cant FROM cam_campanias_personas WHERE error IS NOT NULL AND campania_id=" . $params->campania . " GROUP BY error_tipo");
         foreach ($cant_error as $error) {
-            if ($error[0] == 'Hard' || empty($error[0]['error_tipo'])) {
+            if ($error['cam_campanias_personas']['error_tipo'] == 'Hard' || empty($error['cam_campanias_personas']['error_tipo'])) {
                 $ret['personas']['error']['hard'] = (int) $error[0]['cant'];
             } else {
                 $ret['personas']['error']['soft'] = (int) $error[0]['cant'];
