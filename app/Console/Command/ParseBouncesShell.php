@@ -6,6 +6,14 @@ App::uses('Bounces', 'Lib');
 class ParseBouncesShell extends AppShell {
 
     public $uses = array('Messaging.Mensaje', 'Messaging.Server');
+    private $asuntosRebote = array(
+        'The Post Office <postmaster@buenosaires.gob.ar>',
+        'The Post Office <postmaster@fibertel.com.ar>',
+        'postmaster@hotmail.com',
+        'MAILER-DAEMON@arnet.com.ar',
+        'MAILER-DAEMON@mxavas3-pc.aruba.it',
+        'Servicio de entrega de correos <MAILER-DAEMON@sion.com>',
+    );
 
     public function main() {
         $this->out("CRON DE OBTENCION DE EMAILS (" . date("H:i:s") . " DEL " . date("d/m/Y") . ")");
@@ -52,9 +60,9 @@ class ParseBouncesShell extends AppShell {
                 if ($overview->deleted) {
                     continue;
                 }
-                
+
                 // Es un rebote?
-                if ($overview->from == "The Post Office <postmaster@buenosaires.gob.ar>") {
+                if (in_array($overview->from, $this->asuntosRebote)) {
                     $body = @imap_body($mbox, $overview->msgno);
                     // Si el contenido esta vacio no me sirve
                     if (!$body) {
@@ -81,7 +89,7 @@ class ParseBouncesShell extends AppShell {
 
                         // Si tiene 5 errores o mas lo dejo inactivo
                         $cant_errores = $this->Mensaje->Query("SELECT errores FROM per_personas WHERE id=" . $parse['persona']);
-                        if ($cant_errores[0]['per_personas']['errores'] >= 5) {
+                        if (count($cant_errores) && $cant_errores[0]['per_personas']['errores'] >= 5) {
                             $this->Mensaje->Query("UPDATE per_personas SET activa='No' WHERE id=" . $parse['persona']);
                         }
                     }
