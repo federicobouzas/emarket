@@ -46,5 +46,6 @@
             <div id="footer">| <?=(isset($CONFIGURATION['footer']) ? $CONFIGURATION['footer'] : '')?> |</div>
             <?php echo $this->element('sql_dump'); ?>
         </div>
+        <div class="loading">Cargando datos</div>
     </body>
 </html>

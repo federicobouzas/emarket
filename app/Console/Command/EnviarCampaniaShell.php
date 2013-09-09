@@ -89,7 +89,7 @@ class EnviarCampaniaShell extends AppShell {
                 $hash = md5("GCBA|" . $campania['id'] . "|" . $persona['per_personas']['id']);
 
                 $this->Campania->Query("INSERT INTO cam_campanias_personas (campania_id, persona_id, estado)
-                                    VALUES (" . $campania['id'] . ", " . $persona['per_personas']['id'] . ", 'Enviada')");
+                                        VALUES (" . $campania['id'] . ", " . $persona['per_personas']['id'] . ", 'Enviada')");
 
                 $unsubscribe_link = $this->Campania->generateUnsubscribeLink($campania['id'], $persona['per_personas']['id'], $hash);
 
