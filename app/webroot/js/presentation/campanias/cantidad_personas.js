@@ -23,7 +23,7 @@ function cantidad_personas_init(field, params) {
             }
             
             if ($("#CampaniaPersonasPoblaciones").length == 1) {
-                var poblacion = $("#boxCampaniaPersonasPoblaciones").val();
+                var poblacion = $("#CampaniaPersonasPoblaciones").val();
             } else {
                 var poblacion = $("#boxCampaniaPersonasPoblaciones input:checkbox:checked").map(function() {
                     return this.value;

@@ -166,19 +166,14 @@ class Persona extends AppModel {
         // Busco emails repetidos
         foreach (array_count_values(array_map("getPersonaEmail", $registros)) as $email => $veces) {
             if ($veces > 1 && !empty($email)) {
-                // Si no estaba ingresado lo cargo a errores
-                if (!$this->asociarNuevasPoblaciones($email, $registro['Poblacion'])) {
-                    $errores[] = array(
-                        'A' => '',
-                        'B' => 'email',
-                        'C' => $email,
-                        'D' => 'El email se encuentra repetido ' . $veces . ' veces',
-                    );
-                }
+                $errores[] = array(
+                    'A' => '',
+                    'B' => 'email',
+                    'C' => $email,
+                    'D' => 'El email se encuentra repetido ' . $veces . ' veces',
+                );
             }
         }
-        
-
         // Si no hay errores asocio los ya ingresados a las nuevas poblaciones y los saco
         if (count($errores) == 0) {
             foreach ($registros as $key => $registro) {
@@ -197,7 +192,7 @@ class Persona extends AppModel {
         $persona = $this->find('first', array('recursive' => -1, 'fields' => array('Persona.id'), 'conditions' => array('email' => $email)));
         if (count($persona)) {
             foreach ($poblaciones as $poblacion) {
-                $cant = $this->Query("SELECT COUNT(*) as cant FROM per_personas_poblaciones 
+                $cant = $this->Query("SELECT COUNT(*) AS cant FROM per_personas_poblaciones 
                                       WHERE persona_id=" . $persona['Persona']['id'] . " AND poblacion_id=" . $poblacion);
                 if (empty($cant[0][0]['cant'])) {
                     $this->Query("INSERT INTO per_personas_poblaciones (persona_id, poblacion_id) 
