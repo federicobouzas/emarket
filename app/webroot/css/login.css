@@ -116,7 +116,7 @@ fieldset {
     border-style: solid;
     border-color: #d69e31 #e3a037 #d5982d #e3a037;
 
-    float: left;
+    float: right;
     height: 35px;
     padding: 0;
     width: 120px;
@@ -148,7 +148,17 @@ fieldset {
 
 #actions a {
     color: #3151A2;    
-    float: right;
+    float: left;
     line-height: 35px;
     margin-left: 10px;
+}
+
+label {
+    float: none !important;
+    display: inline-block;
+    width: auto !important;
+    font-size: 100% !important;
+    padding: 0 !important;
+    font-weight: normal !important;
+    color: #333 !important;
 }
