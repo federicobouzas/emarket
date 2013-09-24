@@ -1,6 +1,6 @@
 <?php
 
-App::uses('Presentation', 'Presentation');
+App::uses('Presentation', 'Lib');
 App::uses('Campania', 'Model');
 
 class pst_visualizar_template extends Presentation {

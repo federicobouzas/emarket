@@ -1,6 +1,6 @@
 <?php
 
-App::uses('Presentation', 'Presentation');
+App::uses('Presentation', 'Lib');
 
 class pst_reportes_campania extends Presentation {
 
