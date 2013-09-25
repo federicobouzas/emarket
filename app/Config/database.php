@@ -8,7 +8,7 @@ class DATABASE_CONFIG {
 		'host' => '127.0.0.1',
 		'login' => 'root',
 		'password' => '',
-		'database' => 'email_prod',
+		'database' => 'email',
 		'prefix' => '',
 		'encoding' => 'utf8',
 	);
