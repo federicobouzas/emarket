@@ -7,14 +7,14 @@ class EventosController extends AppController {
         $this->Auth->allow('asistencia');
     }
 
-    public function add() {
+    public function add($return = null) {
         $this->maint = getData('Eventos/EventosMaint');
-        parent::add();
+        parent::add($return);
     }
 
-    public function edit($id = null) {
+    public function edit($id = null, $return = null) {
         $this->maint = getData('Eventos/EventosMaint');
-        parent::edit($id);
+        parent::edit($id, $return);
     }
 
     public function index($last = false) {
@@ -22,9 +22,9 @@ class EventosController extends AppController {
         parent::index($last);
     }
 
-    public function view($id = null) {
+    public function view($id = null, $return = null) {
         $this->maint = getData('Eventos/EventosMaint');
-        parent::view($id);
+        parent::view($id, $return);
     }
 
     public function delete($id = null) {

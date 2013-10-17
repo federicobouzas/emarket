@@ -7,7 +7,7 @@ class CampaniasController extends AppController {
         $this->Auth->allow('lectura', 'unsubscribe', 'followLink');
     }
 
-    public function add() {
+    public function add($return = null) {
         if ($this->request->is('post')) {
             if (!empty($this->request->data['Campania']['personas_edad']['desde']) && !empty($this->request->data['Campania']['personas_edad']['hasta'])) {
                 $this->request->data['Campania']['personas_edad'] = $this->request->data['Campania']['personas_edad']['desde'] . "," . $this->request->data['Campania']['personas_edad']['hasta'];
@@ -21,10 +21,10 @@ class CampaniasController extends AppController {
         }
 
         $this->maint = getData('Campanias/CampaniasMaint');
-        parent::add();
+        parent::add($return);
     }
 
-    public function edit($id = null) {
+    public function edit($id = null, $return = null) {
         // Verifico que exista la campaña
         $this->Campania->id = $id;
         if (!$this->Campania->exists()) {
@@ -49,7 +49,7 @@ class CampaniasController extends AppController {
         }
 
         $this->maint = getData('Campanias/CampaniasMaint');
-        parent::edit($id);
+        parent::edit($id, $return);
     }
 
     public function index($last = false) {
@@ -57,9 +57,9 @@ class CampaniasController extends AppController {
         parent::index($last);
     }
 
-    public function view($id = null) {
+    public function view($id = null, $return = null) {
         $this->maint = getData('Campanias/CampaniasMaint');
-        parent::view($id);
+        parent::view($id, $return);
     }
 
     public function delete($id = null) {

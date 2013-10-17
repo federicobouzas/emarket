@@ -1,7 +1,7 @@
 <?php
 
 /* GENERADO AUTOMATICAMENTE */
-/* 25/09/2013 14:45:48 */
+/* 17/10/2013 17:22:17 */
 
 App::uses('AbstractData', 'Lib');
 
@@ -11,8 +11,14 @@ protected $data =
 array (
     'actions' => 
     array (
-        'V' => 'view',
-        'E' => 'edit',
+        'V' => 
+        array (
+            0 => 'view',
+        ),
+        'E' => 
+        array (
+            0 => 'edit',
+        ),
     ),
     'filters' => 
     array (

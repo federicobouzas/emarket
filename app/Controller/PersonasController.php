@@ -8,14 +8,14 @@ class PersonasController extends AppController {
         parent::importar('tmp_excel');
     }
 
-    public function add() {
+    public function add($return = null) {
         $this->maint = getData('Personas/PersonasMaint');
-        parent::add();
+        parent::add($return);
     }
 
-    public function edit($id = null) {
+    public function edit($id = null, $return = null) {
         $this->maint = getData('Personas/PersonasMaint');
-        parent::edit($id);
+        parent::edit($id, $return);
     }
 
     public function index($last = false) {
@@ -28,9 +28,9 @@ class PersonasController extends AppController {
         parent::index($last);
     }
 
-    public function view($id = null) {
+    public function view($id = null, $return = null) {
         $this->maint = getData('Personas/PersonasMaint');
-        parent::view($id);
+        parent::view($id, $return);
     }
 
 }
