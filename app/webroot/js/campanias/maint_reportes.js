@@ -1,5 +1,6 @@
 $(function() {
     $("#CampaniaId").change(function() {
+        var campania_id = this.value;
         $("#fieldset3").hide();
         $("#fieldset5").hide();
         $("#PreguntaId").html('<option value=""></option>');
@@ -24,7 +25,7 @@ $(function() {
 
         //var info = sync_request("campanias::reportes_campania", "ajaxGetInfo", '{"campania":"' + this.value + '"}');
         $(".loading").fadeIn();
-        async_request("campanias::reportes_campania", "ajaxGetInfo", '{"campania":"' + this.value + '"}', function(info) {
+        async_request("campanias::reportes_campania", "ajaxGetInfo", '{"campania":"' + campania_id + '"}', function(info) {
             $(".loading").fadeOut();
 
             // lleno los labels
@@ -60,7 +61,7 @@ $(function() {
             $("#ultima_apertura").text(info.personas.ultima_lectura);
             $("#clicks").text(info.personas.clicks);
             $("#ultimo_click").text(info.personas.ultimo_click);
-            $("#reporte_rebotes").html('<a href="' + WWW + 'campanias/reporteRebotes/' + this.value + '"><img src="' + WWW + 'img/fmw/excel2.gif" width="20px" /></a>');
+            $("#reporte_rebotes").html('<a href="' + WWW + 'campanias/reporteRebotes/' + campania_id + '"><img src="' + WWW + 'img/fmw/excel2.gif" width="20px" /></a>');
 
             // grafico de hipervinculos
             if (empty(info.links.categories)) {
@@ -74,7 +75,7 @@ $(function() {
             // encuesta
             if (info.tipo == "Encuesta") {
                 $("#fieldset3").show();
-                var preguntas = sync_request("campanias::reportes_campania", "ajaxGetPreguntas", '{"campania":"' + this.value + '"}');
+                var preguntas = sync_request("campanias::reportes_campania", "ajaxGetPreguntas", '{"campania":"' + campania_id + '"}');
                 for (var i in preguntas) {
                     $("#PreguntaId").append('<option value="' + preguntas[i].id + '">' + preguntas[i].pregunta + '</option>');
                 }
@@ -82,7 +83,7 @@ $(function() {
             // evento
             else if (info.tipo == "Evento") {
                 $("#fieldset5").show();
-                var evento = sync_request("campanias::reportes_campania", "ajaxGetGraficoAsistencias", '{"campania":"' + this.value + '"}');
+                var evento = sync_request("campanias::reportes_campania", "ajaxGetGraficoAsistencias", '{"campania":"' + campania_id + '"}');
                 if (empty(evento)) {
                     $("#grafico2").text("El evento seleccionado aun no posee respuestas de asistencias.").css("height", "auto");
                 }
@@ -92,7 +93,7 @@ $(function() {
             }
 
             // grafico de aperturas y clicks lo muestra en todos los casos
-            var campania = sync_request("campanias::reportes_campania", "ajaxGetGraficoCampanias2", '{"campania":"' + this.value + '", "dias":"10"}');
+            var campania = sync_request("campanias::reportes_campania", "ajaxGetGraficoCampanias2", '{"campania":"' + campania_id + '", "dias":"10"}');
             var aperturas = false;
             for (var i in campania) {
                 if (!empty(campania[i].data)) {
