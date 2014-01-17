@@ -20,7 +20,7 @@ class CampaniasController extends AppController {
             }
         }
 
-        $this->maint = getData('Campanias/CampaniasMaint');
+        $this->maint = Parse::getData('Campanias/CampaniasMaint');
         parent::add($return);
     }
 
@@ -48,17 +48,17 @@ class CampaniasController extends AppController {
             }
         }
 
-        $this->maint = getData('Campanias/CampaniasMaint');
+        $this->maint = Parse::getData('Campanias/CampaniasMaint');
         parent::edit($id, $return);
     }
 
     public function index($last = false) {
-        $this->search_list = getData('Campanias/CampaniasSL');
+        $this->search_list = Parse::getData('Campanias/CampaniasSL');
         parent::index($last);
     }
 
     public function view($id = null, $return = null) {
-        $this->maint = getData('Campanias/CampaniasMaint');
+        $this->maint = Parse::getData('Campanias/CampaniasMaint');
         parent::view($id, $return);
     }
 

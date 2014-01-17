@@ -28,7 +28,7 @@ array (
                     'classparams' => '{\'force\':true}',
                     'isvisible' => false,
                     'actions' => 'A',
-                ),
+            ),
                 1 => 
                 array (
                     'name' => 'user_id',
@@ -106,6 +106,6 @@ array (
             'orderby' => 'Pregunta.orden ASC, Pregunta.id ASC',
         ),
     ),
-);
+        );
 
 }

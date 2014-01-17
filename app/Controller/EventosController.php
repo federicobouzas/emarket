@@ -8,22 +8,22 @@ class EventosController extends AppController {
     }
 
     public function add($return = null) {
-        $this->maint = getData('Eventos/EventosMaint');
+        $this->maint = Parse::getData('Eventos/EventosMaint');
         parent::add($return);
     }
 
     public function edit($id = null, $return = null) {
-        $this->maint = getData('Eventos/EventosMaint');
+        $this->maint = Parse::getData('Eventos/EventosMaint');
         parent::edit($id, $return);
     }
 
     public function index($last = false) {
-        $this->search_list = getData('Eventos/EventosSL');
+        $this->search_list = Parse::getData('Eventos/EventosSL');
         parent::index($last);
     }
 
     public function view($id = null, $return = null) {
-        $this->maint = getData('Eventos/EventosMaint');
+        $this->maint = Parse::getData('Eventos/EventosMaint');
         parent::view($id, $return);
     }
 

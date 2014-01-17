@@ -3,18 +3,18 @@
 class PersonasController extends AppController {
 
     public function import() {
-        $this->maint = getData('Personas/PersonasImportarMaint');
-        $this->importar = getDataImportar('Personas/PersonasImportarMaint');
+        $this->maint = Parse::getData('Personas/PersonasImportarMaint');
+        $this->importar = Parse::getDataImportar('Personas/PersonasImportarMaint');
         parent::importar('tmp_excel');
     }
 
     public function add($return = null) {
-        $this->maint = getData('Personas/PersonasMaint');
+        $this->maint = Parse::getData('Personas/PersonasMaint');
         parent::add($return);
     }
 
     public function edit($id = null, $return = null) {
-        $this->maint = getData('Personas/PersonasMaint');
+        $this->maint = Parse::getData('Personas/PersonasMaint');
         parent::edit($id, $return);
     }
 
@@ -24,12 +24,12 @@ class PersonasController extends AppController {
                 $this->Persona->recursive = -1;
             }
         }
-        $this->search_list = getData('Personas/PersonasSL');
+        $this->search_list = Parse::getData('Personas/PersonasSL');
         parent::index($last);
     }
 
     public function view($id = null, $return = null) {
-        $this->maint = getData('Personas/PersonasMaint');
+        $this->maint = Parse::getData('Personas/PersonasMaint');
         parent::view($id, $return);
     }
 

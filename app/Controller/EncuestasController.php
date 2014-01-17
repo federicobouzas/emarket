@@ -10,22 +10,22 @@ class EncuestasController extends AppController {
     }
 
     public function add($return = null) {
-        $this->maint = getData('Encuestas/EncuestasMaint');
+        $this->maint = Parse::getData('Encuestas/EncuestasMaint');
         parent::add($return);
     }
 
     public function edit($id = null, $return = null) {
-        $this->maint = getData('Encuestas/EncuestasMaint');
+        $this->maint = Parse::getData('Encuestas/EncuestasMaint');
         parent::edit($id, $return);
     }
 
     public function index($last = false) {
-        $this->search_list = getData('Encuestas/EncuestasSL');
+        $this->search_list = Parse::getData('Encuestas/EncuestasSL');
         parent::index($last);
     }
 
     public function view($id = null, $return = null) {
-        $this->maint = getData('Encuestas/EncuestasMaint');
+        $this->maint = Parse::getData('Encuestas/EncuestasMaint');
         parent::view($id, $return);
     }
 
