@@ -82,12 +82,13 @@ $(function() {
             modal.data("kendoWindow").center().open();
         });
 
+        var params = {"campania": MODEL_ID};
         modal.kendoWindow({
             width: width + "px",
             height: height + "px",
             title: "Visualización del Cuerpo del Email",
             actions: ["Maximize", "Close"],
-            content: WWW + "remotes/request/" + esc("campanias::visualizar_template") + "/" + esc("ajaxGetHTML") + "/" + esc('{"campania":"' + MODEL_ID + '"}'),
+            content: WWW + "remotes/request/" + encodeURIComponent("campanias||visualizar_template") + "/" + encodeURIComponent("ajaxGetHTML") + "/" + $.param(params, true),
             iframe: true,
             modal: true,
             visible: false,
@@ -105,7 +106,7 @@ $(function() {
     }
 });
 
-function seleccionTemplate(evt) {    
+function seleccionTemplate(evt) {
     var files = evt.target.files; // FileList object
 
     // Loop through the FileList and render image files as thumbnails.
@@ -134,6 +135,6 @@ function seleccionTemplate(evt) {
         // Read in the image file as a data URL.
         reader.readAsText(f);
     }
-    
+
     this.value = '';
 }
