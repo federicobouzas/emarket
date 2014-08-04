@@ -1,14 +1,13 @@
 <?php
 
 /* GENERADO AUTOMATICAMENTE */
-/* 17/10/2013 17:21:41 */
 
 App::uses('AbstractData', 'Lib');
 
 class EncuestasSL extends AbstractData {
 
-protected $data =
-array (
+protected $data = array (
+    'title' => '',
     'filters' => 
     array (
         0 => 

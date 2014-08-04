@@ -1,14 +1,13 @@
 <?php
 
 /* GENERADO AUTOMATICAMENTE */
-/* 17/10/2013 17:21:36 */
 
 App::uses('AbstractData', 'Lib');
 
 class CampaniasSL extends AbstractData {
 
-protected $data =
-array (
+protected $data = array (
+    'title' => '',
     'filters' => 
     array (
         0 => 
@@ -23,7 +22,7 @@ array (
             'name' => 'Campania.server_id',
             'label' => 'Cuenta',
             'presentation' => 'SELECT',
-            'classparams' => '{\'model\':\'Messaging.Server\'}',
+            'classparams' => '{\'model\':\'FmwMessaging.Server\'}',
         ),
         2 => 
         array (
@@ -66,6 +65,7 @@ array (
         0 => 
         array (
             'label' => '',
+            'sortfield' => '',
             'fields' => 
             array (
                 0 => 
@@ -78,6 +78,7 @@ array (
         1 => 
         array (
             'label' => '',
+            'sortfield' => '',
             'fields' => 
             array (
                 0 => 
@@ -90,6 +91,7 @@ array (
         2 => 
         array (
             'label' => '',
+            'sortfield' => '',
             'fields' => 
             array (
                 0 => 
@@ -97,13 +99,14 @@ array (
                     'name' => 'Campania.server_id',
                     'label' => 'Cuenta',
                     'presentation' => 'SELECT',
-                    'classparams' => '{\'model\':\'Messaging.Server\'}',
+                    'classparams' => '{\'model\':\'FmwMessaging.Server\'}',
                 ),
             ),
         ),
         3 => 
         array (
             'label' => '',
+            'sortfield' => '',
             'fields' => 
             array (
                 0 => 
@@ -117,6 +120,7 @@ array (
         4 => 
         array (
             'label' => '',
+            'sortfield' => '',
             'fields' => 
             array (
                 0 => 
@@ -130,6 +134,7 @@ array (
         5 => 
         array (
             'label' => '',
+            'sortfield' => '',
             'fields' => 
             array (
                 0 => 
@@ -143,6 +148,7 @@ array (
         6 => 
         array (
             'label' => '',
+            'sortfield' => '',
             'fields' => 
             array (
                 0 => 
@@ -156,6 +162,7 @@ array (
         7 => 
         array (
             'label' => '',
+            'sortfield' => '',
             'fields' => 
             array (
                 0 => 
@@ -169,6 +176,7 @@ array (
         8 => 
         array (
             'label' => '',
+            'sortfield' => '',
             'fields' => 
             array (
                 0 => 
@@ -183,6 +191,7 @@ array (
         9 => 
         array (
             'label' => '',
+            'sortfield' => '',
             'fields' => 
             array (
                 0 => 

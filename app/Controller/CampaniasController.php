@@ -62,7 +62,7 @@ class CampaniasController extends AppController {
         parent::view($id, $return);
     }
 
-    public function delete($id = null) {
+    public function delete($id = null, $return = null) {
         // Verifico que exista la campaña
         $this->Campania->id = $id;
         if (!$this->Campania->exists()) {
@@ -74,7 +74,7 @@ class CampaniasController extends AppController {
             throw new MethodNotAllowedException(__('No se puede eliminar la campaña porque ya ha sido enviada.'));
         }
 
-        parent::delete($id);
+        parent::delete($id, $return);
     }
 
     public function report($id = null) {
@@ -182,7 +182,7 @@ class CampaniasController extends AppController {
             $email_data["cuerpo"] = $cuerpo;
         }
 
-        $this->loadModel('Messaging.Mensaje');
+        $this->loadModel('FmwMessaging.Mensaje');
 
         $msj = new Mensaje();
         $msj->send($email_data);

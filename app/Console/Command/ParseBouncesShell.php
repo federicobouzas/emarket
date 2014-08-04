@@ -5,7 +5,7 @@ App::uses('Bounces', 'Lib');
 
 class ParseBouncesShell extends AppShell {
 
-    public $uses = array('Messaging.Mensaje', 'Messaging.Server');
+    public $uses = array('FmwMessaging.Mensaje', 'FmwMessaging.Server');
     private $asuntosRebote = array(
         'The Post Office <postmaster@buenosaires.gob.ar>',
         'The Post Office <postmaster@fibertel.com.ar>',

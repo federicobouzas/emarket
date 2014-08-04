@@ -1,0 +1,55 @@
+<menu>
+    <menuitem label="Opciones">
+        <menuitem label="Inicio" url="" />
+        <menuitem label="Mis Datos" controller="app_users" action="datos_personales" plugin="acceso" />
+    </menuitem>
+    <menuitem label="Persona">
+        <menuitem label="Cargar Persona" controller="personas" action="add" />
+        <menuitem label="Importar Persona" controller="personas" action="import" />
+        <menuitem label="Consultar Persona" controller="personas" action="index" />
+        <menuitem label="Poblaciones">
+            <menuitem label="Cargar Población" controller="poblacions" action="add" />
+            <menuitem label="Consultar Poblaciones" controller="poblacions" action="index" />
+        </menuitem>
+    </menuitem>
+    <menuitem label="Campañas">
+        <menuitem label="Cargar Campaña" controller="campanias" action="add" />
+        <menuitem label="Consultar Campañas" controller="campanias" action="index" />
+        <menuitem label="Reportes de Campañas" controller="campanias" action="report" />
+        <menuitem label="Encuestas">
+            <menuitem label="Cargar Encuesta" controller="encuestas" action="add" />
+            <menuitem label="Consultar Encuestas" controller="encuestas" action="index" />
+        </menuitem>
+        <menuitem label="Eventos">
+            <menuitem label="Cargar Evento" controller="eventos" action="add" />
+            <menuitem label="Consultar Eventos" controller="eventos" action="index" />
+        </menuitem>
+    </menuitem>
+    <menuitem label="Administración">
+        <menuitem label="Acceso">
+            <menuitem label="Usuarios">
+                <menuitem label="Consultar Usuarios" controller="app_users" action="index" plugin="acceso" />
+                <menuitem label="Centro de Costos" controller="centros_costos" action="index" plugin="acceso" />
+                <menuitem label="Dependencias" controller="dependencias" action="index" plugin="acceso" />
+            </menuitem>
+            <menuitem label="Roles" controller="rols" action="index" plugin="fmw_acceso" />
+            <menuitem label="Derechos" controller="rights" action="index" plugin="fmw_acceso" />
+            <menuitem label="Permisos" controller="permisos" action="index" plugin="fmw_acceso" />
+            <menuitem label="Botones" controller="buttons" action="index" plugin="fmw_acceso" />
+            <menuitem label="Numeros de Inventarios Reservados" controller="bienes_reservas" action="index" plugin="almacen" />
+        </menuitem>
+        <menuitem label="Sistema">
+            <menuitem label="Configuración" controller="app_configurations" action="edit/1" plugin="system" />
+            <menuitem label="Consultar Logs" controller="logs" action="index" plugin="fmw_system" />
+            <menuitem label="Consultar Estados" controller="estados" action="index" plugin="fmw_system" />
+            <menuitem label="Consultar Bloqueos" controller="bloqueos" action="index" plugin="fmw_system" />
+        </menuitem>
+        <menuitem label="Mensajería">
+            <menuitem label="Servidores" controller="servers" action="index" plugin="fmw_messaging" />
+            <menuitem label="Templates" controller="templates" action="index" plugin="fmw_messaging" />
+            <menuitem label="Consultar Emails Entrantes" controller="entrantes" action="index" plugin="fmw_messaging" />
+            <menuitem label="Consultar Emails Salientes" controller="mensajes" action="emails" plugin="fmw_messaging" />
+            <menuitem label="Consultar SMS" controller="mensajes" action="sms" plugin="fmw_messaging" />
+        </menuitem>
+    </menuitem>
+</menu>

@@ -6,7 +6,7 @@ App::import('Helper', 'Html');
 
 class EnviarCampaniaShell extends AppShell {
 
-    public $uses = array('Campania', 'Persona', 'Messaging.Mensaje');
+    public $uses = array('Campania', 'Persona', 'FmwMessaging.Mensaje');
 
     public function main() {
         $this->out("CRON DE ENVIO DE CAMPAÑAS (" . date("H:i:s") . " DEL " . date("d/m/Y") . ")");

@@ -1,0 +1,614 @@
+/**********************CROSS SITE**************************/
+/*agrego fuentes propias*/
+@font-face{ 
+    font-family: 'RobotoLight';
+    src: url('fonts/roboto-light-webfont.eot');
+    src: url('fonts/roboto-light-webfont.eot?#iefix') format('embedded-opentype'),
+        url('fonts/roboto-light-webfont.woff') format('woff'),
+        url('fonts/roboto-light-webfont.ttf') format('truetype'),
+        url('fonts/roboto-light-webfont.svg#webfont') format('svg');
+}
+@font-face{ 
+    font-family: 'RobotoThin';
+    src: url('fonts/roboto-thin-webfont.eot');
+    src: url('fonts/roboto-thin-webfont.eot?#iefix') format('embedded-opentype'),
+        url('fonts/roboto-thin-webfont.woff') format('woff'),
+        url('fonts/roboto-thin-webfont.ttf') format('truetype'),
+        url('fonts/roboto-thin-webfont.svg#webfont') format('svg');
+}
+/**/
+body {
+    background: #FFF;
+    color: #FFF;
+    font-family:arial;
+    font-size:12px;
+}
+a {
+    color: #3B3537;
+}
+a:hover {
+    color: #B39400;
+}
+a.link {
+    border-bottom: 1px dashed #E3C01D;
+    color: #444444;
+}
+h1, h2, h3 {
+    font-family: RobotoLight, arial, sans-serif;
+}
+h1 {
+    background:#fff;
+    color: #003d4c;
+}
+h1.maint-title {
+    border-bottom: 1px solid #eee;
+    color: #999;
+    font-size: 24px;
+    text-transform: uppercase;
+    margin: -10px -20px 0px -29px;
+    padding: 14px 27px 11px 30px;
+    background: #f9f9f9;
+}
+h2 {
+    background:#fff;
+}
+h2.title {
+    color: #3B3B3B;    
+    font-size: 250%;
+}
+h3 {
+    color: #2c6877;
+}
+h4 {
+    color: #993;
+}
+.top-header{
+    background-color: #FDE266;
+}
+.top-header a.logo{
+    background: url('../img/logoBA.png') no-repeat 0 0 transparent;
+}
+div.user_info {
+    color: #2A2426;
+    font: normal 17px/16px RobotoLight, arial, sans-serif;
+}
+div.user_info>div{
+    padding-right: 30px;
+    position: relative;
+    padding-top: 3px;
+}
+div.user_info a {
+    top: 0;
+    position: absolute;
+    width: 21px;
+    right: 0;
+    height: 22px;
+    text-indent: -5000px;
+    background: url("../img/boton_salir.png") no-repeat transparent 0 0;
+    opacity: .5;
+}
+div.user_info a:hover {
+    opacity: 1;
+}
+#header{
+    background-color: #FDE266;
+    box-shadow: 0px 1px 1px 0 #D7CFAF;
+}
+#content{
+    background: #fff;
+    color: #333;
+}
+#footer { 
+    background: #3B3B3B;
+    color: #ddd;
+}
+/** containers **/
+div.form,
+div.index,
+div.view {    
+    border-left:1px solid #666;
+}
+div.actions h3 {
+    color:#777;
+}
+div.itm .desc {
+    color: #8B8474;
+}
+/** Tables **/
+table {
+    color: #333;
+}
+th {
+    border-bottom:2px solid #555;
+    font-family: RobotoLight;
+    font-size: 16px;
+}
+table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+table.asociada {
+    font: normal 12px arial;
+    color: #444;
+}
+table.asociada th {
+    background-color: #3B3B3B;
+    color: #fff;
+}
+table.asociada td.number {
+    color: #DDD;
+}
+table tr.prioridad_1 td {
+    background: #FFFFCC !important;
+}
+table tr.prioridad_1 td:first-child {
+    border-left: 2px solid #ff6600;
+}
+table tr.prioridad_1 td:last-child {
+    border-right: 2px solid #ff6600;
+}
+table tr.prioridad_2 td {
+    background: #FFFFee !important;
+}
+table tr.prioridad_2 td:last-child {
+    border-right: 2px solid #FFCC00;
+}
+table tr.prioridad_2 td:first-child {
+    border-left: 2px solid #FFCC00;
+}
+div.asociada_add {
+    background-color: #F9F9F9;
+    box-shadow: 0 0 6px 3px #DDD;
+    border: 1px solid #DDD;
+}
+/*Botones*/
+div.asociada_add .submitbutton {
+    background: #F0F0F0;
+    border: none;
+    border-top: 1px solid #DDD;
+}   
+.botonNuevoRegistro {
+    background: #FDE266 ; 
+    color: #333;
+}
+.botonNuevoRegistro:hover {
+    background: #FFDC15;
+}
+input[type=submit],
+.actions ul li a,
+.actions a, form .submit input[type=submit], a.continuar {
+    background: #FDE266;
+    color: #333;
+    border: none;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0px 1px 1px rgba(0, 0, 0, 0.2);
+}
+input[type=submit]:hover,
+.actions ul li a:hover,
+.actions a:hover, form .submit input[type=submit]:hover, a.continuar:hover {
+    background: #FFDC15;
+    color: #000;
+}
+.actions ul li a:hover,
+.actions a:hover  {
+    background: #F90;
+    border-color: #acacac;
+    text-decoration: none;
+}
+input[type=submit]:active,
+.actions ul li a:active,
+.actions a:active {
+     background: #f90;
+}
+a.cancelar{
+    color: #8B8474;
+}
+a.cancelar:hover {
+    color: #ff6600;
+}
+/** Paging **/
+.paging {
+    background:#fff;
+    color: #ccc;
+}
+.paging > span {
+    border: 1px solid #ccc;
+}
+.paging > span:hover {
+    background: #efefef;
+}
+.paging .prev {
+    border-left: 1px solid #ccc;
+}
+.paging .disabled {
+    color: #ddd;
+}
+.paging .current {
+    background: #efefef;
+    color: #c73e14;
+}
+div.paginador {
+    color:#FFF;
+}
+div.paginador a{
+    background: #f0f0f0;
+}
+div.paginador span{
+    color: #333;
+}
+/*Forms*/
+fieldset legend {
+    color: #FFB10D;
+}
+ .inputs {
+    border-bottom: 1px dotted #EEEEEE;
+}
+form .input {
+    color: #000;
+}
+form .required input, form .required select, form .required textarea {
+    background: #FCFFD9;
+}
+form .required .k-editor input {
+    background: #FFFFFF;
+    border-color: #c5c5c5;
+}
+label {
+    color: #777777;
+}
+input, textarea, select {
+    border: 3px solid #EBEAE7;
+}
+div.input{
+    color: #000;
+}
+.titulo {
+    border-bottom: 1px solid #EEEEEE;
+}
+.titulo>div:first-child {   
+    color: #3B3B3B;
+    font-family: RobotoLight,arial,sans-serif;
+}
+div.counter { 
+    background: none repeat scroll 0 0 #CC0000;
+    color: #fff;
+}
+div.counter.no-alert { 
+    background: none repeat scroll 0 0 #888;
+    color: #fff;
+}
+.dnd_drop_zone {
+    border: 2px dashed #BBB;
+    background: #FFF;
+    font: 20pt bold,"RobotoThin";
+    color: #BBB;
+}
+.progressbar .percent {
+    background: #79B105;
+}
+table.drag_drop td {
+    border-bottom: 1px dotted #ccc;
+}
+div.table_pagination.disabled a {
+    color: #CCC;
+}
+div.search_cond {
+    border-top: 1px solid #DDDDDD;
+    color: #454545;
+}
+div.search_cond a, div.search_cond a.expandido b {
+    color: #3B3B3B;
+    font-family: RobotoLight;
+}
+.contraido{
+    background: url(../img/expand-collapse.png) no-repeat 0 0;
+}
+div.search_cond a.expandido{
+    color: #FBCF00;
+}
+div.search_cond a.expandido b{
+    background: url(../img/expand-collapse.png) no-repeat 0 -19px;
+}
+#bloqueoHeartBeat {
+    background: #333 url("../img/fmw/lock.png") no-repeat center center;
+}
+.loadingFullscrean, .loadingAjax {
+    background: #FFF;
+    color: #ccc;
+    font-family: RobotoThin;
+}
+/*Reescribo botones de kendo*/
+body .k-button{
+    background: #3B3B3B;
+    color: #EEE;
+    border-color: #FFFFFF;
+}
+h2.title .k-button {
+    background: #FDE266;
+    color: #333;
+}
+body .k-button:hover{
+    background: #333;
+    color: #fff;
+}
+h2.title .k-button:hover{
+    background: #FFDC15;
+    color: #000;
+    border-color: #FFF;
+}
+body .k-header{
+    border-color: transparent;
+}
+body .k-button:active{
+    background: #FFCB04;
+    border-color: #FFFFFF;
+    color: #333;
+}
+body .k-picker-wrap{
+    border: 3px solid #EBEAE7!important;
+}
+body .k-select{
+    background: #EBEAE7;
+    color: #EEE;
+    border-color: #FFFFFF!important;
+}
+body .k-select:hover{
+    background: #f0f0f0;
+    color: #fff;
+}
+body .k-select:active{
+    background: #FFF;
+    color: #333;
+}
+body input:focus, body select:focus, body textarea:focus, body .k-state-focused{
+    border-color: #F7E59B!important;
+    outline: none!important;
+    box-shadow: none!important;
+}
+body .k-datetimepicker .k-state-focused, body .k-datetimepicker .k-state-default:hover, body .k-datepicker .k-state-focused, body .k-datepicker .k-state-default:hover{
+    border-color: #F7E59B;
+    overflow: hidden;
+    outline: none;
+}
+body .k-state-selected {
+    background: #FDE266;
+}
+body .k-calendar .k-content .k-link{
+    padding: 0 .45em 0 .45em;
+}
+body .k-state-selected a.k-link{
+   color: #333;
+}
+/**Fin botones de kendo***/
+/******PopAlertas******/
+body #popup_container #popup_message {
+    min-height: 25px;
+    padding-top: 10px;
+}
+body #popup_container {
+    box-shadow: 0px 0px 3px 0px #666;
+    border: solid 1px #e3e3e3;
+}
+body #popup_container #popup_title{
+    background: #e3e3e3;
+    color: #333;
+    border: none;
+    font: normal 16px/24px arial;
+    text-align: left;
+    margin: 0;
+    padding: 2px 6px;
+}
+body #popup_container #popup_panel{
+    overflow: hidden;
+    border-top: 1px solid #eee;
+    padding-top: 7px;
+}
+body #popup_container #popup_panel #popup_cancel{
+    float: right;
+    background: none;
+    border: none;
+    padding: 4px 9px;
+}
+body #popup_container #popup_panel #popup_ok{
+    background: #333;
+    color: #fff;
+    border: none;
+    float: right;
+    opacity: .8;
+    padding: 4px 9px;
+    text-transform: uppercase;
+}
+body #popup_container #popup_panel #popup_ok:hover{
+    opacity: 1;
+}
+/*************MENU***************************/
+.sf-menu a, .sf-menu a:visited  { /* visited pseudo selector so IE6 applies text colour*/
+    color: #2A2426;
+    font: normal 14px/16px RobotoLight, arial, sans-serif;
+    padding-top: 8px;
+}
+.sf-menu li {
+	background:		#FDE266;
+}
+.sf-menu li li {
+	background:		#FDE266;
+	border-bottom: 	1px dotted #FBCF00;
+}
+.sf-menu li li li {
+	background:		#FDE266;
+}
+.sf-menu li:hover, .sf-menu li.sfHover,
+.sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
+	background:		#FFF;
+    color:			#000!important;
+	outline:		0;
+}
+.sf-menu li.sfHover>a{
+	color:			#000!important;
+}
+
+/*** arrows **/
+.sf-sub-indicator {
+	background:		url('../img/arrows-ffffff.png') no-repeat -10px -100px; /* 8-bit indexed alpha png. IE6 gets solid image only */
+}
+/*************Fin Menu***************************/
+/*************CATALOGO***************************/
+.loading_text{
+    color: #999;
+    font-size: 18px;
+    font-family: 'RobotoLight';
+}
+ul.k-group li.k-item .k-in.k-state-hover{
+    background: #EEEEEE; 
+    border-color: #EEEEEE; 
+}
+ul.k-group li.k-item .k-in.k-state-focused{
+    background: #EEEEEE; 
+    border-color: #EEEEEE; 
+    box-shadow: none;
+}
+ul.k-group li.k-item .k-in.k-state-selected{
+    background: #585858;
+    border-color: #585858;
+}
+.demo-section {
+    border: 1px solid rgba(0,0,0,0.05);
+    background-color: rgba(0,0,0,0.01);
+}
+.console {
+    background-color: #fff;
+    border: solid #ccc;
+    border-width: 1px;
+    color: #333;
+    font: 11px Consolas, Monaco, "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+}
+
+.configuration {
+    background-color: #f9f9f9;
+}
+.configuration h3{
+    color: #333;
+}
+.configuration  li a{
+    border-color: #fff;
+}
+.configuration  li a:hover{
+    color: #000;
+}
+/*************Fin Catálogo***************************/
+/*Reescribo estilos de jquery-ui*/
+.fg-menu-container, .ui-menu.ui-widget{
+    border: 3px solid #EBEAE7!important;
+    border-radius: 4px!important;
+    color: #333!important;
+    background: #FFF!important;
+    padding: 3px 5px!important;
+    font-family: arial, sans-serif!important;
+}
+.ui-corner-all{
+    border-radius: 2px!important;
+}
+.ui-widget-header{
+    background: #FDE266!important; 
+    color: #333!important;
+    border: none!important;
+    border-radius: 0!important;
+}
+.ui-widget-header a {
+    color: #333!important;
+    font-weight: normal!important;
+}
+.ui-widget-header .ui-icon {
+    background-image: url(../css/fmw/images/ui-icons_222222_256x240.png)!important;
+}
+.fg-menu-breadcrumb .fg-menu-current-crumb a:link, .fg-menu-breadcrumb .fg-menu-current-crumb a:visited, .fg-menu-breadcrumb .fg-menu-current-crumb a:hover, .fg-menu-breadcrumb .fg-menu-current-crumb a:active, a:link.fg-menu-crumb, a:visited.fg-menu-crumb, a:hover.fg-menu-crumb, a:active.fg-menu-crumb {
+    display: block!important;
+    background-image: none!important;
+    font-size: 12px!important;
+    text-decoration: none!important;
+}
+.ui-state-hover, .ui-menu-item a:hover, .ui-menu-item a:focus, .ui-state-focus{
+    background: #FDE266!important;
+    color: #333!important;
+    border: 1px solid #FDE266!important;
+}
+.ui-state-hover span{
+    color: #333;
+}
+.fg-menu a, .ui-menu-item a.ui-corner-all{
+    font-size: 14px;
+    font-weight: normal;
+}
+/*LOGIN*/
+body #actions a{
+    color: #3B3537;
+}
+body h1 .log-in{
+    font: 20px bold,"RobotoLight";
+    color: #222;
+}
+body #UserLoginForm{
+    padding-bottom: 40px;
+}
+body form#UserLoginForm:before {
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -moz-box-shadow: none;    
+}
+body #UserLoginForm #submit{
+    background: #FDE266;
+    color: #333;
+    border: none;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0px 1px 1px rgba(0, 0, 0, 0.2);
+}
+body #UserLoginForm #submit:hover, body #UserLoginForm #submit:focus {
+    background: #FFDC15;
+    color: #000;
+}
+/*fin Login*/
+/**************CALENDARIO******************/
+#ObraTmpCalendario.ui-widget *{
+    color: #333;
+}
+#ObraTmpCalendario .ui-widget-content{
+    background: #FFF;
+}
+#ObraTmpCalendario .ui-state-highlight {
+    border-color: #ddd;
+    background: #f0f0f0!important;
+}
+#ObraTmpCalendario  .ui-state-default {
+    background: #FFF;
+    border-color: #FFF;
+    font-weight: normal;
+    padding: 0px 3px;
+    margin-left: 5px;
+    border-radius: 3px!important;
+}
+#ObraTmpCalendario .fc-header .fc-button.ui-state-active {
+    color: #333;
+    background: #f0f0f0!important;
+    border-color: #f0f0f0;
+}
+/*Fin calendario*/
+#botones>div>a{
+    border: 5px solid #CCCCCC;
+}
+#botones>div>a:hover{
+    border: 5px solid #FDE266;
+    background: #FDE266;
+}
+
+/*Huellas*/
+.falta-huella {
+    font-size: 16px;
+    color: #FF0D0D;
+    padding: 0px 3px 0 0;
+    display: inline-block;
+}
+.huella-cargada{
+    font-size: 16px;
+    color: #690;
+    padding: 0px 3px 0 0;
+    display: inline-block;
+}
+

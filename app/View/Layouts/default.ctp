@@ -8,24 +8,10 @@
 
         echo $this->Html->css('cake.generic');
         echo $this->Html->css('superfish');
-        echo $this->Html->css('fmw/jquery-ui');
-        echo $this->Html->css('fmw/jquery.alerts');
-        echo $this->Html->css('fmw/jquery.tipsy');
-        echo $this->Html->css(WWW . '../includes/fmw/kendo/styles/kendo.common.min');
-        echo $this->Html->css(WWW . '../includes/fmw/kendo/styles/kendo.default.min');
+         echo $this->Html->css('email');
 
-        echo $this->Html->script('fmw/jquery.min');
-        echo $this->Html->script('fmw/jquery.ui.min');
-        echo $this->Html->script('fmw/jquery.alerts');
-        echo $this->Html->script('fmw/jquery.tipsy');
-        echo $this->Html->script('fmw/jquery.superfish');
-        echo $this->Html->script('fmw/jquery.scrollTo.min');
-        echo $this->Html->script(WWW . '../includes/fmw/kendo/js/kendo.web.min');
-        echo $this->Html->script(WWW . '../includes/fmw/kendo/js/cultures/kendo.culture.es-AR.min');
-        echo $this->Html->script('fmw/hoverIntent');
-        echo $this->Html->script('fmw/default/funciones');
-        echo $this->Html->script('fmw/default/ready');        
-        $this->Html->scriptBlock("var WWW = '" . WWW . "';", array('inline' => false));
+        echo $this->element('fmw_includes');
+        echo $this->element('js_vars');
 
         echo $this->fetch('meta');
         echo $this->fetch('css');
@@ -34,18 +20,23 @@
     </head>
     <body>
         <div id="container">
-            <div id="header">
-                <?php
-                echo $this->element('menu');
-                ?>
+            <div class="top-header">
+                <?php echo $this->element('logo'); ?>
+                <?php echo $this->element('user_info'); ?>
+            </div>  
+            <div id="header">                
+                <?php echo $this->element('menu'); ?>  
             </div>
             <div id="content">
                 <?php echo $this->Session->flash(); ?>
                 <?php echo $this->fetch('content'); ?>
             </div>
-            <div id="footer">| <?=(isset($CONFIGURATION['footer']) ? $CONFIGURATION['footer'] : '')?> |</div>
+            <div id="footer">| <?= (isset($CONFIGURATION['footer']) ? $CONFIGURATION['footer'] : '') ?> |</div>
             <?php echo $this->element('sql_dump'); ?>
         </div>
-        <div class="loading">Cargando datos</div>
+        <?php if (isset(AppConfig::$array['site']['ajax']['loading']) && AppConfig::$array['site']['ajax']['loading']): ?>
+            <div class="loadingAjax"><?php echo AppConfig::$array['site']['ajax']['loading']; ?></div>
+        <?php endif; ?>
+        <div class="loadingFullscrean">Cargando datos...</div>
     </body>
 </html>

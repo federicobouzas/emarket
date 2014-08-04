@@ -1,6 +1,6 @@
 <?php
 
-App::uses('RolsController', 'Admin.Controller');
+App::uses('RolsController', 'FmwAcceso.Controller');
 
 class ApprolsController extends RolsController {
 

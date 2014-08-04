@@ -1,14 +1,12 @@
 <?php
 
 /* GENERADO AUTOMATICAMENTE */
-/* 17/10/2013 17:21:36 */
 
 App::uses('AbstractData', 'Lib');
 
 class CampaniasMaint extends AbstractData {
 
-protected $data =
-array (
+protected $data = array (
     'jsincludes' => 
     array (
         0 => 'campanias/maint_campanias.js',
@@ -171,7 +169,7 @@ array (
                     'name' => 'server_id',
                     'label' => 'Cuenta',
                     'presentation' => 'SELECT',
-                    'classparams' => '{\'model\':\'Messaging.Server\', \'conditions\':{\'estado\':\'Activo\',\'tipo\':\'SMTP\'}}',
+                    'classparams' => '{\'model\':\'FmwMessaging.Server\', \'conditions\':{\'estado\':\'Activo\',\'tipo\':\'SMTP\'}}',
                 ),
                 1 => 
                 array (

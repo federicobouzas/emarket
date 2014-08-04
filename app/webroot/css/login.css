@@ -8,15 +8,12 @@ form {
     background-image: linear-gradient(top, #f9f9f9, #eee);  
     height: 220px;
     width: 400px;
-    margin: -150px 0 0 -230px;
+    margin: 10px auto;
     padding: 30px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
     z-index: 0;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;  
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;  
 }
 
 form:before {
@@ -161,4 +158,10 @@ label {
     padding: 0 !important;
     font-weight: normal !important;
     color: #333 !important;
+}
+
+#flashMessage {
+    position: absolute;
+    left: 20px;
+    right: 20px;
 }

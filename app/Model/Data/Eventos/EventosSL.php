@@ -1,14 +1,13 @@
 <?php
 
 /* GENERADO AUTOMATICAMENTE */
-/* 15/11/2013 16:53:08 */
 
 App::uses('AbstractData', 'Lib');
 
 class EventosSL extends AbstractData {
 
-protected $data =
-array (
+protected $data = array (
+    'title' => '',
     'filters' => 
     array (
         0 => 

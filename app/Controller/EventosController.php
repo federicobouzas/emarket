@@ -27,12 +27,12 @@ class EventosController extends AppController {
         parent::view($id, $return);
     }
 
-    public function delete($id = null) {
+    public function delete($id = null, $return = null) {
         $cant = $this->Evento->Campania->find('count', array('conditions' => array('evento_id' => $id)));
         if ($cant > 0) {
             throw new MethodNotAllowedException(__('No se puede eliminar el evento, esta siendo utilizada por ' . $cant . ' campaña' . ($cant > 1 ? 's' : '') . '.'));
         }
-        parent::delete($id);
+        parent::delete($id, $return);
     }
 
     public function asistencia($campania_id = null, $persona_id = null, $hash = null, $asistencia = null) {

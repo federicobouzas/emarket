@@ -1,6 +1,6 @@
 <?php
 
-App::uses('Rol', 'Admin.Model');
+App::uses('Rol', 'FmwAcceso.Model');
 
 class Approl extends Rol {
 
@@ -8,14 +8,14 @@ class Approl extends Rol {
     public $useTable = 'rols';
     public $hasAndBelongsToMany = array(
         'Permiso' => array(
-            'className' => 'Admin.Permiso',
+            'className' => 'FmwAcceso.Permiso',
             'joinTable' => 'adm_permisos_rols',
             'foreignKey' => 'rol_id',
             'associationForeignKey' => 'permiso_id',
             'unique' => true
         ),
         'Button' => array(
-            'className' => 'Admin.Button',
+            'className' => 'FmwAcceso.Button',
             'joinTable' => 'adm_buttons_rols',
             'foreignKey' => 'rol_id',
             'associationForeignKey' => 'button_id',

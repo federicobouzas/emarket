@@ -1,14 +1,12 @@
 <?php
 
 /* GENERADO AUTOMATICAMENTE */
-/* 17/10/2013 17:21:41 */
 
 App::uses('AbstractData', 'Lib');
 
 class EncuestasMaint extends AbstractData {
 
-protected $data =
-array (
+protected $data = array (
     'jsincludes' => 
     array (
         0 => 'encuestas/maint_encuestas',
@@ -28,7 +26,7 @@ array (
                     'classparams' => '{\'force\':true}',
                     'isvisible' => false,
                     'actions' => 'A',
-            ),
+                ),
                 1 => 
                 array (
                     'name' => 'user_id',
@@ -106,6 +104,6 @@ array (
             'orderby' => 'Pregunta.orden ASC, Pregunta.id ASC',
         ),
     ),
-        );
+);
 
 }

@@ -28,7 +28,7 @@ class PagesController extends AppController {
         }
         
         if ($page == "home") {
-            $this->set('buttons', $this->requestAction('/admin/buttons/ajax_buttons', array('return')));
+            $this->set('buttons', $this->requestAction('/fmw_acceso/buttons/ajax_buttons', array('return')));
         }
             
         $this->set(compact('page', 'subpage', 'title_for_layout'));
