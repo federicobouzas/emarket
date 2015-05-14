@@ -1,0 +1,88 @@
+{
+    "presentation": {
+    },
+    "campanias": {
+        "search_list": {
+            "filters": {
+                "Campania__activa": "Enable",
+                "Campania__server_id": "Email Account",
+                "Campania__prioridad": "Priority",
+                "Campania__nombre": "Name",
+                "Campania__tipo": "Type",
+                "Campania__sms": "Use SMS",
+                "Campania__email": "Use Email",
+                "Campania__estado": "Status"
+            },
+            "columns": {
+                "Campania__nombre": "Name",
+                "Campania__activa": "Enable",
+                "Campania__server_id": "Email Account",
+                "Campania__prioridad": "Priority",
+                "Campania__tipo": "Type",
+                "Campania__sms": "Use SMS",
+                "Campania__email": "Use Email",
+                "Campania__estado": "Status",
+                "Campania__fecha_envio": "Start Date",
+                "Campania__id": "Campaign Testing"
+            }
+        },
+        "maint": {
+            "fieldsets": {
+                "datos_campania": "Campaign Data",
+                "caracteristicas_personas": "Subscribers Details",
+                "programar_envio": "Campaign Schedule"
+            },
+            "fields": {
+                "nombre": "Name",
+                "activa": "Enable",
+                "tipo": "Type",
+                "sms": "Use SMS",
+                "cuerpo_sms": "SMS Body",
+                "email": "Use Email",
+                "asunto_email": "Email Subject",
+                "tmp_template": "Upload Template",
+                "cuerpo_email": "Email Body",
+                "personas_sexo": "Genre",
+                "personas_edad": "Age",
+                "personas_tipo_envio": "Type of Subscribers",
+                "tmp_cantidad_personas": "Number of Subscribers",
+                "server_id": "Email Account",
+                "prioridad": "Priority",
+                "fecha_envio": "Start Date"
+            }
+        }
+    },
+    "encuestas": {
+        "search_list": {
+            "filters": {
+                "Encuesta__nombre": "Name"
+            },
+            "columns": {
+                "Encuesta__nombre": "Name",
+                "Encuesta__id": "Test Poll"
+            }
+        },
+        "maint": {
+            "fieldsets": {
+                "datos_encuestas": {
+                    "label": "Poll Data",
+                    "fields": {
+                        "Encuesta__nombre": "Name",
+                        "Encuesta__descripcion": "Description"
+                    }
+                }
+            },
+            "tables": {
+                "preguntas": {
+                    "label": "Poll's Questions",
+                    "fields": {
+                        "Pregunta__pregunta": "Question",
+                        "Pregunta__tipo": "Type",
+                        "Pregunta__opciones": "Options",
+                        "Pregunta__orden": "Order"
+                    }
+                }
+            }
+        }
+    }
+}

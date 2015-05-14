@@ -6,8 +6,8 @@ class pst_tipo_envio extends pst_selectarray {
 
     public function __construct($settings) {
         $this->options = array(
-            'comunas' => 'Comunas',
-            'barrios' => 'Barrios',
+            'sexo' => 'Sexo',
+            'edad' => 'Edad',
             'poblaciones' => 'Poblaciones',
         );
         parent::__construct($settings);

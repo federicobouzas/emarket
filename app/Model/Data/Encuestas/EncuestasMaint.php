@@ -7,6 +7,7 @@ App::uses('AbstractData', 'Lib');
 class EncuestasMaint extends AbstractData {
 
 protected $data = array (
+    'translatepath' => 'encuestas.maint',
     'jsincludes' => 
     array (
         0 => 'encuestas/maint_encuestas',
@@ -20,7 +21,7 @@ protected $data = array (
             array (
                 0 => 
                 array (
-                    'name' => 'fecha_carga',
+                    'name' => 'Encuesta.fecha_carga',
                     'label' => 'Fecha Carga',
                     'presentation' => 'DATETIME',
                     'classparams' => '{\'force\':true}',
@@ -29,7 +30,7 @@ protected $data = array (
                 ),
                 1 => 
                 array (
-                    'name' => 'user_id',
+                    'name' => 'Encuesta.user_id',
                     'label' => 'Usuario Carga',
                     'presentation' => 'USER',
                     'classparams' => '{\'force\':true}',
@@ -38,16 +39,17 @@ protected $data = array (
                 ),
                 2 => 
                 array (
-                    'name' => 'nombre',
+                    'name' => 'Encuesta.nombre',
                     'label' => 'Nombre',
                 ),
                 3 => 
                 array (
-                    'name' => 'descripcion',
+                    'name' => 'Encuesta.descripcion',
                     'label' => 'Descripción',
                     'presentation' => 'TEXTAREA',
                 ),
             ),
+            'id' => 'datos_encuestas',
             'title' => 'Datos de la Encuesta',
         ),
         1 => 
@@ -57,7 +59,7 @@ protected $data = array (
             array (
                 0 => 
                 array (
-                    'name' => 'fecha_carga',
+                    'name' => 'Pregunta.fecha_carga',
                     'label' => 'Fecha Carga',
                     'presentation' => 'DATETIME',
                     'classparams' => '{\'force\':true}',
@@ -66,7 +68,7 @@ protected $data = array (
                 ),
                 1 => 
                 array (
-                    'name' => 'user_id',
+                    'name' => 'Pregunta.user_id',
                     'label' => 'Usuario Carga',
                     'presentation' => 'USER',
                     'classparams' => '{\'force\':true}',
@@ -75,29 +77,30 @@ protected $data = array (
                 ),
                 2 => 
                 array (
-                    'name' => 'pregunta',
+                    'name' => 'Pregunta.pregunta',
                     'label' => 'Pregunta',
                     'size' => 80,
                 ),
                 3 => 
                 array (
-                    'name' => 'tipo',
+                    'name' => 'Pregunta.tipo',
                     'label' => 'Tipo',
                     'presentation' => 'ENCUESTAS::TIPO_PREGUNTA',
                 ),
                 4 => 
                 array (
-                    'name' => 'opciones',
+                    'name' => 'Pregunta.opciones',
                     'label' => 'Opciones',
                     'size' => 100,
                 ),
                 5 => 
                 array (
-                    'name' => 'orden',
+                    'name' => 'Pregunta.orden',
                     'label' => 'Orden',
                     'size' => 5,
                 ),
             ),
+            'id' => 'preguntas',
             'paginate' => true,
             'title' => 'Preguntas',
             'model' => 'Pregunta',

@@ -7,6 +7,7 @@ App::uses('AbstractData', 'Lib');
 class CampaniasMaint extends AbstractData {
 
 protected $data = array (
+    'translatepath' => 'campanias.maint',
     'jsincludes' => 
     array (
         0 => 'campanias/maint_campanias.js',
@@ -98,6 +99,7 @@ protected $data = array (
                     'label' => 'Subir Template',
                     'presentation' => 'FILE',
                     'actions' => 'A|E',
+                    'breakline' => true,
                 ),
                 12 => 
                 array (
@@ -107,6 +109,7 @@ protected $data = array (
                     'note' => 'Variables disponibles: #NOMBRE#, #APELLIDO#, #URL_UNSUBSCRIBE#, #URL_ENCUESTA#, #FECHA_HORA#, #LUGAR#, #URL_MAPA#, #URL_ASISTE#, #URL_NO_ASISTE#',
                 ),
             ),
+            'id' => 'datos_campania',
             'title' => 'Datos de la Campaña',
         ),
         1 => 
@@ -157,7 +160,9 @@ protected $data = array (
                     'presentation' => 'CAMPANIAS::CANTIDAD_PERSONAS',
                 ),
             ),
+            'id' => 'caracteristicas_personas',
             'title' => 'Características de las Personas',
+            'columns' => '2',
         ),
         2 => 
         array (
@@ -194,7 +199,9 @@ protected $data = array (
                     'classparams' => '{\'no_seconds\':true}',
                 ),
             ),
+            'id' => 'programar_envio',
             'title' => 'Programar Envío',
+            'columns' => '2',
         ),
     ),
 );

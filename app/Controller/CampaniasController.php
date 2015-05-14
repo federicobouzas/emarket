@@ -246,5 +246,9 @@ class CampaniasController extends AppController {
             throw new BadRequestException('Utilice el link que recibió por correo para responder sobre su asistencia.');
         }
     }
+    
+    public function wizard() {
+        
+    }
 
 }

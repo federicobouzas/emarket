@@ -1,13 +1,13 @@
 <Campanias>
    
-    <search_list file="CampaniasSL.php" orderby="Campania.fecha_carga DESC">
+    <search_list file="CampaniasSL.php" translatepath="campanias.search_list" orderby="Campania.fecha_carga DESC">
         <searchfield name="Campania.activa" label="Activa" presentation="SINO" initialvalue="Si" />
         <searchfield name="Campania.server_id" label="Cuenta" presentation="SELECT" classparams="{'model':'FmwMessaging.Server'}" />
         <searchfield name="Campania.prioridad" label="Prioridad" presentation="MENSAJES::PRIORIDAD_MENSAJE" />
         <searchfield name="Campania.nombre" label="Nombre" />
         <searchfield name="Campania.tipo" label="Tipo" presentation="CAMPANIAS::TIPO_CAMPANIA" />
         <searchfield name="Campania.sms" label="Usa SMS" presentation="SINO" />
-        <searchfield name="Campania.estado" label="Usa Email" presentation="SINO" />
+        <searchfield name="Campania.email" label="Usa Email" presentation="SINO" />
         <searchfield name="Campania.estado" label="Estado" presentation="CAMPANIAS::ESTADO_CAMPANIA" />
         
         <table>
@@ -44,10 +44,10 @@
         </table>
     </search_list>
     
-    <tablemaint file="CampaniasMaint.php">     
+    <tablemaint file="CampaniasMaint.php" translatepath="campanias.maint">     
         <jsinclude file="campanias/maint_campanias.js" />
 
-        <fieldset title="Datos de la Campaña">
+        <fieldset id="datos_campania" title="Datos de la Campaña">
             <field name="fecha_carga" label="Fecha de Carga" presentation="DATETIME" classparams="{'force':true}" isvisible="false" actions="A" />
             <field name="user_id" label="Usuario Carga" presentation="USER" classparams="{'force':true}" isvisible="false" actions="A" />
             <field name="nombre" label="Nombre" size="100" />
@@ -59,11 +59,11 @@
             <field name="cuerpo_sms" label="Mensaje SMS" presentation="TEXTAREA" />
             <field name="email" label="Usa Email" presentation="SINO" />
             <field name="asunto_email" label="Asunto Email" size="100" />
-            <field name="tmp_template" label="Subir Template" presentation="FILE" actions="A|E" />
+            <field name="tmp_template" label="Subir Template" presentation="FILE" actions="A|E" breakline="true" />
             <field name="cuerpo_email" label="Cuerpo Email" presentation="WYSIWYG" note="Variables disponibles: #NOMBRE#, #APELLIDO#, #URL_UNSUBSCRIBE#, #URL_ENCUESTA#, #FECHA_HORA#, #LUGAR#, #URL_MAPA#, #URL_ASISTE#, #URL_NO_ASISTE#" />
         </fieldset>
         
-        <fieldset title="Características de las Personas">
+        <fieldset id="caracteristicas_personas" title="Características de las Personas" columns="2">
             <field name="personas_sexo" label="Sexo" presentation="SINO" />
             <field name="personas_edad" label="Edad" presentation="SINO" />
             <field name="personas_tipo_envio" label="Tipo Envío" presentation="CAMPANIAS::TIPO_ENVIO" />
@@ -73,7 +73,7 @@
             <field name="tmp_cantidad_personas" label="Cantidad de Personas" presentation="CAMPANIAS::CANTIDAD_PERSONAS" />
         </fieldset>
         
-        <fieldset title="Programar Envío">
+        <fieldset id="programar_envio" title="Programar Envío" columns="2">
             <field name="server_id" label="Cuenta" presentation="SELECT" classparams="{'model':'FmwMessaging.Server', 'conditions':{'estado':'Activo','tipo':'SMTP'}}" />
             <field name="prioridad" label="Prioridad" presentation="MENSAJES::PRIORIDAD_MENSAJE" initialvalue="3" />
             <field name="estado" label="Estado" presentation="CAMPANIAS::ESTADO_CAMPANIA" readonly="true" actions="V|E" />

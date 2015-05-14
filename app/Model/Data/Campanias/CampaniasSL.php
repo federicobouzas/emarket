@@ -7,6 +7,7 @@ App::uses('AbstractData', 'Lib');
 class CampaniasSL extends AbstractData {
 
 protected $data = array (
+    'translatepath' => 'campanias.search_list',
     'title' => '',
     'filters' => 
     array (
@@ -49,7 +50,7 @@ protected $data = array (
         ),
         6 => 
         array (
-            'name' => 'Campania.estado',
+            'name' => 'Campania.email',
             'label' => 'Usa Email',
             'presentation' => 'SINO',
         ),

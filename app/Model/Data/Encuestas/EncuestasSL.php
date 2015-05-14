@@ -7,6 +7,7 @@ App::uses('AbstractData', 'Lib');
 class EncuestasSL extends AbstractData {
 
 protected $data = array (
+    'translatepath' => 'encuestas.search_list',
     'title' => '',
     'filters' => 
     array (

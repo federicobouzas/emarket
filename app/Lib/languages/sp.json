@@ -1,0 +1,85 @@
+{
+    "presentation": {
+    },
+    "campanias": {
+        "search_list": {
+            "filters": {
+                "Campania__activa": "Activa",
+                "Campania__server_id": "Email Account",
+                "Campania__prioridad": "Priority",
+                "Campania__nombre": "Name",
+                "Campania__tipo": "Type",
+                "Campania__sms": "Use SMS",
+                "Campania__email": "Use Email",
+                "Campania__estado": "Status"
+            },
+            "columns": {
+                "Campania__nombre": "Nombre",
+                "Campania__activa": "Activa",
+                "Campania__server_id": "Cuenta de Email",
+                "Campania__prioridad": "Prioridad",
+                "Campania__tipo": "Tipo",
+                "Campania__sms": "Usar SMS",
+                "Campania__email": "Usar Email",
+                "Campania__estado": "Estado",
+                "Campania__fecha_envio": "Fecha de Envío",
+                "Campania__id": "Probar Campaña"
+            }
+        },
+        "maint": {
+            "fieldsets": {
+            },
+            "fields": {
+                "nombre": "Nombre",
+                "activa": "Activa",
+                "tipo": "Tipo",
+                "sms": "Usa SMS",
+                "cuerpo_sms": "Cuerpo SMS",
+                "email": "Usa Email",
+                "asunto_email": "Asunto Email",
+                "tmp_template": "Subir Template",
+                "cuerpo_email": "Cuerpo Email",
+                "sexo": "Sexo",
+                "edad": "Edad",
+                "personas_tipo_envio": "Tipo Envío",
+                "tmp_cantidad_personas": "Cantidad de Personas",
+                "server_id": "Cuenta",
+                "prioridad": "Prioridad",
+                "fecha_envio": "Fecha Programada"
+            }
+        }
+    },
+    "encuestas": {
+        "search_list": {
+            "filters": {
+                "Encuesta__nombre": "Nombre"
+            },
+            "columns": {
+                "Encuesta__nombre": "Nombre",
+                "Encuesta__id": "Probar Encuesta"
+            }
+        },
+        "maint": {
+            "fieldsets": {
+                "datos_encuestas": {
+                    "label": "Datos de la Encuesta",
+                    "fields": {
+                        "Encuesta__nombre": "Nombre",
+                        "Encuesta__descripcion": "Descripción"
+                    }
+                }
+            },
+            "tables": {
+                "preguntas": {
+                    "label": "Preguntas",
+                    "fields": {
+                        "Pregunta__pregunta": "Pregunta",
+                        "Pregunta__tipo": "Tipo",
+                        "Pregunta__opciones": "Opciones",
+                        "Pregunta__orden": "Orden"
+                    }
+                }
+            }
+        }
+    }
+}

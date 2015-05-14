@@ -8,7 +8,7 @@
 
         echo $this->Html->css('cake.generic');
         echo $this->Html->css('superfish');
-         echo $this->Html->css('email');
+        echo $this->Html->css('email');
 
         echo $this->element('fmw_includes');
         echo $this->element('js_vars');
