@@ -6,10 +6,10 @@ form {
     background-image: -ms-linear-gradient(top, #f9f9f9, #eee);
     background-image: -o-linear-gradient(top, #f9f9f9, #eee);
     background-image: linear-gradient(top, #f9f9f9, #eee);  
-    height: 220px;
+    height: 260px;
     width: 400px;
     margin: 10px auto;
-    padding: 30px;
+    padding: 10px 30px;
     z-index: 0;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -30,7 +30,7 @@ form:before {
     box-shadow: 0 0 0 1px #fff;
 }
 
-h1 {
+.titulo {
     font-size: 15px;
     font-weight: bold;
     color: #bdb5aa;
@@ -42,11 +42,15 @@ h1 {
     box-shadow: 0 1px 0 rgba(255,255,255,0.8);
 }
 
-h1 .log-in {
+.titulo div {
     color: #6c6763;;
     padding-left: 2px;
     display: inline-block;
     text-transform: uppercase;
+    font-size: 150% !important;
+    font-weight: normal;
+    border-bottom: 1px solid #EBE6E2;
+    height: auto !important;
 }
 
 fieldset {
@@ -55,8 +59,11 @@ fieldset {
     margin: 0;
 }
 
-#inputs input {
-    background: #f1f1f1 url(/img/fmw/login-sprite.png) no-repeat;
+#UserUsername, #UserPassword {
+    background: #fff url(/img/fmw/login-sprite.png) no-repeat !important;
+}
+
+input {
     padding: 15px 15px 15px 30px;
     margin: 0 0 10px 0;
     width: 353px; /* 353 + 2 + 45 = 400 */
@@ -143,6 +150,18 @@ fieldset {
     border: none;
 }
 
+#UserLoginForm .submit {
+    margin-top: -2.5em;
+}
+
+#UserRecoverForm {
+    height: 250px !important;
+}
+
+#UserRecoverForm .submit {
+    margin-top: -2.4em;
+}
+
 #actions a {
     color: #3151A2;    
     float: left;
@@ -164,4 +183,40 @@ label {
     position: absolute;
     left: 20px;
     right: 20px;
+}
+
+.titulo {
+    margin-bottom: 0;
+    border: none;
+}
+
+.titulo > div {
+    background: transparent !important;
+    width: 96%;
+}
+
+div.input {
+    padding: 0px 10px 0px 170px;
+}
+
+#boxUserRememberMe {
+    padding: 0px 10px 0px 0;
+}
+
+.checkboxes-wrap {
+    float: left;
+    margin: 0px 0 0 0px;
+}
+
+.error-message {
+    display: none;
+}
+form .error {
+    background: transparent;
+}
+form .error input {
+    background: #FCE7E7;
+}
+.error #UserUsername {
+    background: #FCE7E7 url(/img/fmw/login-sprite.png) 5px -2px no-repeat !important;
 }

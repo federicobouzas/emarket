@@ -26,11 +26,11 @@ class PagesController extends AppController {
         if (!empty($path[$count - 1])) {
             $title_for_layout = Inflector::humanize($path[$count - 1]);
         }
-        
+
         if ($page == "home") {
-            $this->set('buttons', $this->requestAction('/fmw_acceso/buttons/ajax_buttons', array('return')));
+            $this->set('buttons', $this->requestAction(WWW . 'fmw_acceso/buttons/ajax_buttons', array('return')));
         }
-            
+
         $this->set(compact('page', 'subpage', 'title_for_layout'));
         $this->render(implode('/', $path));
     }
