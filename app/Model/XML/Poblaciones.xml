@@ -1,6 +1,6 @@
-<Poblacions>
+<Poblaciones>
    
-    <search_list file="PoblacionsSL.php">
+    <search_list file="PoblacionesSL.php">
         <actions>
             <action op="V" action="view" />
             <action op="E" action="edit" />
@@ -19,28 +19,13 @@
         </table>
     </search_list>
     
-    <tablemaint file="PoblacionsMaint.php">     
+    <tablemaint file="PoblacionesMaint.php">     
         <fieldset title="Descripción de la Población">
             <field name="fecha_carga" label="Fecha de Carga" presentation="DATETIME" classparams="{'force':true}" isvisible="false" actions="A" />
             <field name="user_id" label="Usuario Carga" presentation="USER" classparams="{'force':true}" isvisible="false" actions="A" />
             <field name="nombre" label="Nombre" size="100" />
             <field name="activa" label="Activa" presentation="SINO" initialvalue="Si" />
         </fieldset>
-        
-        <!--
-         array(
-         'type' => 'table',
-         'assoc' => 'true',
-         'paginate' => 'true',
-         'title' => 'Roles que la Pueden Utilizar',
-         'label' => 'Rol',
-         'model' => 'Approl',
-         'fields' => array(
-         array('name' => 'nombre', 'label' => 'Rol'),
-         ),
-         'order' => array('Approl.nombre ASC'),
-         ),
-        -->
     </tablemaint>
         
-</Poblacions>  
+</Poblaciones>  

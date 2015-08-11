@@ -8,8 +8,8 @@
         <menuitem label="Importar Persona" controller="personas" action="import" />
         <menuitem label="Consultar Persona" controller="personas" action="index" />
         <menuitem label="Poblaciones">
-            <menuitem label="Cargar Población" controller="poblacions" action="add" />
-            <menuitem label="Consultar Poblaciones" controller="poblacions" action="index" />
+            <menuitem label="Cargar Población" controller="poblaciones" action="add" />
+            <menuitem label="Consultar Poblaciones" controller="poblaciones" action="index" />
         </menuitem>
     </menuitem>
     <menuitem label="Campañas">
@@ -39,7 +39,7 @@
             <menuitem label="Consultar KPIs" plugin="fmw_dashboard" controller="kpis" action="index" />
         </menuitem>
         <menuitem label="Sistema">
-            <menuitem label="Configuración" controller="app_configurations" action="edit/1" plugin="system" />
+            <menuitem label="Configuración" controller="configurations" action="edit/1" plugin="fmw_system" />
             <menuitem label="Consultar Crons" controller="crons" action="index" plugin="fmw_system" />
             <menuitem label="Consultar Logs" controller="logs" action="index" plugin="fmw_system" />
             <menuitem label="Consultar Estados" controller="estados" action="index" plugin="fmw_system" />

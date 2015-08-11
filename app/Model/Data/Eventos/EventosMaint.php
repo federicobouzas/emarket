@@ -7,6 +7,9 @@ App::uses('AbstractData', 'Lib');
 class EventosMaint extends AbstractData {
 
 protected $data = array (
+    'translatepath' => NULL,
+    'submit' => 'Guardar',
+    'cancel' => true,
     'data' => 
     array (
         0 => 

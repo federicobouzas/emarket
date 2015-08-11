@@ -1,23 +1,25 @@
 <?php
 
 /* GENERADO AUTOMATICAMENTE */
-/* 17/10/2013 17:22:17 */
 
 App::uses('AbstractData', 'Lib');
 
-class PoblacionsSL extends AbstractData {
+class PoblacionesSL extends AbstractData {
 
-protected $data =
-array (
+protected $data = array (
+    'translatepath' => NULL,
+    'title' => '',
     'actions' => 
     array (
-        'V' => 
+        0 => 
         array (
-            0 => 'view',
+            'op' => 'V',
+            'action' => 'view',
         ),
-        'E' => 
+        1 => 
         array (
-            0 => 'edit',
+            'op' => 'E',
+            'action' => 'edit',
         ),
     ),
     'filters' => 
@@ -39,6 +41,7 @@ array (
         0 => 
         array (
             'label' => '',
+            'sortfield' => '',
             'fields' => 
             array (
                 0 => 
@@ -51,6 +54,7 @@ array (
         1 => 
         array (
             'label' => '',
+            'sortfield' => '',
             'fields' => 
             array (
                 0 => 

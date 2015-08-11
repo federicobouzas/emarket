@@ -1,14 +1,15 @@
 <?php
 
 /* GENERADO AUTOMATICAMENTE */
-/* 17/10/2013 17:22:17 */
 
 App::uses('AbstractData', 'Lib');
 
-class PoblacionsMaint extends AbstractData {
+class PoblacionesMaint extends AbstractData {
 
-protected $data =
-array (
+protected $data = array (
+    'translatepath' => NULL,
+    'submit' => 'Guardar',
+    'cancel' => true,
     'data' => 
     array (
         0 => 

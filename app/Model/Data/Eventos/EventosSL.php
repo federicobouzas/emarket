@@ -7,6 +7,7 @@ App::uses('AbstractData', 'Lib');
 class EventosSL extends AbstractData {
 
 protected $data = array (
+    'translatepath' => NULL,
     'title' => '',
     'filters' => 
     array (

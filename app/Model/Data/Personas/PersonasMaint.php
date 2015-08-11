@@ -1,71 +1,139 @@
 <?php
 
+/* GENERADO AUTOMATICAMENTE */
+
 App::uses('AbstractData', 'Lib');
 
 class PersonasMaint extends AbstractData {
 
-    protected $data = array(
-        'jsincludes' => array('personas/maint_personas'),
-        'data' => array(
-            array(
-                'type' => 'fieldset',
-                'title' => 'Datos Personales',
-                'fields' => array(
-                    array('name' => 'fecha_carga', 'label' => 'Fecha Carga', 'presentation' => 'DATETIME', 'classparams' => '{"force":true}', 'isvisible' => false, 'actions' => 'A'),
-                    array('name' => 'user_id', 'label' => 'Usuario Carga', 'presentation' => 'USER', 'classparams' => '{"force":true}', 'isvisible' => false, 'actions' => 'A'),
-                    array('name' => 'activa', 'label' => 'Activo', 'presentation' => 'SINO', 'initialvalue' => 'Si'),
-                    array('name' => 'nombre', 'label' => 'Nombre'),
-                    array('name' => 'apellido', 'label' => 'Apellido'),
-                    array('name' => 'sexo', 'label' => 'Sexo', 'presentation' => 'SEXO'),
-                    array('name' => 'fecha_nacimiento', 'label' => 'Fecha de Nacimiento', 'presentation' => 'DATE'),
-                    array('name' => 'email', 'label' => 'Email'),
-                    array('name' => 'telefono_particular', 'label' => 'Teléfono Particular', 'size' => '10'),
-                    array('name' => 'telefono_celular', 'label' => 'Celular', 'size' => '12'),
+protected $data = array (
+    'translatepath' => NULL,
+    'submit' => 'Guardar',
+    'cancel' => true,
+    'data' => 
+    array (
+        0 => 
+        array (
+            'type' => 'fieldset',
+            'fields' => 
+            array (
+                0 => 
+                array (
+                    'name' => 'nombre',
+                    'label' => 'Nombre',
+                ),
+                1 => 
+                array (
+                    'name' => 'apellido',
+                    'label' => 'Apellido',
+                ),
+                2 => 
+                array (
+                    'name' => 'sexo',
+                    'label' => 'Sexo',
+                    'presentation' => 'SEXO',
+                ),
+                3 => 
+                array (
+                    'name' => 'fecha_nacimiento',
+                    'label' => 'Fecha de Nacimiento',
+                    'presentation' => 'DATE',
+                ),
+                4 => 
+                array (
+                    'name' => 'email',
+                    'label' => 'Email',
+                ),
+                5 => 
+                array (
+                    'name' => 'telefono_particular',
+                    'label' => 'Teléfono Particular',
+                    'presentation' => 'INT',
+                    'size' => 10,
+                ),
+                6 => 
+                array (
+                    'name' => 'telefono_celular',
+                    'label' => 'Teléfono Celular',
+                    'presentation' => 'INT',
+                    'size' => 12,
+                ),
+                7 => 
+                array (
+                    'name' => 'activa',
+                    'label' => 'Activo',
+                    'presentation' => 'SINO_INT',
+                    'initialvalue' => 1,
                 ),
             ),
-            array(
-                'type' => 'fieldset',
-                'title' => 'Domicilio',
-                'fields' => array(
-                    array('name' => 'calle', 'label' => 'Calle'),
-                    array('name' => 'altura', 'label' => 'Altura', 'size' => 5),
-                    array('name' => 'piso', 'label' => 'Piso', 'size' => 10),
-                    array('name' => 'comuna', 'label' => 'Comuna', 'presentation' => 'GEOLOCALIZACION::COMUNAS'),
-                    array('name' => 'barrio', 'label' => 'Barrio', 'presentation' => 'GEOLOCALIZACION::BARRIOS', 'classparams' => '{"listen":"PersonaComuna"}'),
-                    array('name' => 'tmp_provincia', 'label' => 'Provincia', 'initialvalue' => 'Ciudad de Buenos Aires', 'isvisible' => false),
-                    array('name' => 'tmp_pais', 'label' => 'País', 'initialvalue' => 'Argentina', 'isvisible' => false),
-                    array('name' => 'coordenadas', 'label' => 'Ubicación', 'presentation' => 'GOOGLEMAP', 'classparams' => '{"calle":"calle","altura":"altura","barrio":"barrio","comuna":"comuna","provincia":"tmp_provincia","pais":"tmp_pais"}')
-                ),
-            ),
-            array(
-                'type' => 'table',
-                'assoc' => 'true',
-                'paginate' => 'true',
-                'title' => 'Poblaciones a las que Pertenece',
-                'model' => 'Poblacion',
-                'fields' => array(
-                    array('name' => 'Poblacion.nombre', 'label' => 'Población'),
-                    array('name' => 'Poblacion.activa', 'label' => 'Activa'),
-                ),
-                'order' => array('Poblacion.nombre ASC'),
-            ),
-            array(
-                'type' => 'table',
-                'assoc' => 'true',
-                'paginate' => 'true',
-                'title' => 'Contactos en Campañas',
-                'model' => 'Campania',
-                'fields' => array(
-                    array('name' => 'Campania.nombre', 'label' => 'Camapaña'),
-                    array('name' => 'Campania.tipo', 'label' => 'Tipo'),
-                    array('name' => 'Campania.encuesta_id', 'label' => 'Encuesta', 'presentation' => 'SELECT', 'classparams' => '{"model":"Encuesta"}'),
-                    array('name' => 'Campania.evento_id', 'label' => 'Evento', 'presentation' => 'SELECT', 'classparams' => '{"model":"Evento"}'),
-                    array('name' => 'Assoc.estado', 'label' => 'Estado'),
-                ),
-                'order' => array('Campania.nombre ASC'),
-                'actions' => array(),
-            ),
+            'title' => 'Datos Personales',
+            'columns' => '2',
         ),
-    );
+        1 => 
+        array (
+            'type' => 'fieldset',
+            'fields' => 
+            array (
+                0 => 
+                array (
+                    'name' => 'calle',
+                    'label' => 'Calle',
+                ),
+                1 => 
+                array (
+                    'name' => 'altura',
+                    'label' => 'Altura',
+                    'presentation' => 'INT',
+                    'size' => 5,
+                ),
+                2 => 
+                array (
+                    'name' => 'piso',
+                    'label' => 'Piso',
+                    'size' => 10,
+                ),
+                3 => 
+                array (
+                    'name' => 'comuna',
+                    'label' => 'Comuna',
+                    'presentation' => 'GEOLOCALIZACION::COMUNAS',
+                ),
+                4 => 
+                array (
+                    'name' => 'barrio',
+                    'label' => 'Barrio',
+                    'presentation' => 'GEOLOCALIZACION::BARRIOS',
+                    'classparams' => '{\'listen\':\'Persona.Comuna\'}',
+                ),
+                5 => 
+                array (
+                    'name' => 'localidad',
+                    'label' => 'Localidad',
+                ),
+                6 => 
+                array (
+                    'name' => 'provincia',
+                    'label' => 'Provincia',
+                ),
+                7 => 
+                array (
+                    'name' => 'pais',
+                    'label' => 'País',
+                    'presentation' => 'INT',
+                    'size' => 10,
+                ),
+                8 => 
+                array (
+                    'name' => 'coordenadas',
+                    'label' => 'Ubicación',
+                    'presentation' => 'GOOGLEMAP',
+                    'classparams' => '{\'calle:\'calle\',\'altura\':\'altura\',\'barrio\':\'barrio\',\'comuna\':\'comuna\',\'provincia\':\'provincia\',\'pais\':\'pais\'}',
+                ),
+            ),
+            'title' => 'Domicilio',
+            'columns' => '2',
+        ),
+    ),
+);
 
 }

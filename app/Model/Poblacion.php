@@ -22,15 +22,6 @@ class Poblacion extends AppModel {
             'associationForeignKey' => 'campania_id',
             'unique' => true
         ),
-            /*
-              'Approl' => array(
-              'className' => 'Approl',
-              'joinTable' => 'per_poblaciones_rols',
-              'foreignKey' => 'poblacion_id',
-              'associationForeignKey' => 'rol_id',
-              'unique' => true
-              )
-             */
     );
     public $validate = array(
         'nombre' => array(
@@ -46,32 +37,5 @@ class Poblacion extends AppModel {
             )
         ),
     );
-
-    public function beforeFind($queryData) {
-        $user_id = $_SESSION['Auth']['User']['id'];
-        $rol_id = $_SESSION['Auth']['User']['Rol']['id'];
-
-        /*
-          $poblaciones = $this->Query("SELECT poblacion_id FROM per_poblaciones_rols WHERE rol_id=" . $rol_id);
-
-          $pob = array();
-          foreach ($poblaciones as $poblacion) {
-          $pob[] = $poblacion['per_poblaciones_rols']['poblacion_id'];
-          }
-         */
-
-        if (is_null($queryData['conditions'])) {
-            $queryData['conditions'] = array();
-        }
-
-        $queryData['conditions'][] = array(
-            'OR' => array(
-                array('Poblacion.id IN (SELECT poblacion_id FROM per_poblaciones_rols WHERE rol_id=' . $rol_id . ')'),
-                array('Poblacion.user_id' => $user_id)
-            )
-        );
-
-        return $queryData;
-    }
 
 }

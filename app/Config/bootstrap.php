@@ -45,6 +45,13 @@ if (!defined('CAKE_FRAMEWORK')) {
     require_once('config.php');
 }
 
+Inflector::rules('plural', array('irregular' => array(
+        'poblacion' => 'Poblaciones',
+)));
+
+Inflector::rules('singular', array('irregular' => array(
+        'poblaciones' => 'Poblacion',
+)));
 /*
  * Para manejar los errores de bloqueo
  */

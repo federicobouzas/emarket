@@ -100,49 +100,6 @@ class Persona extends AppModel {
         )
     );
 
-    /*
-      public function beforeFind($queryData) {
-      $user_id = $_SESSION['Auth']['User']['id'];
-      $rol_id = $_SESSION['Auth']['User']['Rol']['id'];
-
-      $poblaciones = $this->Query("SELECT poblacion_id FROM per_poblaciones_rols WHERE rol_id=" . $rol_id);
-      $pob = array();
-      foreach ($poblaciones as $poblacion) {
-      $pob[] = $poblacion['per_poblaciones_rols']['poblacion_id'];
-      }
-
-      if (is_null($queryData['conditions'])) {
-      $queryData['conditions'] = array();
-      }
-      if (is_null($queryData['group'])) {
-      $queryData['group'] = array();
-      }
-      if (is_null($queryData['joins'])) {
-      $queryData['joins'] = array();
-      }
-
-      $queryData['joins'][] = array(
-      'table' => 'per_personas_poblaciones',
-      'alias' => 'PersonasPoblaciones',
-      'type' => 'LEFT',
-      'foreignKey' => false,
-      'conditions' => array(
-      'PersonasPoblaciones.persona_id = Persona.id'
-      )
-      );
-      $queryData['group'][] = 'Persona.id';
-      $queryData['conditions'][] = array(
-      'OR' => array(
-      array('PersonasPoblaciones.poblacion_id IN (SELECT poblacion_id FROM per_poblaciones_rols WHERE rol_id=' . $rol_id . ')'),
-      //array('PersonasPoblaciones.poblacion_id' => null),
-      array('Persona.user_id' => $user_id)
-      )
-      );
-
-      return $queryData;
-      }
-     */
-
     function beforeImport(&$registros, $omitir_primer_fila = true) {
         $errores = array();
 

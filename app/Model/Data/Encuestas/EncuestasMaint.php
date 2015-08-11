@@ -8,6 +8,8 @@ class EncuestasMaint extends AbstractData {
 
 protected $data = array (
     'translatepath' => 'encuestas.maint',
+    'submit' => 'Guardar',
+    'cancel' => true,
     'jsincludes' => 
     array (
         0 => 'encuestas/maint_encuestas',

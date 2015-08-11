@@ -1,0 +1,70 @@
+<Personas>
+   
+    <search_list file="PersonasSL.php">
+        <actions>
+            <action op="V" action="view" />
+            <action op="E" action="edit" />
+            <action op="A" action="add" />
+        </actions>
+       
+        <searchfield name="Persona.nombre" label="Nombre" />
+        <searchfield name="Persona.apellido" label="Apellido" />
+        <searchfield name="Persona.email" label="Email" />
+        <searchfield name="Persona.sexo" label="Sexo" presentation="SEXO" />
+        <searchfield name="Persona.comuna" label="Comuna" presentation="GEOLOCALIZACION::COMUNAS" />
+        <searchfield name="Persona.barrio" label="Barrio" presentation="GEOLOCALIZACION::BARRIOS" classparams="{'listen':'PersonaComuna'}" />
+        <searchfield name="Persona.id" label="Población" presentation="PERSONAS::POBLACION" classparams="{'model':'Poblacion'}" />
+        <searchfield name="Persona.activa" label="Activa" presentation="SINO" />
+        
+        <table>
+            <column>
+                <listfield name="Persona.nombre" label="Nombre" />
+            </column>
+            <column>
+                <listfield name="Persona.apellido" label="Apellido" />
+            </column>
+            <column>
+                <listfield name="Persona.email" label="Email" />
+            </column>
+            <column>
+                <listfield name="Persona.sexo" label="Sexo" presentation="SEXO" />
+            </column>
+            <column>
+                <listfield name="Persona.comuna" label="Comuna" presentation="GEOLOCALIZACION::COMUNAS" />
+            </column>
+            <column>
+                <listfield name="Persona.barrio" label="Barrio" />
+            </column>
+            <column>
+                <listfield name="Persona.activa" label="Activa" />
+            </column>
+        </table>
+    </search_list>
+    
+    <tablemaint file="PersonasMaint.php">     
+        <fieldset title="Datos Personales" columns="2">
+            <field name="nombre" label="Nombre" />
+            <field name="apellido" label="Apellido" />
+            <field name="sexo" label="Sexo" presentation="SEXO" />
+            <field name="fecha_nacimiento" label="Fecha de Nacimiento" presentation="DATE" />
+            <field name="email" label="Email" />
+            <field name="telefono_particular" label="Teléfono Particular" presentation="INT" size="10" />
+            <field name="telefono_celular" label="Teléfono Celular" presentation="INT" size="12" />
+            <field name="activa" label="Activo" presentation="SINO_INT" initialvalue="1" />
+        </fieldset>
+        
+        <fieldset title="Domicilio" columns="2">
+            <field name="calle" label="Calle" />
+            <field name="altura" label="Altura" presentation="INT" size="5" />
+            <field name="piso" label="Piso" size="10" />
+            <field name="comuna" label="Comuna" presentation="GEOLOCALIZACION::COMUNAS" />
+            <field name="barrio" label="Barrio" presentation="GEOLOCALIZACION::BARRIOS" classparams="{'listen':'Persona.Comuna'}" />
+            <field name="localidad" label="Localidad" />
+            <field name="provincia" label="Provincia" />
+            <field name="pais" label="País" presentation="INT" size="10" />
+            <field name="coordenadas" label="Ubicación" presentation="GOOGLEMAP" classparams="{'calle:'calle','altura':'altura','barrio':'barrio','comuna':'comuna','provincia':'provincia','pais':'pais'}" />
+        </fieldset>
+                
+    </tablemaint>
+        
+</Personas>  

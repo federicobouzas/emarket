@@ -8,6 +8,8 @@ class CampaniasMaint extends AbstractData {
 
 protected $data = array (
     'translatepath' => 'campanias.maint',
+    'submit' => 'Guardar',
+    'cancel' => true,
     'jsincludes' => 
     array (
         0 => 'campanias/maint_campanias.js',
