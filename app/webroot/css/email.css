@@ -69,13 +69,19 @@ h4 {
     background: url('../img/logoBA.png') no-repeat 0 0 transparent;
 }
 div.user_info {
-    color: #2A2426;
-    font: normal 17px/16px RobotoLight, arial, sans-serif;
+    color: #666;
+    font: normal 18px/16px RobotoLight, arial, sans-serif;
 }
 div.user_info>div{
     padding-right: 30px;
     position: relative;
     padding-top: 3px;
+    text-transform: uppercase;
+}
+div.user_info .dependencia {
+    font: normal 12px/14px Arial;
+    max-width: 330px;
+    text-transform: none;
 }
 div.user_info a {
     top: 0;
@@ -196,7 +202,7 @@ input[type=submit]:hover,
 input[type=submit]:active,
 .actions ul li a:active,
 .actions a:active {
-     background: #f90;
+    background: #f90;
 }
 a.cancelar{
     color: #8B8474;
@@ -238,7 +244,7 @@ div.paginador span{
 fieldset legend {
     color: #FFB10D;
 }
- .inputs {
+.inputs {
     border-bottom: 1px dotted #EEEEEE;
 }
 form .input {
@@ -299,13 +305,13 @@ div.search_cond a, div.search_cond a.expandido b {
     font-family: RobotoLight;
 }
 .contraido{
-    background: url(../img/expand-collapse.png) no-repeat 0 0;
+    background: url(../img/expand-collapse.png) no-repeat 0 0 #FBCF00;
 }
 div.search_cond a.expandido{
     color: #FBCF00;
 }
 div.search_cond a.expandido b{
-    background: url(../img/expand-collapse.png) no-repeat 0 -19px;
+    background: url(../img/expand-collapse.png) no-repeat 0 -19px #FBCF00;
 }
 #bloqueoHeartBeat {
     background: #333 url("../img/fmw/lock.png") no-repeat center center;
@@ -314,6 +320,7 @@ div.search_cond a.expandido b{
     background: #FFF;
     color: #ccc;
     font-family: RobotoThin;
+    z-index: 10009;
 }
 /*Reescribo botones de kendo*/
 body .k-button{
@@ -375,19 +382,19 @@ body .k-calendar .k-content .k-link{
     padding: 0 .45em 0 .45em;
 }
 body .k-state-selected a.k-link{
-   color: #333;
+    color: #333;
 }
 /**Fin botones de kendo***/
 /******PopAlertas******/
-body #popup_container #popup_message {
+body .popup_container .popup_message {
     min-height: 25px;
     padding-top: 10px;
 }
-body #popup_container {
+body .popup_container {
     box-shadow: 0px 0px 3px 0px #666;
     border: solid 1px #e3e3e3;
 }
-body #popup_container #popup_title{
+body .popup_container .popup_title{
     background: #e3e3e3;
     color: #333;
     border: none;
@@ -396,18 +403,18 @@ body #popup_container #popup_title{
     margin: 0;
     padding: 2px 6px;
 }
-body #popup_container #popup_panel{
+body .popup_container .popup_panel{
     overflow: hidden;
     border-top: 1px solid #eee;
     padding-top: 7px;
 }
-body #popup_container #popup_panel #popup_cancel{
+body .popup_container .popup_panel .popup_cancel{
     float: right;
     background: none;
     border: none;
     padding: 4px 9px;
 }
-body #popup_container #popup_panel #popup_ok{
+body .popup_container .popup_panel .popup_ok{
     background: #333;
     color: #fff;
     border: none;
@@ -416,40 +423,39 @@ body #popup_container #popup_panel #popup_ok{
     padding: 4px 9px;
     text-transform: uppercase;
 }
-body #popup_container #popup_panel #popup_ok:hover{
+body .popup_container .popup_panel .popup_ok:hover{
     opacity: 1;
 }
-/*************MENU***************************/
-.sf-menu a, .sf-menu a:visited  { /* visited pseudo selector so IE6 applies text colour*/
+
+/*menu kendo*/
+#menu.k-menu {
+    background: none;
+    border: none;
+}
+#menu.k-menu a.k-link { 
     color: #2A2426;
     font: normal 14px/16px RobotoLight, arial, sans-serif;
     padding-top: 8px;
 }
-.sf-menu li {
-	background:		#FDE266;
+#menu.k-menu>.k-item {
+    border-color: #FDE266;
 }
-.sf-menu li li {
-	background:		#FDE266;
-	border-bottom: 	1px dotted #FBCF00;
+#menu.k-menu li {
+    background:	#FDE266;
 }
-.sf-menu li li li {
-	background:		#FDE266;
+#menu.k-menu li li {
+    background:	#FDE266;
+    border-bottom: 1px dotted #FBCF00;
 }
-.sf-menu li:hover, .sf-menu li.sfHover,
-.sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
-	background:		#FFF;
-    color:			#000!important;
-	outline:		0;
+#menu.k-menu a:focus, #menu.k-menu a:hover, #menu.k-menu a:active {
+    background-color:	#FFF;
+    color:#000;
+    outline:0;
 }
-.sf-menu li.sfHover>a{
-	color:			#000!important;
+#menu.k-menu li.k-state-border-down>a, #menu.k-menu li.k-state-border-right>a, #menu.k-menu li.k-state-border-left>a, #menu.k-menu li.k-state-border-up>a{
+    color:#000!important;
 }
-
-/*** arrows **/
-.sf-sub-indicator {
-	background:		url('../img/arrows-ffffff.png') no-repeat -10px -100px; /* 8-bit indexed alpha png. IE6 gets solid image only */
-}
-/*************Fin Menu***************************/
+/*fin menu kendo*/
 /*************CATALOGO***************************/
 .loading_text{
     color: #999;
@@ -565,52 +571,6 @@ body #UserLoginForm #submit:hover, body #UserLoginForm #submit:focus {
     color: #000;
 }
 /*fin Login*/
-/**************CALENDARIO******************/
-#ObraTmpCalendario.ui-widget *{
-    color: #333;
-}
-#ObraTmpCalendario .ui-widget-content{
-    background: #FFF;
-}
-#ObraTmpCalendario .ui-state-highlight {
-    border-color: #ddd;
-    background: #f0f0f0!important;
-}
-#ObraTmpCalendario  .ui-state-default {
-    background: #FFF;
-    border-color: #FFF;
-    font-weight: normal;
-    padding: 0px 3px;
-    margin-left: 5px;
-    border-radius: 3px!important;
-}
-#ObraTmpCalendario .fc-header .fc-button.ui-state-active {
-    color: #333;
-    background: #f0f0f0!important;
-    border-color: #f0f0f0;
-}
-/*Fin calendario*/
-#botones>div>a{
-    border: 5px solid #CCCCCC;
-}
-#botones>div>a:hover{
-    border: 5px solid #FDE266;
-    background: #FDE266;
-}
-
-/*Huellas*/
-.falta-huella {
-    font-size: 16px;
-    color: #FF0D0D;
-    padding: 0px 3px 0 0;
-    display: inline-block;
-}
-.huella-cargada{
-    font-size: 16px;
-    color: #690;
-    padding: 0px 3px 0 0;
-    display: inline-block;
-}
 
 /*Notificaciones*/
 .notificationBox ul, .newNotifications ul{
@@ -628,7 +588,7 @@ body #UserLoginForm #submit:hover, body #UserLoginForm #submit:focus {
 .notificationBox li{
     color: #444;
     list-style: circle outside none;
-    
+
 }
 .notificationBox li.unread{
     color: #DF3D20;

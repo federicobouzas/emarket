@@ -12,35 +12,50 @@ if (!class_exists('AppConfig')) {
 
     class AppConfig {
 
-        public static $array = array(
-            'push_server' => array(
+        public static $array = [
+            'imports' => [
+                'highcharts' => true,
+                'php' => true,
+                'hoverIntent' => true,
+                'jquery' => [
+                    'ui' => true,
+                    'galleriffic' => true,
+                    'scrollTo' => true,
+                    'fancybox' => true,
+                    'opacityrollover' => true,
+                    'alerts' => true,
+                    'tipsy' => true,
+                    'sticky' => true,
+                ],
+            ],
+            'push_server' => [
                 'enabled' => false,
                 'debug' => true,
                 'ssl' => false,
                 'host' => '127.0.0.1',
                 'port' => 8000,
                 'system' => 'framework'
-            ),
-            'maint' => array(
+            ],
+            'maint' => [
                 'js_validation' => true,
-            ),
-            'search_list' => array(
+            ],
+            'search_list' => [
                 'export' => true,
-            ),
-            'site' => array(
+            ],
+            'site' => [
                 'serial' => 'A1276-26A96-50E23-11C99-5292F-63267-95065-B6018',
-                'ajax' => array(
+                'ajax' => [
                     'enabled' => false,
                     'loading' => "Cargando contenido",
-                ),
-            ),
-            'users' => array(
-                'login' => array(
+                ],
+            ],
+            'users' => [
+                'login' => [
                     'ban' => false,
                     'forget' => true,
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
         public static function get($str, $default = null) {
             $pointer = self::$array;
