@@ -31,7 +31,7 @@
                 <?php echo $this->Session->flash(); ?>
                 <?php echo $this->fetch('content'); ?>
             </div>
-            <div id="footer">| <?= (isset($CONFIGURATION['footer']) ? $CONFIGURATION['footer'] : '') ?> |</div>
+            <div id="footer"><?php echo getSystemConfiguration("footer"); ?> | v<?php echo getSystemConfiguration("version"); ?></div>
             <?php echo $this->element('sql_dump'); ?>
         </div>
         <?php if (isset(AppConfig::$array['site']['ajax']['loading']) && AppConfig::$array['site']['ajax']['loading']): ?>

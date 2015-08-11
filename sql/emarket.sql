@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-08-2015 a las 16:36:40
+-- Tiempo de generación: 11-08-2015 a las 16:58:07
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `acc_buttons` (
 --
 
 INSERT INTO `acc_buttons` (`id`, `fecha_carga`, `fecha_modificacion`, `user_id`, `global`, `query`, `display_order`, `refresh`, `icon`, `url`, `description`, `status`) VALUES
-(1, '2015-06-12 17:45:42', '2015-08-11 02:14:22', NULL, 'No', '', '90', 'No', 'consultar_usuarios.png', 'app_users_back/index', 'Usuarios', 'Activo');
+(1, '2015-06-12 17:45:42', '2015-08-11 14:56:51', NULL, 'No', '', '90', 'No', 'consultar_usuarios.png', 'fmw_acceso/users/index', 'Usuarios', 'Activo');
 
 -- --------------------------------------------------------
 
@@ -629,7 +629,7 @@ CREATE TABLE IF NOT EXISTS `per_personas` (
 `id` int(11) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `fecha_modificacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `activa` varchar(2) NOT NULL DEFAULT 'Si',
+  `activa` int(1) NOT NULL DEFAULT '0',
   `errores` int(10) NOT NULL DEFAULT '0',
   `user_id` int(10) NOT NULL,
   `nombre` varchar(200) DEFAULT NULL,
@@ -709,7 +709,7 @@ CREATE TABLE IF NOT EXISTS `sys_bloqueos` (
   `user_id` int(10) NOT NULL,
   `model` varchar(50) NOT NULL,
   `model_id` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -830,7 +830,14 @@ CREATE TABLE IF NOT EXISTS `sys_logs` (
   `model` varchar(100) NOT NULL,
   `action` varchar(100) NOT NULL,
   `model_id` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `sys_logs`
+--
+
+INSERT INTO `sys_logs` (`id`, `fecha_carga`, `user_id`, `model`, `action`, `model_id`) VALUES
+(1, '2015-08-11 11:56:51', 1, 'Button', 'edit', 1);
 
 --
 -- Índices para tablas volcadas
@@ -1236,7 +1243,7 @@ MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `sys_bloqueos`
 --
 ALTER TABLE `sys_bloqueos`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `sys_compilations`
 --
@@ -1271,7 +1278,7 @@ MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `sys_logs`
 --
 ALTER TABLE `sys_logs`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- Restricciones para tablas volcadas
 --
