@@ -41,7 +41,9 @@
         </table>
     </search_list>
     
-    <tablemaint file="PersonasMaint.php">     
+    <tablemaint file="PersonasMaint.php">
+        <jsinclude file="personas/maint_personas.js" />
+        
         <fieldset title="Datos Personales" columns="2">
             <field name="nombre" label="Nombre" />
             <field name="apellido" label="Apellido" />
@@ -61,10 +63,9 @@
             <field name="barrio" label="Barrio" presentation="GEOLOCALIZACION::BARRIOS" classparams="{'listen':'Persona.Comuna'}" />
             <field name="localidad" label="Localidad" />
             <field name="provincia" label="Provincia" />
-            <field name="pais" label="País" presentation="INT" size="10" />
+            <field name="pais" label="País" />
             <field name="coordenadas" label="Ubicación" presentation="GOOGLEMAP" classparams="{'calle:'calle','altura':'altura','barrio':'barrio','comuna':'comuna','provincia':'provincia','pais':'pais'}" />
-        </fieldset>
-                
+        </fieldset>                
     </tablemaint>
-        
+            
 </Personas>  

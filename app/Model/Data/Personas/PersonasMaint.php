@@ -10,6 +10,10 @@ protected $data = array (
     'translatepath' => NULL,
     'submit' => 'Guardar',
     'cancel' => true,
+    'jsincludes' => 
+    array (
+        0 => 'personas/maint_personas.js',
+    ),
     'data' => 
     array (
         0 => 
@@ -119,8 +123,6 @@ protected $data = array (
                 array (
                     'name' => 'pais',
                     'label' => 'País',
-                    'presentation' => 'INT',
-                    'size' => 10,
                 ),
                 8 => 
                 array (

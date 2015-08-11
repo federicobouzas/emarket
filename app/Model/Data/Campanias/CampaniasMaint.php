@@ -23,79 +23,83 @@ protected $data = array (
             array (
                 0 => 
                 array (
-                    'name' => 'fecha_carga',
-                    'label' => 'Fecha de Carga',
-                    'presentation' => 'DATETIME',
-                    'classparams' => '{\'force\':true}',
-                    'isvisible' => false,
-                    'actions' => 'A',
-                ),
-                1 => 
-                array (
-                    'name' => 'user_id',
-                    'label' => 'Usuario Carga',
-                    'presentation' => 'USER',
-                    'classparams' => '{\'force\':true}',
-                    'isvisible' => false,
-                    'actions' => 'A',
-                ),
-                2 => 
-                array (
                     'name' => 'nombre',
                     'label' => 'Nombre',
-                    'size' => 100,
+                    'size' => 65,
+                    'breakline' => true,
                 ),
-                3 => 
-                array (
-                    'name' => 'activa',
-                    'label' => 'Activa',
-                    'presentation' => 'SINO',
-                ),
-                4 => 
+                1 => 
                 array (
                     'name' => 'tipo',
                     'label' => 'Tipo',
                     'presentation' => 'CAMPANIAS::TIPO_CAMPANIA',
                 ),
-                5 => 
+                2 => 
+                array (
+                    'name' => 'activa',
+                    'label' => 'Activa',
+                    'presentation' => 'SINO',
+                ),
+                3 => 
                 array (
                     'name' => 'encuesta_id',
                     'label' => 'Nombre Encuesta',
                     'presentation' => 'SELECT',
                     'classparams' => '{\'model\':\'Encuesta\'}',
+                    'breakline' => true,
                 ),
-                6 => 
+                4 => 
                 array (
                     'name' => 'evento_id',
                     'label' => 'Nombre Evento',
                     'presentation' => 'SELECT',
                     'classparams' => '{\'model\':\'Evento\'}',
+                    'breakline' => true,
                 ),
-                7 => 
-                array (
-                    'name' => 'sms',
-                    'label' => 'Usa SMS',
-                    'presentation' => 'SINO',
-                ),
-                8 => 
-                array (
-                    'name' => 'cuerpo_sms',
-                    'label' => 'Mensaje SMS',
-                    'presentation' => 'TEXTAREA',
-                ),
-                9 => 
+                5 => 
                 array (
                     'name' => 'email',
                     'label' => 'Usa Email',
                     'presentation' => 'SINO',
                 ),
-                10 => 
+                6 => 
+                array (
+                    'name' => 'sms',
+                    'label' => 'Usa SMS',
+                    'presentation' => 'SINO',
+                ),
+            ),
+            'id' => 'datos_campania',
+            'title' => 'Datos de la Campaña',
+            'columns' => '2',
+        ),
+        1 => 
+        array (
+            'type' => 'fieldset',
+            'fields' => 
+            array (
+                0 => 
+                array (
+                    'name' => 'cuerpo_sms',
+                    'label' => 'Mensaje SMS',
+                    'presentation' => 'TEXTAREA',
+                ),
+            ),
+            'id' => 'opciones_envio_sms',
+            'title' => 'Opciones de Envío de Email',
+        ),
+        2 => 
+        array (
+            'type' => 'fieldset',
+            'fields' => 
+            array (
+                0 => 
                 array (
                     'name' => 'asunto_email',
                     'label' => 'Asunto Email',
                     'size' => 100,
                 ),
-                11 => 
+                1 => 
                 array (
                     'name' => 'tmp_template',
                     'label' => 'Subir Template',
@@ -103,18 +107,18 @@ protected $data = array (
                     'actions' => 'A|E',
                     'breakline' => true,
                 ),
-                12 => 
+                2 => 
                 array (
                     'name' => 'cuerpo_email',
                     'label' => 'Cuerpo Email',
-                    'presentation' => 'WYSIWYG',
+                    'presentation' => 'REDACTOR',
                     'note' => 'Variables disponibles: #NOMBRE#, #APELLIDO#, #URL_UNSUBSCRIBE#, #URL_ENCUESTA#, #FECHA_HORA#, #LUGAR#, #URL_MAPA#, #URL_ASISTE#, #URL_NO_ASISTE#',
                 ),
             ),
-            'id' => 'datos_campania',
-            'title' => 'Datos de la Campaña',
+            'id' => 'opciones_envio_email',
+            'title' => 'Opciones de Envío de Email',
         ),
-        1 => 
+        3 => 
         array (
             'type' => 'fieldset',
             'fields' => 
@@ -166,7 +170,7 @@ protected $data = array (
             'title' => 'Características de las Personas',
             'columns' => '2',
         ),
-        2 => 
+        4 => 
         array (
             'type' => 'fieldset',
             'fields' => 

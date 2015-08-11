@@ -47,20 +47,24 @@
     <tablemaint file="CampaniasMaint.php" translatepath="campanias.maint">     
         <jsinclude file="campanias/maint_campanias.js" />
 
-        <fieldset id="datos_campania" title="Datos de la Campaña">
-            <field name="fecha_carga" label="Fecha de Carga" presentation="DATETIME" classparams="{'force':true}" isvisible="false" actions="A" />
-            <field name="user_id" label="Usuario Carga" presentation="USER" classparams="{'force':true}" isvisible="false" actions="A" />
-            <field name="nombre" label="Nombre" size="100" />
-            <field name="activa" label="Activa" presentation="SINO" />
+        <fieldset id="datos_campania" title="Datos de la Campaña" columns="2">
+            <field name="nombre" label="Nombre" size="65" breakline="true" />            
             <field name="tipo" label="Tipo" presentation="CAMPANIAS::TIPO_CAMPANIA" />
-            <field name="encuesta_id" label="Nombre Encuesta" presentation="SELECT" classparams="{'model':'Encuesta'}" />
-            <field name="evento_id" label="Nombre Evento" presentation="SELECT" classparams="{'model':'Evento'}" />
-            <field name="sms" label="Usa SMS" presentation="SINO" />
-            <field name="cuerpo_sms" label="Mensaje SMS" presentation="TEXTAREA" />
+            <field name="activa" label="Activa" presentation="SINO" />
+            <field name="encuesta_id" label="Nombre Encuesta" presentation="SELECT" classparams="{'model':'Encuesta'}" breakline="true" />
+            <field name="evento_id" label="Nombre Evento" presentation="SELECT" classparams="{'model':'Evento'}" breakline="true" />
             <field name="email" label="Usa Email" presentation="SINO" />
+            <field name="sms" label="Usa SMS" presentation="SINO" />
+        </fieldset>
+        
+        <fieldset id="opciones_envio_sms" title="Opciones de Envío de Email">
+            <field name="cuerpo_sms" label="Mensaje SMS" presentation="TEXTAREA" />
+        </fieldset>
+        
+        <fieldset id="opciones_envio_email" title="Opciones de Envío de Email">
             <field name="asunto_email" label="Asunto Email" size="100" />
             <field name="tmp_template" label="Subir Template" presentation="FILE" actions="A|E" breakline="true" />
-            <field name="cuerpo_email" label="Cuerpo Email" presentation="WYSIWYG" note="Variables disponibles: #NOMBRE#, #APELLIDO#, #URL_UNSUBSCRIBE#, #URL_ENCUESTA#, #FECHA_HORA#, #LUGAR#, #URL_MAPA#, #URL_ASISTE#, #URL_NO_ASISTE#" />
+            <field name="cuerpo_email" label="Cuerpo Email" presentation="REDACTOR" note="Variables disponibles: #NOMBRE#, #APELLIDO#, #URL_UNSUBSCRIBE#, #URL_ENCUESTA#, #FECHA_HORA#, #LUGAR#, #URL_MAPA#, #URL_ASISTE#, #URL_NO_ASISTE#" />
         </fieldset>
         
         <fieldset id="caracteristicas_personas" title="Características de las Personas" columns="2">

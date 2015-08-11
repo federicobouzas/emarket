@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-08-2015 a las 16:58:07
+-- Tiempo de generación: 11-08-2015 a las 19:29:03
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -645,7 +645,7 @@ CREATE TABLE IF NOT EXISTS `per_personas` (
   `barrio` varchar(50) DEFAULT NULL,
   `comuna` int(2) DEFAULT NULL,
   `coordenadas` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -709,7 +709,14 @@ CREATE TABLE IF NOT EXISTS `sys_bloqueos` (
   `user_id` int(10) NOT NULL,
   `model` varchar(50) NOT NULL,
   `model_id` int(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `sys_bloqueos`
+--
+
+INSERT INTO `sys_bloqueos` (`id`, `fecha_carga`, `session_id`, `user_id`, `model`, `model_id`) VALUES
+(6, '2015-08-11 14:25:46', 'dt5gau1e0dkfppmk0ue29qd714', 1, 'Persona', 2);
 
 -- --------------------------------------------------------
 
@@ -830,14 +837,15 @@ CREATE TABLE IF NOT EXISTS `sys_logs` (
   `model` varchar(100) NOT NULL,
   `action` varchar(100) NOT NULL,
   `model_id` int(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `sys_logs`
 --
 
 INSERT INTO `sys_logs` (`id`, `fecha_carga`, `user_id`, `model`, `action`, `model_id`) VALUES
-(1, '2015-08-11 11:56:51', 1, 'Button', 'edit', 1);
+(1, '2015-08-11 11:56:51', 1, 'Button', 'edit', 1),
+(2, '2015-08-11 14:23:14', 1, 'Persona', 'add', 2);
 
 --
 -- Índices para tablas volcadas
@@ -1228,7 +1236,7 @@ MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `per_personas`
 --
 ALTER TABLE `per_personas`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `per_poblaciones`
 --
@@ -1243,7 +1251,7 @@ MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `sys_bloqueos`
 --
 ALTER TABLE `sys_bloqueos`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `sys_compilations`
 --
@@ -1278,7 +1286,7 @@ MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `sys_logs`
 --
 ALTER TABLE `sys_logs`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- Restricciones para tablas volcadas
 --
@@ -1344,7 +1352,7 @@ ADD CONSTRAINT `acc_users_rols_ibfk_2` FOREIGN KEY (`rol_id`) REFERENCES `acc_ro
 -- Filtros para la tabla `cam_campanias`
 --
 ALTER TABLE `cam_campanias`
-ADD CONSTRAINT `cam_campanias_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `adm_users` (`id`),
+ADD CONSTRAINT `cam_campanias_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`),
 ADD CONSTRAINT `cam_campanias_ibfk_2` FOREIGN KEY (`encuesta_id`) REFERENCES `cam_encuestas` (`id`),
 ADD CONSTRAINT `cam_campanias_ibfk_3` FOREIGN KEY (`evento_id`) REFERENCES `cam_eventos` (`id`);
 
@@ -1366,13 +1374,14 @@ ADD CONSTRAINT `cam_campanias_poblaciones_ibfk_2` FOREIGN KEY (`poblacion_id`) R
 -- Filtros para la tabla `cam_encuestas`
 --
 ALTER TABLE `cam_encuestas`
-ADD CONSTRAINT `cam_encuestas_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `adm_users` (`id`);
+ADD CONSTRAINT `cam_encuestas_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
 
 --
 -- Filtros para la tabla `cam_encuestas_preguntas`
 --
 ALTER TABLE `cam_encuestas_preguntas`
-ADD CONSTRAINT `cam_encuestas_preguntas_ibfk_1` FOREIGN KEY (`encuesta_id`) REFERENCES `cam_encuestas` (`id`);
+ADD CONSTRAINT `cam_encuestas_preguntas_ibfk_1` FOREIGN KEY (`encuesta_id`) REFERENCES `cam_encuestas` (`id`),
+ADD CONSTRAINT `cam_encuestas_preguntas_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
 
 --
 -- Filtros para la tabla `cam_encuestas_respuestas`
@@ -1385,7 +1394,7 @@ ADD CONSTRAINT `cam_encuestas_respuestas_ibfk_3` FOREIGN KEY (`pregunta_id`) REF
 -- Filtros para la tabla `cam_eventos`
 --
 ALTER TABLE `cam_eventos`
-ADD CONSTRAINT `cam_eventos_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `adm_users` (`id`);
+ADD CONSTRAINT `cam_eventos_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
 
 --
 -- Filtros para la tabla `cam_eventos_asistencias`
@@ -1404,7 +1413,8 @@ ADD CONSTRAINT `cam_links_ibfk_1` FOREIGN KEY (`campania_id`) REFERENCES `cam_ca
 -- Filtros para la tabla `cam_links_personas`
 --
 ALTER TABLE `cam_links_personas`
-ADD CONSTRAINT `cam_links_personas_ibfk_1` FOREIGN KEY (`link_id`) REFERENCES `cam_links` (`id`);
+ADD CONSTRAINT `cam_links_personas_ibfk_1` FOREIGN KEY (`link_id`) REFERENCES `cam_links` (`id`),
+ADD CONSTRAINT `cam_links_personas_ibfk_2` FOREIGN KEY (`persona_id`) REFERENCES `per_personas` (`id`);
 
 --
 -- Filtros para la tabla `msg_entrantes`
@@ -1435,7 +1445,7 @@ ADD CONSTRAINT `msg_notifications_users_ibfk_4` FOREIGN KEY (`user_id`) REFERENC
 -- Filtros para la tabla `per_personas`
 --
 ALTER TABLE `per_personas`
-ADD CONSTRAINT `per_personas_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `adm_users` (`id`);
+ADD CONSTRAINT `per_personas_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
 
 --
 -- Filtros para la tabla `per_personas_poblaciones`
@@ -1445,11 +1455,17 @@ ADD CONSTRAINT `per_personas_poblaciones_ibfk_1` FOREIGN KEY (`persona_id`) REFE
 ADD CONSTRAINT `per_personas_poblaciones_ibfk_2` FOREIGN KEY (`poblacion_id`) REFERENCES `per_poblaciones` (`id`);
 
 --
+-- Filtros para la tabla `per_poblaciones`
+--
+ALTER TABLE `per_poblaciones`
+ADD CONSTRAINT `per_poblaciones_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
+
+--
 -- Filtros para la tabla `per_poblaciones_rols`
 --
 ALTER TABLE `per_poblaciones_rols`
 ADD CONSTRAINT `per_poblaciones_rols_ibfk_1` FOREIGN KEY (`poblacion_id`) REFERENCES `per_poblaciones` (`id`),
-ADD CONSTRAINT `per_poblaciones_rols_ibfk_2` FOREIGN KEY (`rol_id`) REFERENCES `adm_rols` (`id`);
+ADD CONSTRAINT `per_poblaciones_rols_ibfk_2` FOREIGN KEY (`rol_id`) REFERENCES `acc_rols` (`id`);
 
 --
 -- Filtros para la tabla `sys_bloqueos`
