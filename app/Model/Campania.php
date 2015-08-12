@@ -7,17 +7,7 @@ class Campania extends AppModel {
     public $useTable = 'campanias';
     public $displayField = 'nombre';
     public $recursive = -1;
-    //public $belongsTo = array('Encuesta', 'Evento');
     public $hasAndBelongsToMany = array(
-        /*
-          'Poblacion' => array(
-          'className' => 'Poblacion',
-          'joinTable' => 'cam_campanias_poblaciones',
-          'foreignKey' => 'campania_id',
-          'associationForeignKey' => 'poblacion_id',
-          'unique' => true
-          ),
-         */
         'Persona' => array(
             'className' => 'Persona',
             'joinTable' => 'cam_campanias_personas',

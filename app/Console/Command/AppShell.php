@@ -16,7 +16,9 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
-App::uses('Shell', 'Console');
+App::uses('FmwShell', 'Console/Command');
+App::import('Vendor', 'funciones');
+App::import('Vendor', 'funciones_app');
 
 /**
  * Application Shell
@@ -26,6 +28,6 @@ App::uses('Shell', 'Console');
  *
  * @package       app.Console.Command
  */
-class AppShell extends Shell {
+class AppShell extends FmwShell {
 
 }

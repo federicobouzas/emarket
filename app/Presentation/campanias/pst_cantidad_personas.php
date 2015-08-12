@@ -31,30 +31,7 @@ class pst_cantidad_personas extends Presentation {
     }
 
     public function ajax_calcular_cantidad($params) {
-        $conditions = [];
-        $joins = [];
-        if (!empty($params->sexo)) {
-            $conditions["Persona.sexo"] = $params->sexo;
-        }
-        if (!empty($params->comuna)) {
-            $conditions["Persona.comuna"] = explode(",", $params->comuna);
-        }
-        if (!empty($params->barrio)) {
-            $conditions["Persona.barrio"] = explode(",", $params->barrio);
-        }
-        if (!empty($params->poblacion)) {
-            $conditions["per_personas_poblaciones.poblacion_id"] = explode(",", $params->poblacion);
-            $joins[] = ['table' => 'per_personas_poblaciones', 'conditions' => ['per_personas_poblaciones.persona_id = Persona.id']];
-        }
-        if (!empty($params->edad_hasta) && is_numeric($params->edad_hasta)) {
-            $conditions["Persona.fecha_nacimiento >"] = (date("Y") - (int) $params->edad_hasta - 1) . "-" . date("m") . "-" . date("d");
-        }
-        if (!empty($params->edad_desde) && is_numeric($params->edad_desde)) {
-            $conditions["Persona.fecha_nacimiento <="] = (date("Y") - (int) $params->edad_desde) . "-" . date("m") . "-" . date("d");
-        }
-        App::uses("Persona", "Model");
-        $personaObj = new Persona();
-        return $personaObj->find('count', ['conditions' => $conditions, 'joins' => $joins]);
+        return getPersonasFromParams($params);
     }
 
     public function ajax_get_cantidad_enviada($params) {

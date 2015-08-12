@@ -15,13 +15,6 @@ class Poblacion extends AppModel {
             'associationForeignKey' => 'persona_id',
             'unique' => true
         ),
-        'Campania' => array(
-            'className' => 'Campania',
-            'joinTable' => 'cam_campanias_poblaciones',
-            'foreignKey' => 'poblacion_id',
-            'associationForeignKey' => 'campania_id',
-            'unique' => true
-        ),
     );
     public $validate = array(
         'nombre' => array(
