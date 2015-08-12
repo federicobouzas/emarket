@@ -13,10 +13,11 @@ if (!class_exists('AppConfig')) {
     class AppConfig {
 
         public static $array = [
-            'imports' => [
+            'includes' => [
                 'highcharts' => true,
                 'php' => true,
                 'hoverIntent' => true,
+                'kendoui' => true,
                 'jquery' => [
                     'ui' => true,
                     'galleriffic' => true,
