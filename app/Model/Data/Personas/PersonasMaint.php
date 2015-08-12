@@ -137,6 +137,25 @@ protected $data = array (
             'title' => 'Domicilio',
             'columns' => '2',
         ),
+        2 => 
+        array (
+            'type' => 'table',
+            'fields' => 
+            array (
+                0 => 
+                array (
+                    'name' => 'nombre',
+                    'label' => 'Población',
+                ),
+            ),
+            'paginate' => true,
+            'title' => 'Poblaciones',
+            'label' => 'Población',
+            'model' => 'Poblacion',
+            'orderby' => 'Poblacion.nombre ASC',
+            'assoc' => true,
+            'multiple' => true,
+        ),
     ),
 );
 

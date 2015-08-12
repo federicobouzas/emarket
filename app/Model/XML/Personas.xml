@@ -4,7 +4,7 @@
         <actions>
             <action op="V" action="view" />
             <action op="E" action="edit" />
-            <action op="A" action="add" />
+            <action op="A" action="add" global="true" />
         </actions>
        
         <searchfield name="Persona.nombre" label="Nombre" />
@@ -14,7 +14,7 @@
         <searchfield name="Persona.comuna" label="Comuna" presentation="GEOLOCALIZACION::COMUNAS" />
         <searchfield name="Persona.barrio" label="Barrio" presentation="GEOLOCALIZACION::BARRIOS" classparams="{'listen':'PersonaComuna'}" />
         <searchfield name="Persona.id" label="Población" presentation="PERSONAS::POBLACION" classparams="{'model':'Poblacion'}" />
-        <searchfield name="Persona.activa" label="Activa" presentation="SINO" />
+        <searchfield name="Persona.activa" label="Activa" presentation="SINO_INT" />
         
         <table>
             <column>
@@ -36,7 +36,7 @@
                 <listfield name="Persona.barrio" label="Barrio" />
             </column>
             <column>
-                <listfield name="Persona.activa" label="Activa" />
+                <listfield name="Persona.activa" label="Activa" presentation="SINO_INT" />
             </column>
         </table>
     </search_list>
@@ -65,7 +65,11 @@
             <field name="provincia" label="Provincia" />
             <field name="pais" label="País" presentation="AUTOCOMPLETE" classparams="{'model':'FmwGeo.Country'}" />
             <field name="coordenadas" label="Ubicación" presentation="GOOGLEMAP" classparams="{'calle':'calle','altura':'altura','barrio':'barrio','comuna':'comuna','provincia':'provincia','pais':'pais'}" />
-        </fieldset>                
+        </fieldset>   
+        
+        <table title="Poblaciones" label="Población" paginate="true" model="Poblacion" assoc="true" multiple="true" orderby="Poblacion.nombre ASC">
+            <field name="nombre" label="Población" />
+        </table>             
     </tablemaint>
             
 </Personas>  

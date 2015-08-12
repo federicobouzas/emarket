@@ -19,7 +19,6 @@ class pst_cantidad_personas extends Presentation {
 
     public function renderReadOnly() {
         $val = $this->getValue();
-
         $html = '<div id="box' . $this->id . '" class="input ' . $this->type . ' ' . $this->required . '">';
         $html.= '<label for="' . $this->id . '">' . $this->label . '</label>';
         $html.= '<input type="hidden" name="' . $this->generateName() . '" id="' . $this->generateID() . '" value="' . $val . '" />';
@@ -31,40 +30,37 @@ class pst_cantidad_personas extends Presentation {
         return $html;
     }
 
-    public function ajaxCalcularCantidad($params) {
-        $where = "";
-        $join = "";
+    public function ajax_calcular_cantidad($params) {
+        $conditions = [];
+        $joins = [];
         if (!empty($params->sexo)) {
-            $where.= " AND per_personas.sexo='" . $params->sexo . "' ";
+            $conditions["Persona.sexo"] = $params->sexo;
         }
         if (!empty($params->comuna)) {
-            $where.= " AND per_personas.comuna IN (" . $params->comuna . ") ";
+            $conditions["Persona.comuna"] = explode(",", $params->comuna);
         }
         if (!empty($params->barrio)) {
-            $where.= " AND per_personas.barrio IN ('" . implode("','", explode(",", $params->barrio)) . "') ";
+            $conditions["Persona.barrio"] = explode(",", $params->barrio);
         }
         if (!empty($params->poblacion)) {
-            $join.= " JOIN per_personas_poblaciones ON per_personas_poblaciones.persona_id=per_personas.id ";
-            $where.= " AND per_personas_poblaciones.poblacion_id IN (" . $params->poblacion . ") ";
+            $conditions["per_personas_poblaciones.poblacion_id"] = explode(",", $params->poblacion);
+            $joins[] = ['table' => 'per_personas_poblaciones', 'conditions' => ['per_personas_poblaciones.persona_id = Persona.id']];
         }
         if (!empty($params->edad_hasta) && is_numeric($params->edad_hasta)) {
-            $where.= " AND per_personas.fecha_nacimiento > '" . (date("Y") - $params->edad_hasta - 1) . "-" . date("m") . "-" . date("d") . "' ";
+            $conditions["Persona.fecha_nacimiento >"] = (date("Y") - (int) $params->edad_hasta - 1) . "-" . date("m") . "-" . date("d");
         }
         if (!empty($params->edad_desde) && is_numeric($params->edad_desde)) {
-            $where.= " AND per_personas.fecha_nacimiento <= '" . (date("Y") - $params->edad_desde) . "-" . date("m") . "-" . date("d") . "' ";
+            $conditions["Persona.fecha_nacimiento <="] = (date("Y") - (int) $params->edad_desde) . "-" . date("m") . "-" . date("d");
         }
-
-        $db = ConnectionManager::getDataSource('default');
-        $count = $db->Query("SELECT COUNT(DISTINCT per_personas.id) AS cant FROM per_personas " . $join . " 
-                             WHERE per_personas.activa='Si'" . $where);
-        return $count[0][0]['cant'];
+        App::uses("Persona", "Model");
+        $personaObj = new Persona();
+        return $personaObj->find('count', ['conditions' => $conditions, 'joins' => $joins]);
     }
 
-    public function ajaxCantidadEnviada($params) {
+    public function ajax_get_cantidad_enviada($params) {
         if (empty($params->campania_id)) {
             return 0;
         }
-
         $db = ConnectionManager::getDataSource('default');
         $count = $db->Query("SELECT COUNT(*) AS cant FROM cam_campanias_personas WHERE campania_id=" . $params->campania_id);
         return $count[0][0]['cant'];

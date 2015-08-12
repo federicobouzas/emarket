@@ -622,7 +622,7 @@ body #UserLoginForm #submit:hover, body #UserLoginForm #submit:focus {
     float: left;
 }
 #boxPersonaFechaNacimientoYears {
-    margin: 0.3em 0 0 1em;
+    margin: 0.4em 0 0 1em;
     float: left;
 }
 #PersonaAddForm #boxPersonaFechaNacimientoYears, #PersonaEditForm #boxPersonaFechaNacimientoYears {

@@ -25,6 +25,7 @@ protected $data = array (
         array (
             'op' => 'A',
             'action' => 'add',
+            'global' => 'true',
         ),
     ),
     'filters' => 
@@ -74,7 +75,7 @@ protected $data = array (
         array (
             'name' => 'Persona.activa',
             'label' => 'Activa',
-            'presentation' => 'SINO',
+            'presentation' => 'SINO_INT',
         ),
     ),
     'columns' => 
@@ -169,6 +170,7 @@ protected $data = array (
                 array (
                     'name' => 'Persona.activa',
                     'label' => 'Activa',
+                    'presentation' => 'SINO_INT',
                 ),
             ),
         ),
