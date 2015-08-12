@@ -123,6 +123,8 @@ protected $data = array (
                 array (
                     'name' => 'pais',
                     'label' => 'País',
+                    'presentation' => 'SELECT',
+                    'classparams' => '{\'model\':\'FmwGeo.Country\'}',
                 ),
                 8 => 
                 array (
