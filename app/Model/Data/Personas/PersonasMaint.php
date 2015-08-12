@@ -123,7 +123,7 @@ protected $data = array (
                 array (
                     'name' => 'pais',
                     'label' => 'País',
-                    'presentation' => 'SELECT',
+                    'presentation' => 'AUTOCOMPLETE',
                     'classparams' => '{\'model\':\'FmwGeo.Country\'}',
                 ),
                 8 => 
@@ -131,7 +131,7 @@ protected $data = array (
                     'name' => 'coordenadas',
                     'label' => 'Ubicación',
                     'presentation' => 'GOOGLEMAP',
-                    'classparams' => '{\'calle:\'calle\',\'altura\':\'altura\',\'barrio\':\'barrio\',\'comuna\':\'comuna\',\'provincia\':\'provincia\',\'pais\':\'pais\'}',
+                    'classparams' => '{\'calle\':\'calle\',\'altura\':\'altura\',\'barrio\':\'barrio\',\'comuna\':\'comuna\',\'provincia\':\'provincia\',\'pais\':\'pais\'}',
                 ),
             ),
             'title' => 'Domicilio',

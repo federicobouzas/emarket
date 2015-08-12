@@ -63,8 +63,8 @@
             <field name="barrio" label="Barrio" presentation="GEOLOCALIZACION::BARRIOS" classparams="{'listen':'Persona.Comuna'}" />
             <field name="localidad" label="Localidad" />
             <field name="provincia" label="Provincia" />
-            <field name="pais" label="País" presentation="SELECT" classparams="{'model':'FmwGeo.Country'}" />
-            <field name="coordenadas" label="Ubicación" presentation="GOOGLEMAP" classparams="{'calle:'calle','altura':'altura','barrio':'barrio','comuna':'comuna','provincia':'provincia','pais':'pais'}" />
+            <field name="pais" label="País" presentation="AUTOCOMPLETE" classparams="{'model':'FmwGeo.Country'}" />
+            <field name="coordenadas" label="Ubicación" presentation="GOOGLEMAP" classparams="{'calle':'calle','altura':'altura','barrio':'barrio','comuna':'comuna','provincia':'provincia','pais':'pais'}" />
         </fieldset>                
     </tablemaint>
             
