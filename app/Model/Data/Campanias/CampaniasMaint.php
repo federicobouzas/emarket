@@ -127,39 +127,38 @@ protected $data = array (
                 array (
                     'name' => 'personas_sexo',
                     'label' => 'Sexo',
-                    'presentation' => 'SINO',
+                    'presentation' => 'SEXO',
                 ),
                 1 => 
                 array (
                     'name' => 'personas_edad',
                     'label' => 'Edad',
-                    'presentation' => 'SINO',
+                    'presentation' => 'INTRANGE',
+                    'size' => 2,
                 ),
                 2 => 
-                array (
-                    'name' => 'personas_tipo_envio',
-                    'label' => 'Tipo Envío',
-                    'presentation' => 'CAMPANIAS::TIPO_ENVIO',
-                ),
-                3 => 
                 array (
                     'name' => 'personas_comuna',
                     'label' => 'Comuna',
                     'presentation' => 'CAMPANIAS::COMUNAS_CHECKBOX',
+                    'breakline' => true,
                 ),
-                4 => 
+                3 => 
                 array (
                     'name' => 'personas_barrio',
                     'label' => 'Barrio',
                     'presentation' => 'CAMPANIAS::BARRIOS_CHECKBOX',
+                    'breakline' => true,
                 ),
-                5 => 
+                4 => 
                 array (
                     'name' => 'personas_poblaciones',
                     'label' => 'Poblaciones',
                     'presentation' => 'CAMPANIAS::POBLACIONES_CHECKBOX',
+                    'classparams' => '{\'width\':\'25%\'}',
+                    'breakline' => true,
                 ),
-                6 => 
+                5 => 
                 array (
                     'name' => 'tmp_cantidad_personas',
                     'label' => 'Cantidad de Personas',

@@ -5,6 +5,8 @@ $(function () {
     $("#CampaniaEmail").change(campaniaEmail).change();
     // Evento que muestra el cuerpo del SMS en caso de que se utilice ese medio
     $("#CampaniaSms").change(campaniaSms).change();
+    // Evento que muestra los distintos tipos de envio
+    //$("#CampaniaPersonasTipoEnvio").change(especificarTipoEnvio).change();
 
     if (OP == "V") {
         crearModalVistaCuerpoEmail();
@@ -27,6 +29,35 @@ function onBeforeSubmit() {
         err.push("Si especifica la Edad Hasta de las personas debe tambíen especificar la Edad Desde");
     }
     return err;
+}
+
+function especificarTipoEnvio() {
+    if (this.value == "comunas") {
+        displayField("Campania", "personas_comuna", true);
+        displayField("Campania", "personas_barrio", false);
+        displayField("Campania", "personas_poblaciones", false);
+        $("#boxCampaniaPersonasBarrio").find('input[type=checkbox]').attr('checked', false);
+        $("#boxCampaniaPersonasPoblaciones").find('input[type=checkbox]').attr('checked', false);
+    } else if (this.value == "barrios") {
+        displayField("Campania", "personas_comuna", false);
+        displayField("Campania", "personas_barrio", true);
+        displayField("Campania", "personas_poblaciones", false);
+        $("#boxCampaniaPersonasComuna").find('input[type=checkbox]').attr('checked', false);
+        $("#boxCampaniaPersonasPoblaciones").find('input[type=checkbox]').attr('checked', false);
+    } else if (this.value == "poblaciones") {
+        displayField("Campania", "personas_comuna", false);
+        displayField("Campania", "personas_barrio", false);
+        displayField("Campania", "personas_poblaciones", true);
+        $("#boxCampaniaPersonasComuna").find('input[type=checkbox]').attr('checked', false);
+        $("#boxCampaniaPersonasBarrio").find('input[type=checkbox]').attr('checked', false);
+    } else {
+        displayField("Campania", "personas_comuna", false);
+        displayField("Campania", "personas_barrio", false);
+        displayField("Campania", "personas_poblaciones", false);
+        $("#boxCampaniaPersonasComuna").find('input[type=checkbox]').attr('checked', false);
+        $("#boxCampaniaPersonasBarrio").find('input[type=checkbox]').attr('checked', false);
+        $("#boxCampaniaPersonasPoblaciones").find('input[type=checkbox]').attr('checked', false);
+    }
 }
 
 function especificarTipoCampania() {

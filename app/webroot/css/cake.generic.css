@@ -484,8 +484,7 @@ label.checkbox {
     font-size: 100%;
     font-weight: normal;
     float: left;
-    width: auto;
-    margin-right: 35px;
+    width: 80%;
 }
 label.permiso {
     font-weight: normal;
@@ -533,20 +532,21 @@ option {
 }
 input[type=checkbox] {
     float: left;
-    margin: 2px 6px 7px 2px;
+    margin: 4px 2px 5px 0;
     width: auto;
 }
 .checkboxes-wrap{
     float: left;
     margin: -5px 0 0 0px;
+    width: 88%;
 }
-.checkboxes-wrap label{width: auto;} 
 div.checkbox label {
     display: inline;
 }
 div.checkbox-box {
     float: left;
     padding: 0;
+    width: 15%;
 }
 input[type=radio] {
     width: auto;
@@ -1013,7 +1013,7 @@ div.input{
 .columnas_2 div.input{float: left; width: 36%;}
 .columnas_2 .inputs div.input+div.input, #boxProveedorUserId{margin-left: 1%; width: 34%;}
 .columnas_3 div.input{float: left; width: 18%; }
-
+div.input.clear{ width: 100%;}
 
 .input.file a {    
     vertical-align: middle;
@@ -1523,14 +1523,14 @@ li.dnd_list_item div {
 
 /*Notificaciones*/
 .notificationBox {
-   position: absolute;
-   padding: 5px 30px 5px 5px;
-   right: 20px;
-   background: url('../img/notifications.png') no-repeat right 0;
-   opacity: .5;   
-   min-height: 25px;
-   margin-top: 4px;
-   cursor: pointer;
+    position: absolute;
+    padding: 5px 30px 5px 5px;
+    right: 20px;
+    background: url('../img/notifications.png') no-repeat right 0;
+    opacity: .5;   
+    min-height: 25px;
+    margin-top: 4px;
+    cursor: pointer;
 }
 .notificationBox:hover {
     opacity: 1;

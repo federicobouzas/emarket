@@ -68,12 +68,11 @@
         </fieldset>
         
         <fieldset id="caracteristicas_personas" title="Características de las Personas" columns="2">
-            <field name="personas_sexo" label="Sexo" presentation="SINO" />
-            <field name="personas_edad" label="Edad" presentation="SINO" />
-            <field name="personas_tipo_envio" label="Tipo Envío" presentation="CAMPANIAS::TIPO_ENVIO" />
-            <field name="personas_comuna" label="Comuna" presentation="CAMPANIAS::COMUNAS_CHECKBOX" />
-            <field name="personas_barrio" label="Barrio" presentation="CAMPANIAS::BARRIOS_CHECKBOX" />
-            <field name="personas_poblaciones" label="Poblaciones" presentation="CAMPANIAS::POBLACIONES_CHECKBOX" />
+            <field name="personas_sexo" label="Sexo" presentation="SEXO" />
+            <field name="personas_edad" label="Edad" presentation="INTRANGE" size="2" />
+            <field name="personas_comuna" label="Comuna" presentation="CAMPANIAS::COMUNAS_CHECKBOX" breakline="true" />
+            <field name="personas_barrio" label="Barrio" presentation="CAMPANIAS::BARRIOS_CHECKBOX" breakline="true" />
+            <field name="personas_poblaciones" label="Poblaciones" presentation="CAMPANIAS::POBLACIONES_CHECKBOX" classparams="{'width':'25%'}" breakline="true" />
             <field name="tmp_cantidad_personas" label="Cantidad de Personas" presentation="CAMPANIAS::CANTIDAD_PERSONAS" />
         </fieldset>
         
