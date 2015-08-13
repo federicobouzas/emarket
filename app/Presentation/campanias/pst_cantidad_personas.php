@@ -1,6 +1,7 @@
 <?php
 
 App::uses('Presentation', 'Lib');
+App::import('Vendor', 'funciones_app');
 
 class pst_cantidad_personas extends Presentation {
 
