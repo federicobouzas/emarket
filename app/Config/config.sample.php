@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('CAKE_FRAMEWORK')) {
-    define('CAKE_FRAMEWORK', DS . 'Users' . DS . 'danielalisanti' . DS . 'Sites' . DS . 'framework');
+    define('CAKE_FRAMEWORK', 'C:' . DS . 'xampp' . DS . 'htdocs' . DS . 'framework-bootstrap');
 }
 
 if (!defined('WWW')) {
@@ -14,6 +14,8 @@ if (!class_exists('AppConfig')) {
 
         public static $array = [
             'includes' => [
+                'bootstrap' => true,
+                'font-awesome' => true,
                 'highcharts' => true,
                 'php' => true,
                 'hoverIntent' => true,
@@ -44,7 +46,7 @@ if (!class_exists('AppConfig')) {
                 'export' => true,
             ],
             'site' => [
-                'serial' => 'A1276-26A96-50E23-11C99-5292F-63267-95065-B6018',
+                'serial' => '53646-15908-41573-9FC45-C4427-B5194-55FFA-D4A4C',
                 'ajax' => [
                     'enabled' => false,
                     'loading' => "Cargando contenido",

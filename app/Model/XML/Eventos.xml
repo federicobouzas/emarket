@@ -8,7 +8,7 @@
     </search_list>
     
     <tablemaint file="EventosMaint.php">
-        <fieldset title="Datos del Evento">
+        <fieldset title="Datos del Evento" columns="2">
             <field name="fecha_carga" label="Fecha Carga" presentation="DATETIME" classparams="{'force':true}" isvisible="false" actions="A" />
             <field name="user_id" label="Usuario Carga" presentation="USER" classparams="{'force':true}" isvisible="false" actions="A" />
             <field name="nombre" label="Nombre" />
@@ -16,7 +16,7 @@
             <field name="descripcion" label="Descripción" presentation="TEXTAREA" />
         </fieldset>
         
-        <fieldset title="Ubicación">
+        <fieldset title="Ubicación" columns="2">
             <field name="direccion" label="Dirección" />
             <field name="barrio" label="Barrio" presentation="BARRIOS" />
             <field name="ciudad" label="Ciudad" />

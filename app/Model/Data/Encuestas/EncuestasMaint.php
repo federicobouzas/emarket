@@ -10,6 +10,8 @@ protected $data = array (
     'translatepath' => 'encuestas.maint',
     'submit' => 'Guardar',
     'cancel' => true,
+    'info' => '',
+    'warning' => '',
     'jsincludes' => 
     array (
         0 => 'encuestas/maint_encuestas',

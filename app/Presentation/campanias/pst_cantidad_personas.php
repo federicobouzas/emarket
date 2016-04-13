@@ -23,10 +23,10 @@ class pst_cantidad_personas extends Presentation {
         $html = '<div id="box' . $this->id . '" class="input ' . $this->type . ' ' . $this->required . '">';
         $html.= '<label for="' . $this->id . '">' . $this->label . '</label>';
         $html.= '<input type="hidden" name="' . $this->generateName() . '" id="' . $this->generateID() . '" value="' . $val . '" />';
-        $html.= '<a class="k-button" href="javascript:void(0);" id="' . $this->id . 'Button">';
-        $html.= '<span class="k-icon k-i-refresh"></span>';
+        $html.= '<a class="btn btn-inverse btn-sm" href="javascript:void(0);" id="' . $this->id . 'Button">';
+        $html.= '<i class="fa fa-refresh" aria-hidden="true"></i>';
         $html.= '</a>';
-        $html.= '<span id="' . $this->id . 'Number"></span>';
+        $html.= '<span class="ml10" id="' . $this->id . 'Number"></span>';
         $html.= '</div>';
         return $html;
     }

@@ -10,6 +10,8 @@ protected $data = array (
     'translatepath' => NULL,
     'submit' => 'Guardar',
     'cancel' => true,
+    'info' => '',
+    'warning' => '',
     'jsincludes' => 
     array (
         0 => 'personas/maint_personas.js',

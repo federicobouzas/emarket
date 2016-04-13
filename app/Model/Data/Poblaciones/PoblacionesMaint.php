@@ -10,6 +10,8 @@ protected $data = array (
     'translatepath' => NULL,
     'submit' => 'Guardar',
     'cancel' => true,
+    'info' => '',
+    'warning' => '',
     'data' => 
     array (
         0 => 

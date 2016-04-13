@@ -1,6 +1,6 @@
 <?php
 
-$app_name = 'emarket';
+$app_name = 'myapp';
 
 Configure::write('debug', 2);
 

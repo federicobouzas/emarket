@@ -10,6 +10,8 @@ protected $data = array (
     'translatepath' => 'campanias.maint',
     'submit' => 'Guardar',
     'cancel' => true,
+    'info' => '',
+    'warning' => '',
     'jsincludes' => 
     array (
         0 => 'campanias/maint_campanias.js',

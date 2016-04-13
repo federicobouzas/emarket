@@ -10,6 +10,8 @@ protected $data = array (
     'translatepath' => NULL,
     'submit' => 'Guardar',
     'cancel' => true,
+    'info' => '',
+    'warning' => '',
     'data' => 
     array (
         0 => 
@@ -55,6 +57,7 @@ protected $data = array (
                 ),
             ),
             'title' => 'Datos del Evento',
+            'columns' => '2',
         ),
         1 => 
         array (
@@ -92,6 +95,7 @@ protected $data = array (
                 ),
             ),
             'title' => 'Ubicación',
+            'columns' => '2',
         ),
     ),
 );
