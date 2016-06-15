@@ -1,11 +1,12 @@
+
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-08-2015 a las 19:02:09
--- Versión del servidor: 5.6.21
--- Versión de PHP: 5.6.3
+-- Tiempo de generación: 15-06-2016 a las 18:37:25
+-- Versión del servidor: 10.1.10-MariaDB
+-- Versión de PHP: 5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,14 +15,11 @@ SET FOREIGN_KEY_CHECKS = 0;
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de datos: `emarket`
 --
-DROP DATABASE IF EXISTS `emarket`;
-CREATE DATABASE `emarket`;
-USE `emarket`;
 
 -- --------------------------------------------------------
 
@@ -29,8 +27,8 @@ USE `emarket`;
 -- Estructura de tabla para la tabla `acc_buttons`
 --
 
-CREATE TABLE IF NOT EXISTS `acc_buttons` (
-`id` int(10) NOT NULL,
+CREATE TABLE `acc_buttons` (
+  `id` int(10) NOT NULL,
   `fecha_carga` datetime DEFAULT NULL,
   `fecha_modificacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` int(11) DEFAULT NULL,
@@ -42,14 +40,17 @@ CREATE TABLE IF NOT EXISTS `acc_buttons` (
   `url` varchar(200) NOT NULL,
   `description` varchar(200) NOT NULL,
   `status` varchar(8) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `acc_buttons`
 --
 
 INSERT INTO `acc_buttons` (`id`, `fecha_carga`, `fecha_modificacion`, `user_id`, `global`, `query`, `display_order`, `refresh`, `icon`, `url`, `description`, `status`) VALUES
-(1, '2015-06-12 17:45:42', '2015-08-11 14:56:51', NULL, 'No', '', '90', 'No', 'consultar_usuarios.png', 'fmw_acceso/users/index', 'Usuarios', 'Activo');
+(1, '2015-06-12 17:45:42', '2016-04-15 16:45:25', NULL, 'No', '', '90', 'No', 'users', 'fmw_acceso/users/index', 'Usuarios', 'Inactivo'),
+(2, '2016-04-15 13:39:51', '2016-04-15 16:39:51', 1, 'No', '', '10', 'No', 'user', 'personas/index', 'Personas', 'Activo'),
+(3, '2016-04-15 13:40:09', '2016-04-15 16:40:09', 1, 'No', '', '12', 'No', 'users', 'poblaciones/index', 'Poblaciones', 'Activo'),
+(4, '2016-04-15 13:41:14', '2016-04-15 16:41:14', 1, 'No', '', '20', 'No', 'envelope', 'campanias/index', 'Campañas', 'Activo');
 
 -- --------------------------------------------------------
 
@@ -57,7 +58,7 @@ INSERT INTO `acc_buttons` (`id`, `fecha_carga`, `fecha_modificacion`, `user_id`,
 -- Estructura de tabla para la tabla `acc_buttons_rols`
 --
 
-CREATE TABLE IF NOT EXISTS `acc_buttons_rols` (
+CREATE TABLE `acc_buttons_rols` (
   `button_id` int(10) NOT NULL,
   `rol_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -67,7 +68,10 @@ CREATE TABLE IF NOT EXISTS `acc_buttons_rols` (
 --
 
 INSERT INTO `acc_buttons_rols` (`button_id`, `rol_id`) VALUES
-(1, 1);
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1);
 
 -- --------------------------------------------------------
 
@@ -75,8 +79,8 @@ INSERT INTO `acc_buttons_rols` (`button_id`, `rol_id`) VALUES
 -- Estructura de tabla para la tabla `acc_permisos`
 --
 
-CREATE TABLE IF NOT EXISTS `acc_permisos` (
-`id` int(10) NOT NULL,
+CREATE TABLE `acc_permisos` (
+  `id` int(10) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `fecha_modificacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` int(11) DEFAULT NULL,
@@ -84,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `acc_permisos` (
   `plugin` varchar(100) DEFAULT NULL,
   `controller` varchar(100) NOT NULL,
   `action` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `acc_permisos`
@@ -106,13 +110,13 @@ INSERT INTO `acc_permisos` (`id`, `fecha_carga`, `fecha_modificacion`, `user_id`
 -- Estructura de tabla para la tabla `acc_rights`
 --
 
-CREATE TABLE IF NOT EXISTS `acc_rights` (
-`id` int(10) NOT NULL,
+CREATE TABLE `acc_rights` (
+  `id` int(10) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `fecha_modificacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` int(11) DEFAULT NULL,
   `nombre` varchar(200) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `acc_rights`
@@ -131,7 +135,7 @@ INSERT INTO `acc_rights` (`id`, `fecha_carga`, `fecha_modificacion`, `user_id`, 
 -- Estructura de tabla para la tabla `acc_rights_rols`
 --
 
-CREATE TABLE IF NOT EXISTS `acc_rights_rols` (
+CREATE TABLE `acc_rights_rols` (
   `right_id` int(10) NOT NULL,
   `rol_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -153,13 +157,13 @@ INSERT INTO `acc_rights_rols` (`right_id`, `rol_id`) VALUES
 -- Estructura de tabla para la tabla `acc_right_permisos`
 --
 
-CREATE TABLE IF NOT EXISTS `acc_right_permisos` (
-`id` int(10) NOT NULL,
+CREATE TABLE `acc_right_permisos` (
+  `id` int(10) NOT NULL,
   `right_id` int(10) NOT NULL,
   `plugin` varchar(100) DEFAULT NULL,
   `controller` varchar(100) NOT NULL,
   `action` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `acc_right_permisos`
@@ -197,20 +201,20 @@ INSERT INTO `acc_right_permisos` (`id`, `right_id`, `plugin`, `controller`, `act
 -- Estructura de tabla para la tabla `acc_rols`
 --
 
-CREATE TABLE IF NOT EXISTS `acc_rols` (
-`id` int(11) NOT NULL,
+CREATE TABLE `acc_rols` (
+  `id` int(11) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `fecha_modificacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` int(11) DEFAULT NULL,
   `nombre` varchar(250) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `acc_rols`
 --
 
 INSERT INTO `acc_rols` (`id`, `fecha_carga`, `fecha_modificacion`, `user_id`, `nombre`) VALUES
-(1, '2015-06-12 17:45:42', '2015-08-11 14:15:58', NULL, 'ADMINISTRADOR GENERAL');
+(1, '2015-06-12 17:45:42', '2016-04-15 16:41:32', NULL, 'ADMINISTRADOR GENERAL');
 
 -- --------------------------------------------------------
 
@@ -218,8 +222,8 @@ INSERT INTO `acc_rols` (`id`, `fecha_carga`, `fecha_modificacion`, `user_id`, `n
 -- Estructura de tabla para la tabla `acc_users`
 --
 
-CREATE TABLE IF NOT EXISTS `acc_users` (
-`id` int(11) NOT NULL,
+CREATE TABLE `acc_users` (
+  `id` int(11) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `fecha_modificacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `firstname` varchar(200) NOT NULL,
@@ -232,7 +236,7 @@ CREATE TABLE IF NOT EXISTS `acc_users` (
   `fecha_ingreso` date DEFAULT NULL,
   `tienda_id` int(11) DEFAULT NULL,
   `estado` varchar(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `acc_users`
@@ -247,8 +251,8 @@ INSERT INTO `acc_users` (`id`, `fecha_carga`, `fecha_modificacion`, `firstname`,
 -- Estructura de tabla para la tabla `acc_users_recovers`
 --
 
-CREATE TABLE IF NOT EXISTS `acc_users_recovers` (
-`id` int(10) NOT NULL,
+CREATE TABLE `acc_users_recovers` (
+  `id` int(10) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `user_id` int(10) NOT NULL,
   `hash` varchar(32) NOT NULL
@@ -260,11 +264,11 @@ CREATE TABLE IF NOT EXISTS `acc_users_recovers` (
 -- Estructura de tabla para la tabla `acc_users_rols`
 --
 
-CREATE TABLE IF NOT EXISTS `acc_users_rols` (
-`id` int(11) NOT NULL,
+CREATE TABLE `acc_users_rols` (
+  `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `rol_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `acc_users_rols`
@@ -279,8 +283,8 @@ INSERT INTO `acc_users_rols` (`id`, `user_id`, `rol_id`) VALUES
 -- Estructura de tabla para la tabla `cam_campanias`
 --
 
-CREATE TABLE IF NOT EXISTS `cam_campanias` (
-`id` int(10) NOT NULL,
+CREATE TABLE `cam_campanias` (
+  `id` int(10) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `fecha_modificacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `activa` varchar(2) NOT NULL DEFAULT 'Si',
@@ -312,8 +316,8 @@ CREATE TABLE IF NOT EXISTS `cam_campanias` (
 -- Estructura de tabla para la tabla `cam_campanias_personas`
 --
 
-CREATE TABLE IF NOT EXISTS `cam_campanias_personas` (
-`id` int(10) NOT NULL,
+CREATE TABLE `cam_campanias_personas` (
+  `id` int(10) NOT NULL,
   `campania_id` int(10) NOT NULL,
   `persona_id` int(10) NOT NULL,
   `estado` varchar(20) NOT NULL DEFAULT 'Sin enviar',
@@ -330,7 +334,7 @@ CREATE TABLE IF NOT EXISTS `cam_campanias_personas` (
 -- Estructura de tabla para la tabla `cam_campanias_poblaciones`
 --
 
-CREATE TABLE IF NOT EXISTS `cam_campanias_poblaciones` (
+CREATE TABLE `cam_campanias_poblaciones` (
   `campania_id` int(10) NOT NULL,
   `poblacion_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -341,8 +345,8 @@ CREATE TABLE IF NOT EXISTS `cam_campanias_poblaciones` (
 -- Estructura de tabla para la tabla `cam_encuestas`
 --
 
-CREATE TABLE IF NOT EXISTS `cam_encuestas` (
-`id` int(10) NOT NULL,
+CREATE TABLE `cam_encuestas` (
+  `id` int(10) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `fecha_modificacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` int(10) NOT NULL,
@@ -356,8 +360,8 @@ CREATE TABLE IF NOT EXISTS `cam_encuestas` (
 -- Estructura de tabla para la tabla `cam_encuestas_preguntas`
 --
 
-CREATE TABLE IF NOT EXISTS `cam_encuestas_preguntas` (
-`id` int(10) NOT NULL,
+CREATE TABLE `cam_encuestas_preguntas` (
+  `id` int(10) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `fecha_modificacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` int(10) NOT NULL,
@@ -374,8 +378,8 @@ CREATE TABLE IF NOT EXISTS `cam_encuestas_preguntas` (
 -- Estructura de tabla para la tabla `cam_encuestas_respuestas`
 --
 
-CREATE TABLE IF NOT EXISTS `cam_encuestas_respuestas` (
-`id` int(10) NOT NULL,
+CREATE TABLE `cam_encuestas_respuestas` (
+  `id` int(10) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `campania_id` int(10) NOT NULL,
   `persona_id` int(10) NOT NULL,
@@ -389,8 +393,8 @@ CREATE TABLE IF NOT EXISTS `cam_encuestas_respuestas` (
 -- Estructura de tabla para la tabla `cam_eventos`
 --
 
-CREATE TABLE IF NOT EXISTS `cam_eventos` (
-`id` int(10) NOT NULL,
+CREATE TABLE `cam_eventos` (
+  `id` int(10) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `fecha_modificacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` int(10) NOT NULL,
@@ -412,7 +416,7 @@ CREATE TABLE IF NOT EXISTS `cam_eventos` (
 -- Estructura de tabla para la tabla `cam_eventos_asistencias`
 --
 
-CREATE TABLE IF NOT EXISTS `cam_eventos_asistencias` (
+CREATE TABLE `cam_eventos_asistencias` (
   `evento_id` int(10) NOT NULL,
   `persona_id` int(10) NOT NULL,
   `fecha_carga` datetime NOT NULL,
@@ -425,8 +429,8 @@ CREATE TABLE IF NOT EXISTS `cam_eventos_asistencias` (
 -- Estructura de tabla para la tabla `cam_links`
 --
 
-CREATE TABLE IF NOT EXISTS `cam_links` (
-`id` int(10) NOT NULL,
+CREATE TABLE `cam_links` (
+  `id` int(10) NOT NULL,
   `campania_id` int(10) NOT NULL,
   `link` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -437,8 +441,8 @@ CREATE TABLE IF NOT EXISTS `cam_links` (
 -- Estructura de tabla para la tabla `cam_links_personas`
 --
 
-CREATE TABLE IF NOT EXISTS `cam_links_personas` (
-`id` int(10) NOT NULL,
+CREATE TABLE `cam_links_personas` (
+  `id` int(10) NOT NULL,
   `link_id` int(10) NOT NULL,
   `persona_id` int(10) NOT NULL,
   `fecha_acceso` datetime NOT NULL
@@ -450,8 +454,8 @@ CREATE TABLE IF NOT EXISTS `cam_links_personas` (
 -- Estructura de tabla para la tabla `das_charts`
 --
 
-CREATE TABLE IF NOT EXISTS `das_charts` (
-`id` int(11) NOT NULL,
+CREATE TABLE `das_charts` (
+  `id` int(11) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `fecha_modificacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` int(11) DEFAULT NULL,
@@ -477,8 +481,8 @@ CREATE TABLE IF NOT EXISTS `das_charts` (
 -- Estructura de tabla para la tabla `das_gauges`
 --
 
-CREATE TABLE IF NOT EXISTS `das_gauges` (
-`id` int(11) NOT NULL,
+CREATE TABLE `das_gauges` (
+  `id` int(11) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   `fecha_modificacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -497,8 +501,8 @@ CREATE TABLE IF NOT EXISTS `das_gauges` (
 -- Estructura de tabla para la tabla `das_kpis`
 --
 
-CREATE TABLE IF NOT EXISTS `das_kpis` (
-`id` int(11) NOT NULL,
+CREATE TABLE `das_kpis` (
+  `id` int(11) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `fecha_modificacion` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `user_id` int(11) DEFAULT NULL,
@@ -515,13 +519,13 @@ CREATE TABLE IF NOT EXISTS `das_kpis` (
 -- Estructura de tabla para la tabla `geo_cities`
 --
 
-CREATE TABLE IF NOT EXISTS `geo_cities` (
-`ID` int(11) NOT NULL,
+CREATE TABLE `geo_cities` (
+  `ID` int(11) NOT NULL,
   `Name` char(35) CHARACTER SET latin1 NOT NULL DEFAULT '',
   `CountryCode` char(3) CHARACTER SET latin1 NOT NULL DEFAULT '',
   `District` char(20) CHARACTER SET latin1 NOT NULL DEFAULT '',
   `Population` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=4080 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `geo_cities`
@@ -1579,8 +1583,7 @@ INSERT INTO `geo_cities` (`ID`, `Name`, `CountryCode`, `District`, `Population`)
 (1049, 'Thane (Thana)', 'IND', 'Maharashtra', 803389),
 (1050, 'Allahabad', 'IND', 'Uttar Pradesh', 792858),
 (1051, 'Meerut', 'IND', 'Uttar Pradesh', 753778),
-(1052, 'Vishakhapatnam', 'IND', 'Andhra Pradesh', 752037);
-INSERT INTO `geo_cities` (`ID`, `Name`, `CountryCode`, `District`, `Population`) VALUES
+(1052, 'Vishakhapatnam', 'IND', 'Andhra Pradesh', 752037),
 (1053, 'Jabalpur', 'IND', 'Madhya Pradesh', 741927),
 (1054, 'Amritsar', 'IND', 'Punjab', 708835),
 (1055, 'Faridabad', 'IND', 'Haryana', 703592),
@@ -1588,7 +1591,8 @@ INSERT INTO `geo_cities` (`ID`, `Name`, `CountryCode`, `District`, `Population`)
 (1057, 'Gwalior', 'IND', 'Madhya Pradesh', 690765),
 (1058, 'Jodhpur', 'IND', 'Rajasthan', 666279),
 (1059, 'Nashik (Nasik)', 'IND', 'Maharashtra', 656925),
-(1060, 'Hubli-Dharwad', 'IND', 'Karnataka', 648298),
+(1060, 'Hubli-Dharwad', 'IND', 'Karnataka', 648298);
+INSERT INTO `geo_cities` (`ID`, `Name`, `CountryCode`, `District`, `Population`) VALUES
 (1061, 'Solapur (Sholapur)', 'IND', 'Maharashtra', 604215),
 (1062, 'Ranchi', 'IND', 'Jharkhand', 599306),
 (1063, 'Bareilly', 'IND', 'Uttar Pradesh', 587211),
@@ -2682,8 +2686,7 @@ INSERT INTO `geo_cities` (`ID`, `Name`, `CountryCode`, `District`, `Population`)
 (2151, 'Lengshuijiang', 'CHN', 'Hunan', 137994),
 (2152, 'Laiyang', 'CHN', 'Shandong', 137080),
 (2153, 'Xianning', 'CHN', 'Hubei', 136811),
-(2154, 'Dali', 'CHN', 'Yunnan', 136554);
-INSERT INTO `geo_cities` (`ID`, `Name`, `CountryCode`, `District`, `Population`) VALUES
+(2154, 'Dali', 'CHN', 'Yunnan', 136554),
 (2155, 'Anda', 'CHN', 'Heilongjiang', 136446),
 (2156, 'Jincheng', 'CHN', 'Shanxi', 136396),
 (2157, 'Longyan', 'CHN', 'Fujian', 134481),
@@ -2693,7 +2696,8 @@ INSERT INTO `geo_cities` (`ID`, `Name`, `CountryCode`, `District`, `Population`)
 (2161, 'Binzhou', 'CHN', 'Shandong', 133555),
 (2162, 'Linhe', 'CHN', 'Inner Mongolia', 133183),
 (2163, 'Wuwei', 'CHN', 'Gansu', 133101),
-(2164, 'Duyun', 'CHN', 'Guizhou', 132971),
+(2164, 'Duyun', 'CHN', 'Guizhou', 132971);
+INSERT INTO `geo_cities` (`ID`, `Name`, `CountryCode`, `District`, `Population`) VALUES
 (2165, 'Mishan', 'CHN', 'Heilongjiang', 132744),
 (2166, 'Shangrao', 'CHN', 'Jiangxi', 132455),
 (2167, 'Changji', 'CHN', 'Xinxiang', 132260),
@@ -3743,8 +3747,7 @@ INSERT INTO `geo_cities` (`ID`, `Name`, `CountryCode`, `District`, `Population`)
 (3211, 'Prešov', 'SVK', 'Východné Slovensko', 93977),
 (3212, 'Ljubljana', 'SVN', 'Osrednjeslovenska', 270986),
 (3213, 'Maribor', 'SVN', 'Podravska', 115532),
-(3214, 'Mogadishu', 'SOM', 'Banaadir', 997000);
-INSERT INTO `geo_cities` (`ID`, `Name`, `CountryCode`, `District`, `Population`) VALUES
+(3214, 'Mogadishu', 'SOM', 'Banaadir', 997000),
 (3215, 'Hargeysa', 'SOM', 'Woqooyi Galbeed', 90000),
 (3216, 'Kismaayo', 'SOM', 'Jubbada Hoose', 90000),
 (3217, 'Colombo', 'LKA', 'Western', 645000),
@@ -3760,7 +3763,8 @@ INSERT INTO `geo_cities` (`ID`, `Name`, `CountryCode`, `District`, `Population`)
 (3227, 'Port Sudan', 'SDN', 'al-Bahr al-Ahmar', 308195),
 (3228, 'Kassala', 'SDN', 'Kassala', 234622),
 (3229, 'Obeid', 'SDN', 'Kurdufan al-Shamaliy', 229425),
-(3230, 'Nyala', 'SDN', 'Darfur al-Janubiya', 227183),
+(3230, 'Nyala', 'SDN', 'Darfur al-Janubiya', 227183);
+INSERT INTO `geo_cities` (`ID`, `Name`, `CountryCode`, `District`, `Population`) VALUES
 (3231, 'Wad Madani', 'SDN', 'al-Jazira', 211362),
 (3232, 'al-Qadarif', 'SDN', 'al-Qadarif', 191164),
 (3233, 'Kusti', 'SDN', 'al-Bahr al-Abyad', 173599),
@@ -4617,7 +4621,7 @@ INSERT INTO `geo_cities` (`ID`, `Name`, `CountryCode`, `District`, `Population`)
 -- Estructura de tabla para la tabla `geo_countries`
 --
 
-CREATE TABLE IF NOT EXISTS `geo_countries` (
+CREATE TABLE `geo_countries` (
   `Code` char(3) CHARACTER SET latin1 NOT NULL DEFAULT '',
   `Name` char(52) CHARACTER SET latin1 NOT NULL DEFAULT '',
   `Continent` enum('Asia','Europe','North America','Africa','Oceania','Antarctica','South America') CHARACTER SET latin1 NOT NULL DEFAULT 'Asia',
@@ -4886,7 +4890,7 @@ INSERT INTO `geo_countries` (`Code`, `Name`, `Continent`, `Region`, `SurfaceArea
 -- Estructura de tabla para la tabla `geo_countries_languages`
 --
 
-CREATE TABLE IF NOT EXISTS `geo_countries_languages` (
+CREATE TABLE `geo_countries_languages` (
   `CountryCode` char(3) CHARACTER SET latin1 NOT NULL DEFAULT '',
   `Language` char(30) CHARACTER SET latin1 NOT NULL DEFAULT '',
   `IsOfficial` enum('T','F') CHARACTER SET latin1 NOT NULL DEFAULT 'F',
@@ -5889,8 +5893,8 @@ INSERT INTO `geo_countries_languages` (`CountryCode`, `Language`, `IsOfficial`, 
 -- Estructura de tabla para la tabla `msg_entrantes`
 --
 
-CREATE TABLE IF NOT EXISTS `msg_entrantes` (
-`id` int(10) NOT NULL,
+CREATE TABLE `msg_entrantes` (
+  `id` int(10) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `fecha_mensaje` varchar(100) NOT NULL,
   `server_id` int(10) NOT NULL,
@@ -5906,8 +5910,8 @@ CREATE TABLE IF NOT EXISTS `msg_entrantes` (
 -- Estructura de tabla para la tabla `msg_mensajes`
 --
 
-CREATE TABLE IF NOT EXISTS `msg_mensajes` (
-`id` int(10) NOT NULL,
+CREATE TABLE `msg_mensajes` (
+  `id` int(10) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `fecha_envio` datetime NOT NULL,
   `prioridad` int(1) NOT NULL DEFAULT '3',
@@ -5926,14 +5930,23 @@ CREATE TABLE IF NOT EXISTS `msg_mensajes` (
   `error` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `msg_mensajes`
+--
+
+INSERT INTO `msg_mensajes` (`id`, `fecha_carga`, `fecha_envio`, `prioridad`, `server_id`, `html`, `destino`, `asunto`, `cuerpo`, `layout`, `vista`, `variables`, `headers`, `adjuntos`, `estado`, `intentos`, `error`) VALUES
+(1, '2016-05-10 14:47:10', '2016-04-10 18:17:10', 3, 1, 'Si', 'federicobouzas@gmail.com', 'Prueba del Servidor de Email', 'Esto es una prueba para testear el funcionamiento del servidor configurado en el Framework.', 'default', 'default', NULL, '[]', '[]', 'Enviado', 2, NULL),
+(2, '2016-06-15 13:32:21', '2016-06-15 13:32:21', 3, 1, 'Si', 'federicobouzas@gmail.com', 'Prueba del Servidor de Email', 'Esto es una prueba para testear el funcionamiento del servidor configurado en el Framework.', 'default', 'default', NULL, '[]', '[]', 'Enviado', 0, NULL),
+(3, '2016-06-15 13:37:11', '2016-06-15 13:37:11', 3, 2, 'Si', 'federicobouzas@gmail.com', 'Prueba del Servidor de Email', 'Esto es una prueba para testear el funcionamiento del servidor configurado en el Framework.', 'default', 'default', NULL, '[]', '[]', 'Enviando', 0, NULL);
+
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `msg_notifications`
 --
 
-CREATE TABLE IF NOT EXISTS `msg_notifications` (
-`id` int(11) NOT NULL,
+CREATE TABLE `msg_notifications` (
+  `id` int(11) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `model` varchar(100) NOT NULL,
@@ -5948,8 +5961,8 @@ CREATE TABLE IF NOT EXISTS `msg_notifications` (
 -- Estructura de tabla para la tabla `msg_notifications_messages`
 --
 
-CREATE TABLE IF NOT EXISTS `msg_notifications_messages` (
-`id` int(11) NOT NULL,
+CREATE TABLE `msg_notifications_messages` (
+  `id` int(11) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `fecha_modificacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` int(11) DEFAULT NULL,
@@ -5964,8 +5977,8 @@ CREATE TABLE IF NOT EXISTS `msg_notifications_messages` (
 -- Estructura de tabla para la tabla `msg_notifications_users`
 --
 
-CREATE TABLE IF NOT EXISTS `msg_notifications_users` (
-`id` int(11) NOT NULL,
+CREATE TABLE `msg_notifications_users` (
+  `id` int(11) NOT NULL,
   `notification_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `read` int(1) NOT NULL DEFAULT '0'
@@ -5977,13 +5990,13 @@ CREATE TABLE IF NOT EXISTS `msg_notifications_users` (
 -- Estructura de tabla para la tabla `msg_servers`
 --
 
-CREATE TABLE IF NOT EXISTS `msg_servers` (
-`id` int(10) NOT NULL,
+CREATE TABLE `msg_servers` (
+  `id` int(10) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `fecha_modificacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `estado` varchar(8) NOT NULL DEFAULT 'Activo',
   `tipo` varchar(10) NOT NULL,
-  `tls` varchar(2) NOT NULL,
+  `seguridad` varchar(3) NOT NULL,
   `host` varchar(100) NOT NULL,
   `puerto` int(5) NOT NULL,
   `usuario` varchar(50) NOT NULL,
@@ -5993,14 +6006,22 @@ CREATE TABLE IF NOT EXISTS `msg_servers` (
   `responder` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `msg_servers`
+--
+
+INSERT INTO `msg_servers` (`id`, `fecha_carga`, `fecha_modificacion`, `estado`, `tipo`, `seguridad`, `host`, `puerto`, `usuario`, `clave`, `cuenta`, `remitente`, `responder`) VALUES
+(1, '2016-05-10 14:47:03', '2016-06-15 16:22:10', 'Activo', 'SMTP', 'SSL', 'smtp.buenosaires.gob.ar', 465, 'atciudadana@buenosaires.gob.ar', 've4a2u2e', 'atciudadana@buenosaires.gob.ar', 'Secretaría de Descentralización', 'atciudadana@buenosaires.gob.ar'),
+(2, '2016-06-15 13:37:00', '2016-06-15 16:37:00', 'Activo', 'SMTP', 'TLS', 'in-v3.mailjet.com', 587, 'f7bd354671591a1fcccbb52f6fcd71f3', '0af84dcad2ca8efe68707595db9535ab', 'atciudadana@buenosaires.gob.ar', 'Secretaría de Descentralización', 'atciudadana@buenosaires.gob.ar');
+
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `per_personas`
 --
 
-CREATE TABLE IF NOT EXISTS `per_personas` (
-`id` int(11) NOT NULL,
+CREATE TABLE `per_personas` (
+  `id` int(11) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `fecha_modificacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `activa` int(1) NOT NULL DEFAULT '0',
@@ -6019,7 +6040,7 @@ CREATE TABLE IF NOT EXISTS `per_personas` (
   `barrio` varchar(50) DEFAULT NULL,
   `comuna` int(2) DEFAULT NULL,
   `coordenadas` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -6027,7 +6048,7 @@ CREATE TABLE IF NOT EXISTS `per_personas` (
 -- Estructura de tabla para la tabla `per_personas_poblaciones`
 --
 
-CREATE TABLE IF NOT EXISTS `per_personas_poblaciones` (
+CREATE TABLE `per_personas_poblaciones` (
   `persona_id` int(11) NOT NULL,
   `poblacion_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -6038,14 +6059,14 @@ CREATE TABLE IF NOT EXISTS `per_personas_poblaciones` (
 -- Estructura de tabla para la tabla `per_poblaciones`
 --
 
-CREATE TABLE IF NOT EXISTS `per_poblaciones` (
-`id` int(11) NOT NULL,
+CREATE TABLE `per_poblaciones` (
+  `id` int(11) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `fecha_modificacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `activa` varchar(20) NOT NULL DEFAULT 'Si',
   `user_id` int(10) NOT NULL,
   `nombre` varchar(200) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `per_poblaciones`
@@ -6061,7 +6082,7 @@ INSERT INTO `per_poblaciones` (`id`, `fecha_carga`, `fecha_modificacion`, `activ
 -- Estructura de tabla para la tabla `per_poblaciones_rols`
 --
 
-CREATE TABLE IF NOT EXISTS `per_poblaciones_rols` (
+CREATE TABLE `per_poblaciones_rols` (
   `poblacion_id` int(10) NOT NULL,
   `rol_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -6072,8 +6093,8 @@ CREATE TABLE IF NOT EXISTS `per_poblaciones_rols` (
 -- Estructura de tabla para la tabla `sys_bans`
 --
 
-CREATE TABLE IF NOT EXISTS `sys_bans` (
-`id` int(10) NOT NULL,
+CREATE TABLE `sys_bans` (
+  `id` int(10) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `ip` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -6084,14 +6105,14 @@ CREATE TABLE IF NOT EXISTS `sys_bans` (
 -- Estructura de tabla para la tabla `sys_bloqueos`
 --
 
-CREATE TABLE IF NOT EXISTS `sys_bloqueos` (
-`id` int(10) NOT NULL,
+CREATE TABLE `sys_bloqueos` (
+  `id` int(10) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `session_id` varchar(50) NOT NULL,
   `user_id` int(10) NOT NULL,
   `model` varchar(50) NOT NULL,
   `model_id` int(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -6099,8 +6120,8 @@ CREATE TABLE IF NOT EXISTS `sys_bloqueos` (
 -- Estructura de tabla para la tabla `sys_compilations`
 --
 
-CREATE TABLE IF NOT EXISTS `sys_compilations` (
-`id` int(10) NOT NULL,
+CREATE TABLE `sys_compilations` (
+  `id` int(10) NOT NULL,
   `filename` varchar(100) NOT NULL,
   `md5` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -6111,8 +6132,8 @@ CREATE TABLE IF NOT EXISTS `sys_compilations` (
 -- Estructura de tabla para la tabla `sys_configurations`
 --
 
-CREATE TABLE IF NOT EXISTS `sys_configurations` (
-`id` int(10) NOT NULL,
+CREATE TABLE `sys_configurations` (
+  `id` int(10) NOT NULL,
   `fecha_modificacion` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `empresa` varchar(250) DEFAULT NULL,
   `telefono` varchar(100) DEFAULT NULL,
@@ -6125,7 +6146,7 @@ CREATE TABLE IF NOT EXISTS `sys_configurations` (
   `max_emails` int(5) NOT NULL DEFAULT '1',
   `max_emails_dominio` int(5) NOT NULL DEFAULT '1',
   `version` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `sys_configurations`
@@ -6140,8 +6161,8 @@ INSERT INTO `sys_configurations` (`id`, `fecha_modificacion`, `empresa`, `telefo
 -- Estructura de tabla para la tabla `sys_crons`
 --
 
-CREATE TABLE IF NOT EXISTS `sys_crons` (
-`id` int(11) NOT NULL,
+CREATE TABLE `sys_crons` (
+  `id` int(11) NOT NULL,
   `nombre` varchar(200) NOT NULL,
   `descripcion` text NOT NULL,
   `clase_shell` varchar(100) NOT NULL,
@@ -6154,18 +6175,18 @@ CREATE TABLE IF NOT EXISTS `sys_crons` (
 -- Estructura de tabla para la tabla `sys_estados`
 --
 
-CREATE TABLE IF NOT EXISTS `sys_estados` (
-`id` int(10) NOT NULL,
+CREATE TABLE `sys_estados` (
+  `id` int(10) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `valor` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `sys_estados`
 --
 
 INSERT INTO `sys_estados` (`id`, `nombre`, `valor`) VALUES
-(1, 'enviando_emails', '0');
+(1, 'enviando_emails', '1');
 
 -- --------------------------------------------------------
 
@@ -6173,8 +6194,8 @@ INSERT INTO `sys_estados` (`id`, `nombre`, `valor`) VALUES
 -- Estructura de tabla para la tabla `sys_files`
 --
 
-CREATE TABLE IF NOT EXISTS `sys_files` (
-`id` int(10) NOT NULL,
+CREATE TABLE `sys_files` (
+  `id` int(10) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `fecha_modificacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `model` varchar(100) NOT NULL,
@@ -6191,8 +6212,8 @@ CREATE TABLE IF NOT EXISTS `sys_files` (
 -- Estructura de tabla para la tabla `sys_logins`
 --
 
-CREATE TABLE IF NOT EXISTS `sys_logins` (
-`id` int(10) NOT NULL,
+CREATE TABLE `sys_logins` (
+  `id` int(10) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `ip` varchar(15) NOT NULL,
   `username` varchar(100) NOT NULL,
@@ -6205,14 +6226,14 @@ CREATE TABLE IF NOT EXISTS `sys_logins` (
 -- Estructura de tabla para la tabla `sys_logs`
 --
 
-CREATE TABLE IF NOT EXISTS `sys_logs` (
-`id` int(10) NOT NULL,
+CREATE TABLE `sys_logs` (
+  `id` int(10) NOT NULL,
   `fecha_carga` datetime NOT NULL,
   `user_id` int(10) DEFAULT NULL,
   `model` varchar(100) NOT NULL,
   `action` varchar(100) NOT NULL,
   `model_id` int(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `sys_logs`
@@ -6222,7 +6243,32 @@ INSERT INTO `sys_logs` (`id`, `fecha_carga`, `user_id`, `model`, `action`, `mode
 (1, '2015-08-11 11:56:51', 1, 'Button', 'edit', 1),
 (2, '2015-08-11 14:23:14', 1, 'Persona', 'add', 2),
 (3, '2015-08-12 12:50:50', 1, 'Poblacion', 'add', 1),
-(4, '2015-08-12 12:51:00', 1, 'Poblacion', 'add', 2);
+(4, '2015-08-12 12:51:00', 1, 'Poblacion', 'add', 2),
+(5, '2016-04-15 12:40:22', 1, 'Button', 'Editó el registro', 1),
+(6, '2016-04-15 13:39:51', 1, 'Button', 'Agregó un registro', 2),
+(7, '2016-04-15 13:40:09', 1, 'Button', 'Agregó un registro', 3),
+(8, '2016-04-15 13:41:14', 1, 'Button', 'Agregó un registro', 4),
+(9, '2016-04-15 13:41:32', 1, 'Rol', 'Editó el registro', 1),
+(10, '2016-04-15 13:45:25', 1, 'Button', 'Editó el registro', 1),
+(11, '2016-05-10 14:47:03', 1, 'Server', 'Agregó un registro', 1),
+(12, '2016-05-10 14:50:52', 1, 'Server', 'Editó el registro', 1),
+(13, '2016-05-10 14:51:29', 1, 'Estado', 'Editó el registro', 1),
+(14, '2016-05-10 14:52:52', 1, 'Server', 'Editó el registro', 1),
+(15, '2016-05-10 14:55:18', 1, 'Server', 'Editó el registro', 1),
+(16, '2016-05-10 15:00:33', 1, 'Server', 'Editó el registro', 1),
+(17, '2016-05-18 10:32:29', 1, 'Server', 'Editó el registro', 1),
+(18, '2016-06-15 13:07:49', 1, 'Server', 'Editó el registro', 1),
+(19, '2016-06-15 13:10:01', 1, 'Server', 'Editó el registro', 1),
+(20, '2016-06-15 13:12:25', 1, 'Server', 'Editó el registro', 1),
+(21, '2016-06-15 13:15:53', 1, 'Server', 'Editó el registro', 1),
+(22, '2016-06-15 13:17:50', 1, 'Server', 'Editó el registro', 1),
+(23, '2016-06-15 13:17:59', 1, 'Server', 'Editó el registro', 1),
+(24, '2016-06-15 13:18:54', 1, 'Server', 'Editó el registro', 1),
+(25, '2016-06-15 13:19:52', 1, 'Server', 'Editó el registro', 1),
+(26, '2016-06-15 13:22:10', 1, 'Server', 'Editó el registro', 1),
+(27, '2016-06-15 13:28:12', 1, 'Bloqueo', 'Eliminó el registro', 20),
+(28, '2016-06-15 13:33:44', 1, 'Estado', 'Editó el registro', 1),
+(29, '2016-06-15 13:37:00', 1, 'Server', 'Agregó un registro', 2);
 
 --
 -- Índices para tablas volcadas
@@ -6232,271 +6278,324 @@ INSERT INTO `sys_logs` (`id`, `fecha_carga`, `user_id`, `model`, `action`, `mode
 -- Indices de la tabla `acc_buttons`
 --
 ALTER TABLE `acc_buttons`
- ADD PRIMARY KEY (`id`), ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indices de la tabla `acc_buttons_rols`
 --
 ALTER TABLE `acc_buttons_rols`
- ADD PRIMARY KEY (`button_id`,`rol_id`), ADD KEY `rol_id` (`rol_id`);
+  ADD PRIMARY KEY (`button_id`,`rol_id`),
+  ADD KEY `rol_id` (`rol_id`);
 
 --
 -- Indices de la tabla `acc_permisos`
 --
 ALTER TABLE `acc_permisos`
- ADD PRIMARY KEY (`id`), ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indices de la tabla `acc_rights`
 --
 ALTER TABLE `acc_rights`
- ADD PRIMARY KEY (`id`), ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indices de la tabla `acc_rights_rols`
 --
 ALTER TABLE `acc_rights_rols`
- ADD PRIMARY KEY (`right_id`,`rol_id`), ADD KEY `rol_id` (`rol_id`);
+  ADD PRIMARY KEY (`right_id`,`rol_id`),
+  ADD KEY `rol_id` (`rol_id`);
 
 --
 -- Indices de la tabla `acc_right_permisos`
 --
 ALTER TABLE `acc_right_permisos`
- ADD PRIMARY KEY (`id`), ADD KEY `right_id` (`right_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `right_id` (`right_id`);
 
 --
 -- Indices de la tabla `acc_rols`
 --
 ALTER TABLE `acc_rols`
- ADD PRIMARY KEY (`id`), ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indices de la tabla `acc_users`
 --
 ALTER TABLE `acc_users`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `email` (`email`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indices de la tabla `acc_users_recovers`
 --
 ALTER TABLE `acc_users_recovers`
- ADD PRIMARY KEY (`id`), ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indices de la tabla `acc_users_rols`
 --
 ALTER TABLE `acc_users_rols`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `user_id` (`user_id`,`rol_id`), ADD KEY `rol_id` (`rol_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_id` (`user_id`,`rol_id`),
+  ADD KEY `rol_id` (`rol_id`);
 
 --
 -- Indices de la tabla `cam_campanias`
 --
 ALTER TABLE `cam_campanias`
- ADD PRIMARY KEY (`id`), ADD KEY `encuesta_id` (`encuesta_id`), ADD KEY `user_id` (`user_id`), ADD KEY `evento_id` (`evento_id`), ADD KEY `server_id` (`server_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `encuesta_id` (`encuesta_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `evento_id` (`evento_id`),
+  ADD KEY `server_id` (`server_id`);
 
 --
 -- Indices de la tabla `cam_campanias_personas`
 --
 ALTER TABLE `cam_campanias_personas`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `campania_id` (`campania_id`,`persona_id`), ADD KEY `persona_id` (`persona_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `campania_id` (`campania_id`,`persona_id`),
+  ADD KEY `persona_id` (`persona_id`);
 
 --
 -- Indices de la tabla `cam_campanias_poblaciones`
 --
 ALTER TABLE `cam_campanias_poblaciones`
- ADD PRIMARY KEY (`campania_id`,`poblacion_id`), ADD KEY `poblacion_id` (`poblacion_id`);
+  ADD PRIMARY KEY (`campania_id`,`poblacion_id`),
+  ADD KEY `poblacion_id` (`poblacion_id`);
 
 --
 -- Indices de la tabla `cam_encuestas`
 --
 ALTER TABLE `cam_encuestas`
- ADD PRIMARY KEY (`id`), ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indices de la tabla `cam_encuestas_preguntas`
 --
 ALTER TABLE `cam_encuestas_preguntas`
- ADD PRIMARY KEY (`id`), ADD KEY `encuesta_id` (`encuesta_id`), ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `encuesta_id` (`encuesta_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indices de la tabla `cam_encuestas_respuestas`
 --
 ALTER TABLE `cam_encuestas_respuestas`
- ADD PRIMARY KEY (`id`), ADD KEY `pregunta_id` (`pregunta_id`), ADD KEY `persona_id` (`persona_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pregunta_id` (`pregunta_id`),
+  ADD KEY `persona_id` (`persona_id`);
 
 --
 -- Indices de la tabla `cam_eventos`
 --
 ALTER TABLE `cam_eventos`
- ADD PRIMARY KEY (`id`), ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indices de la tabla `cam_eventos_asistencias`
 --
 ALTER TABLE `cam_eventos_asistencias`
- ADD PRIMARY KEY (`evento_id`,`persona_id`), ADD KEY `persona_id` (`persona_id`);
+  ADD PRIMARY KEY (`evento_id`,`persona_id`),
+  ADD KEY `persona_id` (`persona_id`);
 
 --
 -- Indices de la tabla `cam_links`
 --
 ALTER TABLE `cam_links`
- ADD PRIMARY KEY (`id`), ADD KEY `campania_id` (`campania_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `campania_id` (`campania_id`);
 
 --
 -- Indices de la tabla `cam_links_personas`
 --
 ALTER TABLE `cam_links_personas`
- ADD PRIMARY KEY (`id`), ADD KEY `link_id` (`link_id`), ADD KEY `persona_id` (`persona_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `link_id` (`link_id`),
+  ADD KEY `persona_id` (`persona_id`);
 
 --
 -- Indices de la tabla `das_charts`
 --
 ALTER TABLE `das_charts`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `das_gauges`
 --
 ALTER TABLE `das_gauges`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `das_kpis`
 --
 ALTER TABLE `das_kpis`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `geo_cities`
 --
 ALTER TABLE `geo_cities`
- ADD PRIMARY KEY (`ID`), ADD KEY `CountryCode` (`CountryCode`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `CountryCode` (`CountryCode`);
 
 --
 -- Indices de la tabla `geo_countries`
 --
 ALTER TABLE `geo_countries`
- ADD PRIMARY KEY (`Code`);
+  ADD PRIMARY KEY (`Code`);
 
 --
 -- Indices de la tabla `geo_countries_languages`
 --
 ALTER TABLE `geo_countries_languages`
- ADD PRIMARY KEY (`CountryCode`,`Language`), ADD KEY `CountryCode` (`CountryCode`);
+  ADD PRIMARY KEY (`CountryCode`,`Language`),
+  ADD KEY `CountryCode` (`CountryCode`);
 
 --
 -- Indices de la tabla `msg_entrantes`
 --
 ALTER TABLE `msg_entrantes`
- ADD PRIMARY KEY (`id`), ADD KEY `server_id` (`server_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `server_id` (`server_id`);
 
 --
 -- Indices de la tabla `msg_mensajes`
 --
 ALTER TABLE `msg_mensajes`
- ADD PRIMARY KEY (`id`), ADD KEY `server_id` (`server_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `server_id` (`server_id`);
 
 --
 -- Indices de la tabla `msg_notifications`
 --
 ALTER TABLE `msg_notifications`
- ADD PRIMARY KEY (`id`), ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indices de la tabla `msg_notifications_messages`
 --
 ALTER TABLE `msg_notifications_messages`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `model` (`model`,`action`), ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `model` (`model`,`action`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indices de la tabla `msg_notifications_users`
 --
 ALTER TABLE `msg_notifications_users`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `notificacion_id` (`notification_id`,`user_id`), ADD KEY `user_id` (`user_id`), ADD KEY `read` (`read`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `notificacion_id` (`notification_id`,`user_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `read` (`read`);
 
 --
 -- Indices de la tabla `msg_servers`
 --
 ALTER TABLE `msg_servers`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `host` (`host`,`cuenta`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `host` (`host`,`cuenta`);
 
 --
 -- Indices de la tabla `per_personas`
 --
 ALTER TABLE `per_personas`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `email` (`email`), ADD UNIQUE KEY `telefono_celular` (`telefono_celular`), ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `telefono_celular` (`telefono_celular`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indices de la tabla `per_personas_poblaciones`
 --
 ALTER TABLE `per_personas_poblaciones`
- ADD PRIMARY KEY (`persona_id`,`poblacion_id`), ADD KEY `poblacion_id` (`poblacion_id`);
+  ADD PRIMARY KEY (`persona_id`,`poblacion_id`),
+  ADD KEY `poblacion_id` (`poblacion_id`);
 
 --
 -- Indices de la tabla `per_poblaciones`
 --
 ALTER TABLE `per_poblaciones`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `pob_nombre` (`nombre`), ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `pob_nombre` (`nombre`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indices de la tabla `per_poblaciones_rols`
 --
 ALTER TABLE `per_poblaciones_rols`
- ADD PRIMARY KEY (`poblacion_id`,`rol_id`), ADD KEY `rol_id` (`rol_id`);
+  ADD PRIMARY KEY (`poblacion_id`,`rol_id`),
+  ADD KEY `rol_id` (`rol_id`);
 
 --
 -- Indices de la tabla `sys_bans`
 --
 ALTER TABLE `sys_bans`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `ip` (`ip`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `ip` (`ip`);
 
 --
 -- Indices de la tabla `sys_bloqueos`
 --
 ALTER TABLE `sys_bloqueos`
- ADD PRIMARY KEY (`id`), ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indices de la tabla `sys_compilations`
 --
 ALTER TABLE `sys_compilations`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `filename` (`filename`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `filename` (`filename`);
 
 --
 -- Indices de la tabla `sys_configurations`
 --
 ALTER TABLE `sys_configurations`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `sys_crons`
 --
 ALTER TABLE `sys_crons`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `clase_shell` (`clase_shell`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `clase_shell` (`clase_shell`);
 
 --
 -- Indices de la tabla `sys_estados`
 --
 ALTER TABLE `sys_estados`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `nombre` (`nombre`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nombre` (`nombre`);
 
 --
 -- Indices de la tabla `sys_files`
 --
 ALTER TABLE `sys_files`
- ADD PRIMARY KEY (`id`), ADD KEY `model` (`model`,`model_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `model` (`model`,`model_id`);
 
 --
 -- Indices de la tabla `sys_logins`
 --
 ALTER TABLE `sys_logins`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `sys_logs`
 --
 ALTER TABLE `sys_logs`
- ADD PRIMARY KEY (`id`), ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -6506,187 +6605,187 @@ ALTER TABLE `sys_logs`
 -- AUTO_INCREMENT de la tabla `acc_buttons`
 --
 ALTER TABLE `acc_buttons`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `acc_permisos`
 --
 ALTER TABLE `acc_permisos`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `acc_rights`
 --
 ALTER TABLE `acc_rights`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `acc_right_permisos`
 --
 ALTER TABLE `acc_right_permisos`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=43;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT de la tabla `acc_rols`
 --
 ALTER TABLE `acc_rols`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `acc_users`
 --
 ALTER TABLE `acc_users`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `acc_users_recovers`
 --
 ALTER TABLE `acc_users_recovers`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `acc_users_rols`
 --
 ALTER TABLE `acc_users_rols`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT de la tabla `cam_campanias`
 --
 ALTER TABLE `cam_campanias`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `cam_campanias_personas`
 --
 ALTER TABLE `cam_campanias_personas`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `cam_encuestas`
 --
 ALTER TABLE `cam_encuestas`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `cam_encuestas_preguntas`
 --
 ALTER TABLE `cam_encuestas_preguntas`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `cam_encuestas_respuestas`
 --
 ALTER TABLE `cam_encuestas_respuestas`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `cam_eventos`
 --
 ALTER TABLE `cam_eventos`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `cam_links`
 --
 ALTER TABLE `cam_links`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `cam_links_personas`
 --
 ALTER TABLE `cam_links_personas`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `das_charts`
 --
 ALTER TABLE `das_charts`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `das_gauges`
 --
 ALTER TABLE `das_gauges`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `das_kpis`
 --
 ALTER TABLE `das_kpis`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `geo_cities`
 --
 ALTER TABLE `geo_cities`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4080;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4080;
 --
 -- AUTO_INCREMENT de la tabla `msg_entrantes`
 --
 ALTER TABLE `msg_entrantes`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `msg_mensajes`
 --
 ALTER TABLE `msg_mensajes`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `msg_notifications`
 --
 ALTER TABLE `msg_notifications`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `msg_notifications_messages`
 --
 ALTER TABLE `msg_notifications_messages`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `msg_notifications_users`
 --
 ALTER TABLE `msg_notifications_users`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `msg_servers`
 --
 ALTER TABLE `msg_servers`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `per_personas`
 --
 ALTER TABLE `per_personas`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `per_poblaciones`
 --
 ALTER TABLE `per_poblaciones`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `sys_bans`
 --
 ALTER TABLE `sys_bans`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `sys_bloqueos`
 --
 ALTER TABLE `sys_bloqueos`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT de la tabla `sys_compilations`
 --
 ALTER TABLE `sys_compilations`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `sys_configurations`
 --
 ALTER TABLE `sys_configurations`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `sys_crons`
 --
 ALTER TABLE `sys_crons`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `sys_estados`
 --
 ALTER TABLE `sys_estados`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `sys_files`
 --
 ALTER TABLE `sys_files`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `sys_logins`
 --
 ALTER TABLE `sys_logins`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `sys_logs`
 --
 ALTER TABLE `sys_logs`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- Restricciones para tablas volcadas
 --
@@ -6695,201 +6794,201 @@ MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- Filtros para la tabla `acc_buttons`
 --
 ALTER TABLE `acc_buttons`
-ADD CONSTRAINT `acc_buttons_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
+  ADD CONSTRAINT `acc_buttons_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
 
 --
 -- Filtros para la tabla `acc_buttons_rols`
 --
 ALTER TABLE `acc_buttons_rols`
-ADD CONSTRAINT `acc_buttons_rols_ibfk_1` FOREIGN KEY (`button_id`) REFERENCES `acc_buttons` (`id`),
-ADD CONSTRAINT `acc_buttons_rols_ibfk_2` FOREIGN KEY (`rol_id`) REFERENCES `acc_rols` (`id`);
+  ADD CONSTRAINT `acc_buttons_rols_ibfk_1` FOREIGN KEY (`button_id`) REFERENCES `acc_buttons` (`id`),
+  ADD CONSTRAINT `acc_buttons_rols_ibfk_2` FOREIGN KEY (`rol_id`) REFERENCES `acc_rols` (`id`);
 
 --
 -- Filtros para la tabla `acc_permisos`
 --
 ALTER TABLE `acc_permisos`
-ADD CONSTRAINT `acc_permisos_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
+  ADD CONSTRAINT `acc_permisos_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
 
 --
 -- Filtros para la tabla `acc_rights`
 --
 ALTER TABLE `acc_rights`
-ADD CONSTRAINT `acc_rights_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
+  ADD CONSTRAINT `acc_rights_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
 
 --
 -- Filtros para la tabla `acc_rights_rols`
 --
 ALTER TABLE `acc_rights_rols`
-ADD CONSTRAINT `acc_rights_rols_ibfk_1` FOREIGN KEY (`right_id`) REFERENCES `acc_rights` (`id`),
-ADD CONSTRAINT `acc_rights_rols_ibfk_2` FOREIGN KEY (`rol_id`) REFERENCES `acc_rols` (`id`);
+  ADD CONSTRAINT `acc_rights_rols_ibfk_1` FOREIGN KEY (`right_id`) REFERENCES `acc_rights` (`id`),
+  ADD CONSTRAINT `acc_rights_rols_ibfk_2` FOREIGN KEY (`rol_id`) REFERENCES `acc_rols` (`id`);
 
 --
 -- Filtros para la tabla `acc_right_permisos`
 --
 ALTER TABLE `acc_right_permisos`
-ADD CONSTRAINT `acc_right_permisos_ibfk_1` FOREIGN KEY (`right_id`) REFERENCES `acc_rights` (`id`);
+  ADD CONSTRAINT `acc_right_permisos_ibfk_1` FOREIGN KEY (`right_id`) REFERENCES `acc_rights` (`id`);
 
 --
 -- Filtros para la tabla `acc_rols`
 --
 ALTER TABLE `acc_rols`
-ADD CONSTRAINT `acc_rols_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
+  ADD CONSTRAINT `acc_rols_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
 
 --
 -- Filtros para la tabla `acc_users_recovers`
 --
 ALTER TABLE `acc_users_recovers`
-ADD CONSTRAINT `acc_users_recovers_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
+  ADD CONSTRAINT `acc_users_recovers_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
 
 --
 -- Filtros para la tabla `acc_users_rols`
 --
 ALTER TABLE `acc_users_rols`
-ADD CONSTRAINT `acc_users_rols_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`),
-ADD CONSTRAINT `acc_users_rols_ibfk_2` FOREIGN KEY (`rol_id`) REFERENCES `acc_rols` (`id`);
+  ADD CONSTRAINT `acc_users_rols_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`),
+  ADD CONSTRAINT `acc_users_rols_ibfk_2` FOREIGN KEY (`rol_id`) REFERENCES `acc_rols` (`id`);
 
 --
 -- Filtros para la tabla `cam_campanias`
 --
 ALTER TABLE `cam_campanias`
-ADD CONSTRAINT `cam_campanias_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`),
-ADD CONSTRAINT `cam_campanias_ibfk_2` FOREIGN KEY (`encuesta_id`) REFERENCES `cam_encuestas` (`id`),
-ADD CONSTRAINT `cam_campanias_ibfk_3` FOREIGN KEY (`evento_id`) REFERENCES `cam_eventos` (`id`);
+  ADD CONSTRAINT `cam_campanias_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`),
+  ADD CONSTRAINT `cam_campanias_ibfk_2` FOREIGN KEY (`encuesta_id`) REFERENCES `cam_encuestas` (`id`),
+  ADD CONSTRAINT `cam_campanias_ibfk_3` FOREIGN KEY (`evento_id`) REFERENCES `cam_eventos` (`id`);
 
 --
 -- Filtros para la tabla `cam_campanias_personas`
 --
 ALTER TABLE `cam_campanias_personas`
-ADD CONSTRAINT `cam_campanias_personas_ibfk_1` FOREIGN KEY (`campania_id`) REFERENCES `cam_campanias` (`id`),
-ADD CONSTRAINT `cam_campanias_personas_ibfk_2` FOREIGN KEY (`persona_id`) REFERENCES `per_personas` (`id`);
+  ADD CONSTRAINT `cam_campanias_personas_ibfk_1` FOREIGN KEY (`campania_id`) REFERENCES `cam_campanias` (`id`),
+  ADD CONSTRAINT `cam_campanias_personas_ibfk_2` FOREIGN KEY (`persona_id`) REFERENCES `per_personas` (`id`);
 
 --
 -- Filtros para la tabla `cam_campanias_poblaciones`
 --
 ALTER TABLE `cam_campanias_poblaciones`
-ADD CONSTRAINT `cam_campanias_poblaciones_ibfk_1` FOREIGN KEY (`campania_id`) REFERENCES `cam_campanias` (`id`),
-ADD CONSTRAINT `cam_campanias_poblaciones_ibfk_2` FOREIGN KEY (`poblacion_id`) REFERENCES `per_poblaciones` (`id`);
+  ADD CONSTRAINT `cam_campanias_poblaciones_ibfk_1` FOREIGN KEY (`campania_id`) REFERENCES `cam_campanias` (`id`),
+  ADD CONSTRAINT `cam_campanias_poblaciones_ibfk_2` FOREIGN KEY (`poblacion_id`) REFERENCES `per_poblaciones` (`id`);
 
 --
 -- Filtros para la tabla `cam_encuestas`
 --
 ALTER TABLE `cam_encuestas`
-ADD CONSTRAINT `cam_encuestas_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
+  ADD CONSTRAINT `cam_encuestas_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
 
 --
 -- Filtros para la tabla `cam_encuestas_preguntas`
 --
 ALTER TABLE `cam_encuestas_preguntas`
-ADD CONSTRAINT `cam_encuestas_preguntas_ibfk_1` FOREIGN KEY (`encuesta_id`) REFERENCES `cam_encuestas` (`id`),
-ADD CONSTRAINT `cam_encuestas_preguntas_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
+  ADD CONSTRAINT `cam_encuestas_preguntas_ibfk_1` FOREIGN KEY (`encuesta_id`) REFERENCES `cam_encuestas` (`id`),
+  ADD CONSTRAINT `cam_encuestas_preguntas_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
 
 --
 -- Filtros para la tabla `cam_encuestas_respuestas`
 --
 ALTER TABLE `cam_encuestas_respuestas`
-ADD CONSTRAINT `cam_encuestas_respuestas_ibfk_2` FOREIGN KEY (`persona_id`) REFERENCES `per_personas` (`id`),
-ADD CONSTRAINT `cam_encuestas_respuestas_ibfk_3` FOREIGN KEY (`pregunta_id`) REFERENCES `cam_encuestas_preguntas` (`id`);
+  ADD CONSTRAINT `cam_encuestas_respuestas_ibfk_2` FOREIGN KEY (`persona_id`) REFERENCES `per_personas` (`id`),
+  ADD CONSTRAINT `cam_encuestas_respuestas_ibfk_3` FOREIGN KEY (`pregunta_id`) REFERENCES `cam_encuestas_preguntas` (`id`);
 
 --
 -- Filtros para la tabla `cam_eventos`
 --
 ALTER TABLE `cam_eventos`
-ADD CONSTRAINT `cam_eventos_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
+  ADD CONSTRAINT `cam_eventos_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
 
 --
 -- Filtros para la tabla `cam_eventos_asistencias`
 --
 ALTER TABLE `cam_eventos_asistencias`
-ADD CONSTRAINT `cam_eventos_asistencias_ibfk_1` FOREIGN KEY (`evento_id`) REFERENCES `cam_eventos` (`id`),
-ADD CONSTRAINT `cam_eventos_asistencias_ibfk_2` FOREIGN KEY (`persona_id`) REFERENCES `per_personas` (`id`);
+  ADD CONSTRAINT `cam_eventos_asistencias_ibfk_1` FOREIGN KEY (`evento_id`) REFERENCES `cam_eventos` (`id`),
+  ADD CONSTRAINT `cam_eventos_asistencias_ibfk_2` FOREIGN KEY (`persona_id`) REFERENCES `per_personas` (`id`);
 
 --
 -- Filtros para la tabla `cam_links`
 --
 ALTER TABLE `cam_links`
-ADD CONSTRAINT `cam_links_ibfk_1` FOREIGN KEY (`campania_id`) REFERENCES `cam_campanias` (`id`);
+  ADD CONSTRAINT `cam_links_ibfk_1` FOREIGN KEY (`campania_id`) REFERENCES `cam_campanias` (`id`);
 
 --
 -- Filtros para la tabla `cam_links_personas`
 --
 ALTER TABLE `cam_links_personas`
-ADD CONSTRAINT `cam_links_personas_ibfk_1` FOREIGN KEY (`link_id`) REFERENCES `cam_links` (`id`),
-ADD CONSTRAINT `cam_links_personas_ibfk_2` FOREIGN KEY (`persona_id`) REFERENCES `per_personas` (`id`);
+  ADD CONSTRAINT `cam_links_personas_ibfk_1` FOREIGN KEY (`link_id`) REFERENCES `cam_links` (`id`),
+  ADD CONSTRAINT `cam_links_personas_ibfk_2` FOREIGN KEY (`persona_id`) REFERENCES `per_personas` (`id`);
 
 --
 -- Filtros para la tabla `geo_cities`
 --
 ALTER TABLE `geo_cities`
-ADD CONSTRAINT `geo_cities_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `geo_countries` (`Code`);
+  ADD CONSTRAINT `geo_cities_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `geo_countries` (`Code`);
 
 --
 -- Filtros para la tabla `geo_countries_languages`
 --
 ALTER TABLE `geo_countries_languages`
-ADD CONSTRAINT `countryLanguage_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `geo_countries` (`Code`);
+  ADD CONSTRAINT `countryLanguage_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `geo_countries` (`Code`);
 
 --
 -- Filtros para la tabla `msg_entrantes`
 --
 ALTER TABLE `msg_entrantes`
-ADD CONSTRAINT `msg_entrantes_ibfk_1` FOREIGN KEY (`server_id`) REFERENCES `msg_servers` (`id`);
+  ADD CONSTRAINT `msg_entrantes_ibfk_1` FOREIGN KEY (`server_id`) REFERENCES `msg_servers` (`id`);
 
 --
 -- Filtros para la tabla `msg_notifications`
 --
 ALTER TABLE `msg_notifications`
-ADD CONSTRAINT `msg_notifications_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
+  ADD CONSTRAINT `msg_notifications_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
 
 --
 -- Filtros para la tabla `msg_notifications_messages`
 --
 ALTER TABLE `msg_notifications_messages`
-ADD CONSTRAINT `msg_notifications_messages_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
+  ADD CONSTRAINT `msg_notifications_messages_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
 
 --
 -- Filtros para la tabla `msg_notifications_users`
 --
 ALTER TABLE `msg_notifications_users`
-ADD CONSTRAINT `msg_notifications_users_ibfk_3` FOREIGN KEY (`notification_id`) REFERENCES `msg_notifications` (`id`),
-ADD CONSTRAINT `msg_notifications_users_ibfk_4` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
+  ADD CONSTRAINT `msg_notifications_users_ibfk_3` FOREIGN KEY (`notification_id`) REFERENCES `msg_notifications` (`id`),
+  ADD CONSTRAINT `msg_notifications_users_ibfk_4` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
 
 --
 -- Filtros para la tabla `per_personas`
 --
 ALTER TABLE `per_personas`
-ADD CONSTRAINT `per_personas_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
+  ADD CONSTRAINT `per_personas_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
 
 --
 -- Filtros para la tabla `per_personas_poblaciones`
 --
 ALTER TABLE `per_personas_poblaciones`
-ADD CONSTRAINT `per_personas_poblaciones_ibfk_1` FOREIGN KEY (`persona_id`) REFERENCES `per_personas` (`id`),
-ADD CONSTRAINT `per_personas_poblaciones_ibfk_2` FOREIGN KEY (`poblacion_id`) REFERENCES `per_poblaciones` (`id`);
+  ADD CONSTRAINT `per_personas_poblaciones_ibfk_1` FOREIGN KEY (`persona_id`) REFERENCES `per_personas` (`id`),
+  ADD CONSTRAINT `per_personas_poblaciones_ibfk_2` FOREIGN KEY (`poblacion_id`) REFERENCES `per_poblaciones` (`id`);
 
 --
 -- Filtros para la tabla `per_poblaciones`
 --
 ALTER TABLE `per_poblaciones`
-ADD CONSTRAINT `per_poblaciones_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
+  ADD CONSTRAINT `per_poblaciones_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
 
 --
 -- Filtros para la tabla `per_poblaciones_rols`
 --
 ALTER TABLE `per_poblaciones_rols`
-ADD CONSTRAINT `per_poblaciones_rols_ibfk_1` FOREIGN KEY (`poblacion_id`) REFERENCES `per_poblaciones` (`id`),
-ADD CONSTRAINT `per_poblaciones_rols_ibfk_2` FOREIGN KEY (`rol_id`) REFERENCES `acc_rols` (`id`);
+  ADD CONSTRAINT `per_poblaciones_rols_ibfk_1` FOREIGN KEY (`poblacion_id`) REFERENCES `per_poblaciones` (`id`),
+  ADD CONSTRAINT `per_poblaciones_rols_ibfk_2` FOREIGN KEY (`rol_id`) REFERENCES `acc_rols` (`id`);
 
 --
 -- Filtros para la tabla `sys_bloqueos`
 --
 ALTER TABLE `sys_bloqueos`
-ADD CONSTRAINT `sys_bloqueos_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
+  ADD CONSTRAINT `sys_bloqueos_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
 
 --
 -- Filtros para la tabla `sys_logs`
 --
 ALTER TABLE `sys_logs`
-ADD CONSTRAINT `sys_logs_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
+  ADD CONSTRAINT `sys_logs_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `acc_users` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
