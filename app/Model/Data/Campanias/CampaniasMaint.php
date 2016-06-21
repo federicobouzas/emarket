@@ -113,7 +113,7 @@ protected $data = array (
                 array (
                     'name' => 'cuerpo_email',
                     'label' => 'Cuerpo Email',
-                    'presentation' => 'REDACTOR',
+                    'presentation' => 'WYSIWYG',
                     'note' => 'Variables disponibles: #NOMBRE#, #APELLIDO#, #URL_UNSUBSCRIBE#, #URL_ENCUESTA#, #FECHA_HORA#, #LUGAR#, #URL_MAPA#, #URL_ASISTE#, #URL_NO_ASISTE#',
                 ),
             ),

@@ -64,7 +64,7 @@
         <fieldset id="opciones_envio_email" title="Opciones de Envío de Email">
             <field name="asunto_email" label="Asunto Email" size="100" />
             <field name="tmp_template" label="Subir Template" presentation="FILE" actions="A|E" breakline="true" />
-            <field name="cuerpo_email" label="Cuerpo Email" presentation="REDACTOR" note="Variables disponibles: #NOMBRE#, #APELLIDO#, #URL_UNSUBSCRIBE#, #URL_ENCUESTA#, #FECHA_HORA#, #LUGAR#, #URL_MAPA#, #URL_ASISTE#, #URL_NO_ASISTE#" />
+            <field name="cuerpo_email" label="Cuerpo Email" presentation="WYSIWYG" note="Variables disponibles: #NOMBRE#, #APELLIDO#, #URL_UNSUBSCRIBE#, #URL_ENCUESTA#, #FECHA_HORA#, #LUGAR#, #URL_MAPA#, #URL_ASISTE#, #URL_NO_ASISTE#" />
         </fieldset>
         
         <fieldset id="caracteristicas_personas" title="Características de las Personas" columns="2">

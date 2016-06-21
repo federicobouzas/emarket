@@ -120,7 +120,8 @@ function seleccionTemplate(evt) {
         reader.onload = (function (theFile) {
             return function (e) {
                 if (empty(e.target.error)) {
-                    $('#CampaniaCuerpoEmail').redactor('code.set', e.target.result);
+                    $("#CampaniaCuerpoEmail").data("kendoEditor").value(e.target.result);
+                    //$('#CampaniaCuerpoEmail').redactor('code.set', e.target.result);
                 } else {
                     jAlert("Error al cargar el template, intente nuevamente.", "Error");
                 }
