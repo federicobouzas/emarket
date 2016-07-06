@@ -187,7 +187,7 @@ class CampaniasController extends AppController {
         $msj = new Mensaje();
         $msj->send($email_data);
 
-        $this->Session->setFlash(__('La campaña fue enviada correctamente'));
+        $this->Session->setFlash(__('La campaña fue enviada correctamente'), 'default', array('class' => 'message success'));
         $this->redirect(array('action' => 'index', 'last'));
     }
 

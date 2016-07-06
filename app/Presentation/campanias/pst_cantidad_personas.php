@@ -40,7 +40,7 @@ class pst_cantidad_personas extends Presentation {
             return 0;
         }
         $db = ConnectionManager::getDataSource('default');
-        $count = $db->Query("SELECT COUNT(*) AS cant FROM cam_campanias_personas WHERE campania_id=" . $params->campania_id);
+        $count = $db->Query("SELECT COUNT(*) AS cant FROM cam_campanias_personas WHERE campania_id=" . $params->campania_id . " GROUP BY persona_id");
         return $count[0][0]['cant'];
     }
 

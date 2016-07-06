@@ -31,5 +31,5 @@ function getPersonasFromParams($params, $type = "count") {
     }
     App::uses("Persona", "Model");
     $personaObj = new Persona();
-    return $personaObj->find($type, ['conditions' => $conditions, 'joins' => $joins]);
+    return $personaObj->find($type, ['conditions' => $conditions, 'joins' => $joins, 'group' => 'Persona.id']);
 }
